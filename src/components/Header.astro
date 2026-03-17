@@ -1,0 +1,200 @@
+---
+import { brand } from '../config/brand';
+import { client } from '../data/client';
+
+const nav = [
+  { label: 'Home',     href: '/' },
+  { label: 'About',    href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Reviews',  href: '/reviews' },
+  { label: 'Blog',     href: '/blog' },
+  { label: 'Contact',  href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm"
+  transition:persist
+>
+  <div class="mx-auto flex max-w-site items-center justify-between px-4 py-3 sm:px-6">
+    <!-- Logo -->
+    <a
+      href="/"
+      class="font-heading text-xl font-bold uppercase tracking-wide text-primary transition-opacity hover:opacity-80"
+    >
+      {brand.name}
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+      {nav.map(({ label, href }) => {
+        const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+        return (
+          <a
+            href={href}
+            aria-current={isActive ? 'page' : undefined}
+            class:list={[
+              'rounded-md px-3 py-2 text-sm font-medium transition-colors',
+              isActive
+                ? 'bg-primary/10 text-primary'
+                : 'text-text-muted hover:text-text',
+            ]}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Desktop CTA + phone -->
+    <div class="hidden items-center gap-4 lg:flex">
+      {client.license && (
+        <span class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-text-muted">
+          {client.license}
+        </span>
+      )}
+      <a
+        href={`tel:${client.phoneForTel}`}
+        class="text-sm font-semibold text-text hover:text-primary transition-colors"
+      >
+        {client.phoneFormatted}
+      </a>
+      <a
+        href="/contact"
+        class="inline-flex min-h-[44px] items-center rounded-md bg-accent px-5 py-2.5 text-sm font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      >
+        Free Quote
+      </a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-text-muted hover:bg-surface lg:hidden"
+    >
+      <span class="sr-only">Toggle menu</span>
+      <svg id="menu-icon-open" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="menu-icon-close" class="hidden size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-border bg-background px-4 pb-6 pt-2 lg:hidden"
+  >
+    <nav class="flex flex-col gap-1" aria-label="Mobile navigation">
+      {nav.map(({ label, href }) => {
+        const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
+        return (
+          <a
+            href={href}
+            class:list={[
+              'rounded-md px-3 py-3 text-base font-medium transition-colors',
+              isActive
+                ? 'bg-primary/10 text-primary'
+                : 'text-text-muted hover:text-text hover:bg-surface',
+            ]}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="mt-4 flex flex-col gap-3 border-t border-border pt-4">
+      <a
+        href={`tel:${client.phoneForTel}`}
+        class="flex items-center gap-2 px-3 py-2 text-base font-semibold text-text"
+      >
+        <svg class="size-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        {client.phoneFormatted}
+      </a>
+      <a
+        href="/contact"
+        class="flex min-h-[44px] items-center justify-center rounded-md bg-accent px-5 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90"
+      >
+        Get a Free Quote
+      </a>
+      {client.license && (
+        <p class="px-3 pt-1 text-xs text-text-muted">{client.license}</p>
+      )}
+    </div>
+  </div>
+</header>
+
+<script>
+  // This header uses transition:persist — it is never removed from the DOM.
+  // Its script therefore runs exactly once per full page load.
+  // All event listeners registered here are long-lived; we must NOT re-register
+  // them on astro:after-swap (that would accumulate duplicate listeners on the
+  // same persistent elements).
+
+  const btn      = document.getElementById('menu-toggle')  as HTMLButtonElement | null;
+  const menu     = document.getElementById('mobile-menu')  as HTMLElement | null;
+  const iconOpen = document.getElementById('menu-icon-open')  as HTMLElement | null;
+  const iconClose= document.getElementById('menu-icon-close') as HTMLElement | null;
+
+  if (btn && menu && iconOpen && iconClose) {
+    function closeMenu() {
+      btn!.setAttribute('aria-expanded', 'false');
+      menu!.classList.add('hidden');
+      iconOpen!.classList.remove('hidden');
+      iconClose!.classList.add('hidden');
+    }
+
+    // Toggle open / closed on hamburger click
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+
+    // Close when any link inside the drawer is clicked.
+    // Fires before Astro's View Transition intercepts the click, so the
+    // menu collapses even though the full page never reloads.
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) closeMenu();
+    });
+
+    // Belt-and-suspenders: also close as soon as navigation begins,
+    // so the menu is never visible mid-transition.
+    document.addEventListener('astro:before-preparation', closeMenu);
+  }
+
+  // Update aria-current on nav links after each client-side page swap,
+  // since the persisted header is never re-rendered by the server.
+  function syncActiveLinks() {
+    const path = location.pathname;
+    document.querySelectorAll<HTMLAnchorElement>(
+      '#mobile-menu nav a, header nav a'
+    ).forEach((a) => {
+      const href = a.getAttribute('href') ?? '';
+      const active = href === path || (href !== '/' && path.startsWith(href));
+      if (active) {
+        a.setAttribute('aria-current', 'page');
+        a.classList.add('bg-primary/10', 'text-primary');
+        a.classList.remove('text-text-muted', 'hover:text-text', 'hover:bg-surface');
+      } else {
+        a.removeAttribute('aria-current');
+        a.classList.remove('bg-primary/10', 'text-primary');
+        a.classList.add('text-text-muted');
+      }
+    });
+  }
+
+  document.addEventListener('astro:after-swap', syncActiveLinks);
+</script>
