@@ -40,6 +40,17 @@ import type { ImageMetadata } from 'astro';
 // import heroImage from '../assets/images/hero/hero.jpg';
 export const heroImage: ImageMetadata | undefined = undefined;
 
+// ── Logo ─────────────────────────────────────────────────────────────────────
+// Recommended: transparent PNG or square/landscape logo, at least 200 × 80 px
+//
+// To use your own:
+//   1. Drop your file into src/assets/images/logo/
+//   2. Uncomment and update the line below
+//   3. Replace the logoImage export at the bottom of this section
+//
+import logoImageSrc from '../assets/images/logo/logo.png';
+export const logoImage: ImageMetadata = logoImageSrc;
+
 // ── About ─────────────────────────────────────────────────────────────────────
 // Recommended: portrait or square image of your team/job site, at least 900 × 700 px
 //
