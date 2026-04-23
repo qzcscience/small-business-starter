@@ -37,8 +37,8 @@ import type { ImageMetadata } from 'astro';
 //   2. Uncomment and update the line below
 //   3. Replace the heroImage export at the bottom of this section
 //
-// import heroImage from '../assets/images/hero/hero.jpg';
-export const heroImage: ImageMetadata | undefined = undefined;
+import heroImageSrc from '../assets/images/hero/hero.jpg';
+export const heroImage: ImageMetadata = heroImageSrc;
 
 // ── Logo ─────────────────────────────────────────────────────────────────────
 // Recommended: transparent PNG or square/landscape logo, at least 200 × 80 px

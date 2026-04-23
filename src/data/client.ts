@@ -11,21 +11,18 @@
  */
 
 export const client = {
-  name: 'Small Business Starter',
-  email: 'hello@example.com',
-  phoneForTel: '555-867-5309',
-  phoneFormatted: '(555) 867-5309',
-  /** Business / contractor license number. Displayed in the header and footer
-   *  as a trust signal. Set to an empty string to hide it. */
-  license: 'Lic# 123456',
+  name: 'Wayeal',
+  email: 'Oliver@wayeal.com.cn',
+  phoneForTel: '+86-157-5460-3228',
+  phoneFormatted: '+86-157-5460-3228',
   address: {
-    lineOne: '123 Main Street',
-    lineTwo: 'Suite 100',
-    city: 'Denver',
-    state: 'CO',
-    zip: '80206',
-    country: 'US',
-    mapLink: 'https://maps.app.goo.gl/example',
+    lineOne: 'No.8 Wenqu Road',
+    lineTwo: 'High-tech Industrial Development Zone',
+    city: 'Hefei',
+    state: 'Anhui',
+    zip: '230088',
+    country: 'CN',
+    mapLink: 'https://maps.app.goo.gl/wJ4teoYa3kDxnYTFA',
   },
   socials: {
     facebook: 'https://www.facebook.com/',
