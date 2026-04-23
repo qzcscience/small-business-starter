@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/atoms/Breadcrumb.astro';
+import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
+import ProductGallery from '../../components/atoms/ProductGallery.astro';
+import ProductInfo from '../../components/molecules/ProductInfo.astro';
+import ProductTabs from '../../components/molecules/ProductTabs.astro';
+import { brand } from '../../config/brand';
+import { products } from '../../data/products';
+import { navItems } from '../../config/nav';
+
+const product = products['helium-leak-detector'];
+
+const productLinks = navItems.find(item => item.label === 'Products')?.children?.map(child => ({
+  label: child.label,
+  href: child.href || '#',
+  children: [],
+})) || [];
+
+const breadcrumbs = [
+  { label: '首页', href: '/' },
+  { label: '产品中心', href: '/products' },
+  { label: product.title },
+];
+---
+
+<BaseLayout title={product.title} description={product.description}>
+  <Header slot="header" />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="py-8 lg:py-12">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="flex gap-8 flex-col lg:flex-row">
+
+        <!-- Left Sidebar - Category Navigation -->
+        <CategorySidebar categories={productLinks} activeSlug="helium-leak-detector" />
+
+        <!-- Main Content -->
+        <div class="flex-1 min-w-0">
+
+          <!-- Product Header: Gallery + Info -->
+          <div class="flex gap-6 mb-8 flex-col md:flex-row">
+
+            <!-- Product Gallery -->
+            <div class="w-full md:w-[45%]">
+              <ProductGallery images={product.images} videoSrc={product.videoSrc} />
+            </div>
+
+            <!-- Product Info -->
+            <div class="w-full md:w-[51.5%]">
+              <ProductInfo
+                title={product.title}
+                specs={product.specs}
+                ctaLabel={product.ctaLabel}
+                ctaHref={product.ctaHref}
+                description={product.description}
+              />
+            </div>
+          </div>
+
+          <!-- Product Tabs -->
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <ProductTabs tabs={[
+              { id: 'overview', label: '产品概述' },
+              { id: 'specs', label: '规格参数' },
+              { id: 'applications', label: '应用场景' },
+            ]}>
+
+              <!-- Overview Tab -->
+              <div id="overview" class="tab-content">
+                <h2 class="text-2xl font-bold text-text mb-4">产品概述</h2>
+                <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
+                <div class="text-text-muted leading-relaxed text-lg">
+                  <p>{product.description}</p>
+                </div>
+              </div>
+
+              <!-- Specs Tab -->
+              <div id="specs" class="tab-content hidden">
+                <h2 class="text-2xl font-bold text-text mb-4">规格参数</h2>
+                <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
+                <div class="overflow-x-auto">
+                  <table class="w-full border border-border">
+                    <tbody>
+                      <tr class="border-b border-border">
+                        <td class="bg-surface p-3 font-medium text-gray-800 w-[140px] border-r border-border">产品规格</td>
+                        <td class="border-r border-border p-3">名称</td>
+                        <td class="p-3">氦质谱检漏仪</td>
+                        <td class="bg-surface p-3 font-medium text-gray-800 w-[180px] border-r border-border">性能参数</td>
+                        <td class="border-r border-border p-3">最小可检漏率（负压模式）</td>
+                        <td class="p-3">5×10⁻¹³ Pa·m³/s</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="bg-surface p-3 font-medium text-gray-800 border-r border-border" rowspan="9"></td>
+                        <td class="border-r border-border p-3">规格型号</td>
+                        <td class="p-3">HM-400</td>
+                        <td class="bg-surface p-3 font-medium text-gray-800 border-r border-border" rowspan="9"></td>
+                        <td class="border-r border-border p-3">最小可检漏率（吸腔模式）</td>
+                        <td class="p-3">1×10⁻⁸ Pa·m³/s</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3">尺寸 (mm)</td>
+                        <td class="p-3">L760×W370×H1036</td>
+                        <td class="border-r border-border p-3">漏率显示范围</td>
+                        <td class="p-3">1×10⁻³ ~ 1×10⁻¹³ Pa·m³/s</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3">电压及功耗</td>
+                        <td class="p-3">220V 10A，50Hz</td>
+                        <td class="border-r border-border p-3" rowspan="3">进气口压力</td>
+                        <td class="p-3">粗检：1500Pa</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3">重量</td>
+                        <td class="p-3">80kg</td>
+                        <td class="p-3">中检：200Pa</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3" rowspan="2">最高工作压力</td>
+                        <td class="p-3" rowspan="2">&lt;1500Pa</td>
+                        <td class="p-3">精检：40Pa</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3">启动时间</td>
+                        <td class="p-3">≤ 3min</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3" rowspan="2">显示</td>
+                        <td class="p-3" rowspan="2">触摸彩屏</td>
+                        <td class="border-r border-border p-3">响应时间</td>
+                        <td class="p-3">≤ 1s</td>
+                      </tr>
+                      <tr class="border-b border-border">
+                        <td class="border-r border-border p-3">粗抽泵抽速</td>
+                        <td class="p-3">16m³/h</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Applications Tab -->
+              <div id="applications" class="tab-content hidden">
+                <h2 class="text-2xl font-bold text-text mb-4">应用场景</h2>
+                <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {product.applications.map((app) => (
+                    <a href={app.href || '#'} class="group">
+                      <div class="aspect-square rounded-xl overflow-hidden mb-2">
+                        <img
+                          src={app.image}
+                          alt={app.name}
+                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="text-sm font-medium text-gray-700 text-center group-hover:text-primary transition-colors">
+                        {app.name}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+            </ProductTabs>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  @media (max-width: 1024px) {
+    /* Tablet and mobile adjustments */
+  }
+
+  @media (max-width: 768px) {
+    /* Mobile adjustments */
+  }
+</style>

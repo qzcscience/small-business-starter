@@ -1,0 +1,128 @@
+---
+interface GalleryImage {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+  videoSrc?: string;
+}
+
+const { images, videoSrc } = Astro.props;
+
+const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class="product-gallery" data-gallery-id={galleryId}>
+  <!-- Main Gallery -->
+  <div class="swiper gallery-main rounded-lg overflow-hidden shadow-lg">
+    <div class="swiper-wrapper">
+      {videoSrc && (
+        <div class="swiper-slide">
+          <div class="video-container aspect-4/3 bg-gray-100 flex items-center justify-center">
+            <iframe
+              src={videoSrc}
+              class="w-full h-full"
+              frameborder="0"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      )}
+      {images.map((image, index) => (
+        <div class="swiper-slide">
+          <div class="aspect-4/3 bg-gray-100 flex items-center justify-center p-4">
+            <img
+              src={image.src}
+              alt={image.alt || `Product image ${index + 1}`}
+              class="max-w-full max-h-full object-contain"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Thumbnails -->
+  <div class="swiper gallery-thumbs mt-4">
+    <div class="swiper-wrapper">
+      {videoSrc && (
+        <div class="swiper-slide">
+          <div class="aspect-square bg-gray-100 rounded-md overflow-hidden cursor-pointer border-2 border-transparent hover:border-accent transition-colors">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="size-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      )}
+      {images.map((image, index) => (
+        <div class="swiper-slide">
+          <div class="aspect-square bg-gray-100 rounded-md overflow-hidden cursor-pointer border-2 border-transparent hover:border-accent transition-colors">
+            <img
+              src={image.src}
+              alt={image.alt || `Thumbnail ${index + 1}`}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+
+<script define:vars={{ galleryId }}>
+  function initGallery() {
+    const gallery = document.querySelector(`[data-gallery-id="${galleryId}"]`);
+    if (!gallery) return;
+
+    const thumbsContainer = gallery.querySelector('.gallery-thumbs');
+    const mainContainer = gallery.querySelector('.gallery-main');
+
+    if (!thumbsContainer || !mainContainer) return;
+
+    const thumbs = new Swiper(thumbsContainer, {
+      spaceBetween: 10,
+      slidesPerView: 4,
+      watchSlidesVisibility: true,
+      watchSlidesProgress: true,
+    });
+
+    new Swiper(mainContainer, {
+      spaceBetween: 0,
+      thumbs: {
+        swiper: thumbs,
+      },
+    });
+  }
+
+  // Initialize on load
+  initGallery();
+
+  // Re-initialize on page transitions (Astro)
+  document.addEventListener('astro:after-swap', initGallery);
+</script>
+
+<style>
+  .gallery-thumbs .swiper-slide {
+    width: 80px;
+    height: 80px;
+    opacity: 0.5;
+  }
+
+  .gallery-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .aspect-4\/3 {
+    aspect-ratio: 4 / 3;
+  }
+</style>

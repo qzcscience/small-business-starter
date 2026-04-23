@@ -1,0 +1,56 @@
+---
+interface Spec {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title: string;
+  specs: Spec[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  description?: string;
+}
+
+const {
+  title,
+  specs,
+  ctaLabel = 'Get a Free Quote',
+  ctaHref = '/contact',
+  description,
+} = Astro.props;
+---
+
+<div class="product-info">
+  <h1 class="text-3xl font-bold text-text mb-6 pb-6 border-b border-border">
+    {title}
+  </h1>
+
+  {description && (
+    <p class="text-text-muted leading-relaxed mb-6">
+      {description}
+    </p>
+  )}
+
+  <!-- USPs / Specs -->
+  {specs.length > 0 && (
+    <dl class="space-y-4 mt-6">
+      {specs.map((spec) => (
+        <div class="flex justify-between items-start gap-4">
+          <dt class="font-bold text-gray-800 min-w-[100px]">{spec.label}</dt>
+          <dd class="text-gray-600 flex-1">{spec.value}</dd>
+        </div>
+      ))}
+    </dl>
+  )}
+
+  <!-- CTA Button - Using Hero.astro style -->
+  <div class="mt-8 flex justify-center lg:justify-start">
+    <a
+      href={ctaHref}
+      class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-accent px-6 py-3 text-base font-bold text-accent-fg shadow-sm transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      {ctaLabel}
+    </a>
+  </div>
+</div>

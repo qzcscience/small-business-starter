@@ -47,7 +47,7 @@ const currentPath = Astro.url.pathname;
             )}
 
             {hasChildren && (
-              <div class="dropdown-panel absolute left-0 top-full z-50 mt-1 min-w-[240px] rounded-md border border-border bg-background shadow-xl opacity-0 invisible -translate-y-2 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
+              <div class="dropdown-panel absolute left-0 top-full z-50 min-w-[240px] rounded-md border border-border bg-background shadow-xl opacity-0 invisible -translate-y-2 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
                 <div class="p-2">
                   <div class="flex flex-col gap-1">
                     {item.children!.map((child) => (
@@ -142,12 +142,6 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <style>
-  .dropdown-panel {
-    pointer-events: none;
-  }
-  .group:hover .dropdown-panel {
-    pointer-events: auto;
-  }
   .rotate-180 {
     transform: rotate(180deg);
   }
