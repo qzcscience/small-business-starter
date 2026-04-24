@@ -11,180 +11,106 @@ interface Category {
 }
 
 interface Props {
+  title?: string;
+  eyebrow?: string;
   categories: Category[];
   activeSlug?: string;
 }
 
-const { categories, activeSlug } = Astro.props;
+const {
+  title = 'Browse Products',
+  eyebrow = 'Catalog',
+  categories,
+  activeSlug,
+} = Astro.props;
 ---
 
-<aside class="hidden lg:block w-[300px] flex-shrink-0">
-  <div class="category-sidebar">
-    <ul class="space-y-1">
-      {categories.map((category) => {
-        const isActive = category.href?.includes(activeSlug || '');
-        const hasActiveChild = category.children?.some(child => child.href.includes(activeSlug || ''));
+<aside class="hidden lg:block lg:w-[17.5rem] xl:w-[18.5rem] shrink-0">
+  <div class="sticky top-28 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
+    <div class="bg-linear-to-br from-primary to-primary-light px-6 py-5 text-primary-fg">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-primary-fg/70">
+        {eyebrow}
+      </p>
+      <h2 class="mt-2 font-heading text-[1.35rem] font-semibold uppercase leading-tight text-primary-fg">
+        {title}
+      </h2>
+    </div>
 
-        return (
-          <li class:list={['category-item', { 'is-open': hasActiveChild, 'is-active': isActive }]}>
-            <a
-              href={category.href || '#'}
-              class:list={['category-link', { 'has-active': hasActiveChild }]}
-            >
-              <span class="flex-1">{category.label}</span>
+    <nav aria-label={title} class="p-3">
+      <ul class="space-y-2">
+        {categories.map((category) => {
+          const isActive = category.href?.includes(activeSlug || '');
+          const hasActiveChild = category.children?.some((child) => child.href.includes(activeSlug || ''));
+
+          return (
+            <li class="rounded-xl border border-border/70 bg-surface/55 p-1.5 transition-colors">
+              <a
+                href={category.href || '#'}
+                class:list={[
+                  'group flex items-center justify-between gap-3 rounded-lg px-4 py-3.5 text-[0.95rem] font-semibold transition-all duration-200',
+                  isActive || hasActiveChild
+                    ? 'bg-primary text-primary-fg shadow-sm'
+                    : 'text-text hover:bg-background hover:text-primary',
+                ]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                <span class="leading-snug">{category.label}</span>
+                <svg
+                  class:list={[
+                    'size-4 shrink-0 transition-transform duration-200',
+                    isActive || hasActiveChild ? 'text-primary-fg' : 'text-text-muted group-hover:translate-x-0.5 group-hover:text-primary',
+                  ]}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+
               {category.children && category.children.length > 0 && (
-                <span class="expand-icon">
-                  <svg class="icon-expand size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
-                  </svg>
-                  <svg class="icon-collapse size-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                  </svg>
-                </span>
+                <ul class="mt-2 space-y-1.5 px-1 pb-1">
+                  {category.children.map((child) => {
+                    const isChildActive = child.href.includes(activeSlug || '');
+
+                    return (
+                      <li>
+                        <a
+                          href={child.href}
+                          class:list={[
+                            'group flex items-center justify-between gap-3 rounded-lg px-4 py-3 text-sm transition-all duration-200',
+                            isChildActive
+                              ? 'bg-primary/10 font-medium text-primary'
+                              : 'text-text-muted hover:bg-background hover:text-text',
+                          ]}
+                          aria-current={isChildActive ? 'page' : undefined}
+                        >
+                          <span class="leading-snug">{child.label}</span>
+                          <svg
+                            class:list={[
+                              'size-3.5 shrink-0 transition-transform duration-200',
+                              isChildActive
+                                ? 'text-primary'
+                                : 'text-text-muted/70 group-hover:translate-x-0.5 group-hover:text-text',
+                            ]}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
               )}
-            </a>
-            {category.children && category.children.length > 0 && (
-              <ul class="subcategory-list hidden">
-                {category.children.map((child) => {
-                  const isChildActive = child.href.includes(activeSlug || '');
-                  return (
-                    <li>
-                      <a
-                        href={child.href}
-                        class:list={['subcategory-link', { 'is-active': isChildActive }]}
-                      >
-                        {child.label}
-                        <svg class="arrow-icon size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   </div>
 </aside>
-
-<style>
-  .category-sidebar ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .category-item {
-    margin-bottom: 4px;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .category-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 40px 15px 20px;
-    background: linear-gradient(to left, #f5f5f5, #edeef5);
-    color: #333;
-    font-size: 16px;
-    position: relative;
-    transition: all 0.2s ease;
-  }
-
-  .category-link:hover {
-    background: linear-gradient(to left, #e8e8ee, #dcdce5);
-  }
-
-  .category-item.is-active > .category-link {
-    background: #1f4396;
-    color: #fff;
-  }
-
-  .category-item.is-open > .category-link,
-  .category-item.is-open > .category-link .icon-expand {
-    background: #ee7700;
-    color: #fff;
-  }
-
-  .expand-icon {
-    display: flex;
-    align-items: center;
-  }
-
-  .category-item.is-open .expand-icon .icon-expand {
-    display: none;
-  }
-
-  .category-item.is-open .expand-icon .icon-collapse {
-    display: block;
-  }
-
-  .subcategory-list {
-    background: #fff;
-    border-radius: 0 0 6px 6px;
-    overflow: hidden;
-  }
-
-  .category-item.is-open > .subcategory-list,
-  .category-item.is-active > .subcategory-list {
-    display: block;
-  }
-
-  .subcategory-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 40px 15px 20px;
-    color: #666;
-    font-size: 14px;
-    transition: all 0.2s ease;
-  }
-
-  .subcategory-link:hover {
-    color: #1f4396;
-  }
-
-  .subcategory-link.is-active {
-    color: #1f4396;
-    font-weight: 500;
-  }
-
-  .arrow-icon {
-    opacity: 0.5;
-  }
-
-  .subcategory-link:hover .arrow-icon,
-  .subcategory-link.is-active .arrow-icon {
-    opacity: 1;
-  }
-</style>
-
-<script>
-  document.querySelectorAll('.category-link').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const categoryItem = link.closest('.category-item');
-      if (!categoryItem) return;
-
-      const hasChildren = categoryItem.querySelector('.subcategory-list');
-      if (!hasChildren) return;
-
-      e.preventDefault();
-
-      const isOpen = categoryItem.classList.contains('is-open');
-
-      // Close all
-      document.querySelectorAll('.category-item').forEach((item) => {
-        item.classList.remove('is-open');
-      });
-
-      // Toggle current
-      if (!isOpen) {
-        categoryItem.classList.add('is-open');
-      }
-    });
-  });
-</script>

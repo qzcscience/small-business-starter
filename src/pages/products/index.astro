@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/atoms/Breadcrumb.astro';
+import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
+import CTA from '../../components/CTA.astro';
+import { products } from '../../data/products';
+import { navItems } from '../../config/nav';
+
+const productList = Object.values(products);
+const productLinks =
+  navItems
+    .find((item) => item.label === 'Products')
+    ?.children?.map((child) => ({
+      label: child.label,
+      href: child.href || '#',
+      children: [],
+    })) || [];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Products' },
+];
+---
+
+<BaseLayout title="Products" description="Browse our product lineup and jump into each product detail page.">
+  <Header slot="header" />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="py-8 lg:py-12">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
+        <CategorySidebar
+          title="Product Categories"
+          eyebrow="Navigation"
+          categories={productLinks}
+        />
+
+        <div class="min-w-0 flex-1">
+          <div class="rounded-2xl border border-border bg-background shadow-sm">
+            <div class="flex flex-col gap-3 border-b border-border bg-surface/60 px-6 py-5 sm:px-8">
+              <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+                Product Center
+              </p>
+              <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <h1 class="font-heading text-h2 font-bold uppercase text-text">
+                    Products
+                  </h1>
+                  <p class="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted sm:text-base">
+                    Browse our current product lineup. Click any product card to open its detail page.
+                  </p>
+                </div>
+                <p class="text-sm font-medium text-text-muted">
+                  {productList.length} Product{productList.length === 1 ? '' : 's'}
+                </p>
+              </div>
+            </div>
+
+            <div class="p-5 sm:p-6 lg:p-8">
+              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                {productList.map((product) => (
+                  <article class="group h-full">
+                    <a
+                      href={product.pageHref}
+                      class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                    >
+                      <div class="flex aspect-[4/3] items-center justify-center overflow-hidden bg-linear-to-br from-surface to-background p-6">
+                        <img
+                          src={product.images[0]?.src}
+                          alt={product.images[0]?.alt || product.title}
+                          class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="flex flex-1 flex-col border-t border-border px-5 py-4 text-center">
+                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                          Product Model
+                        </p>
+                        <h2 class="mt-2 font-heading text-h3 font-semibold uppercase text-primary">
+                          {product.name}
+                        </h2>
+                        <p class="mt-2 text-sm leading-relaxed text-text-muted">
+                          {product.title}
+                        </p>
+                      </div>
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

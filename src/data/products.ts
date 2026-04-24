@@ -11,6 +11,7 @@ export interface ProductApplication {
 
 export interface Product {
   slug: string;
+  pageHref: string;
   name: string;
   title: string;
   description: string;
@@ -25,8 +26,9 @@ export interface Product {
 export const products: Record<string, Product> = {
   'helium-leak-detector': {
     slug: 'helium-leak-detector',
-    name: 'HM-400',
-    title: 'HM-400 氦质谱检漏仪',
+    pageHref: '/products/helium-leak-detector-SFJ-231',
+    name: 'SFJ-231',
+    title: 'Helium Leak Detector SFJ-231',
     description: '面对行业对微米级泄漏的检测需求，海瑞思全新推出HM-400氦质谱检漏仪，深度融合磁偏转技术与质谱分析法，以5×10⁻¹³Pa・m³/s级超高精度灵敏度，构建"密封性检测+漏点定位"密封质量防护网，全方位覆盖动力电池及正负压多场景检测需求，让安全隐患在技术突破中无处遁形。',
     images: [
       { src: 'https://picsum.photos/600/450?random=11', alt: 'HM-400 正面视图' },
@@ -55,4 +57,3 @@ export const products: Record<string, Product> = {
     ctaHref: '/contact',
   },
 };
-

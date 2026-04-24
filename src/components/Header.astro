@@ -27,20 +27,35 @@ const currentPath = Astro.url.pathname;
       {navItems.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
         const isActive = item.href && (currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)));
+        const topLevelClasses = [
+          'nav-item inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200',
+          isActive
+            ? 'bg-primary/10 text-primary'
+            : 'text-text-muted hover:bg-surface hover:text-primary group-hover:bg-surface group-hover:text-primary',
+        ];
 
         return (
           <div class="relative group">
             {hasChildren ? (
-              <button class="nav-item flex items-center gap-1 px-3 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors">
-                {item.label}
-                <svg class="size-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-              </button>
+              item.href ? (
+                <a href={item.href} class:list={topLevelClasses}>
+                  {item.label}
+                  <svg class="size-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </a>
+              ) : (
+                <button type="button" class:list={topLevelClasses}>
+                  {item.label}
+                  <svg class="size-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+              )
             ) : (
               <a
                 href={item.href}
-                class:list={['nav-item px-3 py-2 text-sm font-medium transition-colors', isActive ? 'text-primary' : 'text-text-muted hover:text-text']}
+                class:list={topLevelClasses}
               >
                 {item.label}
               </a>
@@ -112,12 +127,26 @@ const currentPath = Astro.url.pathname;
         }
         return (
           <div class="mobile-dropdown">
-            <button class="mobile-dropdown-toggle mobile-nav-link flex w-full items-center justify-between rounded-md px-3 py-3 text-base font-medium text-text-muted">
-              {item.label}
-              <svg class="size-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
+            <div class="flex items-center gap-2">
+              {item.href ? (
+                <a href={item.href} class="mobile-nav-link flex-1 rounded-md px-3 py-3 text-base font-medium text-text-muted">
+                  {item.label}
+                </a>
+              ) : (
+                <span class="mobile-nav-link flex-1 rounded-md px-3 py-3 text-base font-medium text-text-muted">
+                  {item.label}
+                </span>
+              )}
+              <button
+                type="button"
+                class="mobile-dropdown-toggle inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-text-muted hover:bg-surface"
+                aria-label={`Toggle ${item.label} submenu`}
+              >
+                <svg class="size-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+            </div>
             <div class="mobile-dropdown-panel hidden pl-4">
               {item.children!.map((child) => (
                 <a href={child.href} class="block rounded-md px-3 py-2 text-sm text-text-muted hover:bg-surface">
@@ -148,25 +177,6 @@ const currentPath = Astro.url.pathname;
 </style>
 
 <script>
-  // Mobile dropdown toggle
-  document.querySelectorAll('.mobile-dropdown-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const panel = btn.nextElementSibling as HTMLElement;
-      const icon = btn.querySelector('svg');
-      panel.classList.toggle('hidden');
-      icon?.classList.toggle('rotate-180');
-    });
-  });
-
-  // Close mobile dropdowns when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!(e.target as Element).closest('.mobile-dropdown')) {
-      document.querySelectorAll('.mobile-dropdown-panel').forEach((p) => p.classList.add('hidden'));
-      document.querySelectorAll('.mobile-dropdown-toggle svg').forEach((icon) => icon.classList.remove('rotate-180'));
-    }
-  });
-
-  // Existing mobile menu toggle logic
   (() => {
     const headerEl = document.querySelector('header');
     const btnEl = document.getElementById('menu-toggle');
@@ -185,6 +195,10 @@ const currentPath = Astro.url.pathname;
     header.dataset.menuInit = 'true';
 
     const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+    const closeDropdowns = () => {
+      header.querySelectorAll('.mobile-dropdown-panel').forEach((panel) => panel.classList.add('hidden'));
+      header.querySelectorAll('.mobile-dropdown-toggle svg').forEach((icon) => icon.classList.remove('rotate-180'));
+    };
 
     const setMenuOpen = (nextOpen: boolean) => {
       if (isDesktop()) nextOpen = false;
@@ -192,6 +206,7 @@ const currentPath = Astro.url.pathname;
       menu.classList.toggle('hidden', !nextOpen);
       iconOpen.classList.toggle('hidden', nextOpen);
       iconClose.classList.toggle('hidden', !nextOpen);
+      if (!nextOpen) closeDropdowns();
     };
 
     function syncActiveLinks() {
@@ -213,6 +228,21 @@ const currentPath = Astro.url.pathname;
         link.classList.toggle('bg-primary/10', isActive);
       });
     }
+
+    header.querySelectorAll('.mobile-dropdown-toggle').forEach((toggleBtn) => {
+      toggleBtn.addEventListener('click', () => {
+        const panel = toggleBtn.parentElement?.nextElementSibling;
+        const icon = toggleBtn.querySelector('svg');
+        if (!(panel instanceof HTMLElement)) return;
+        panel.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Element)) return;
+      if (!event.target.closest('.mobile-dropdown')) closeDropdowns();
+    });
 
     btn.addEventListener('click', () => {
       if (isDesktop()) return;

@@ -20,8 +20,8 @@ const productLinks = navItems.find(item => item.label === 'Products')?.children?
 })) || [];
 
 const breadcrumbs = [
-  { label: '首页', href: '/' },
-  { label: '产品中心', href: '/products' },
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/products' },
   { label: product.title },
 ];
 ---
@@ -33,10 +33,15 @@ const breadcrumbs = [
 
   <section class="py-8 lg:py-12">
     <div class="mx-auto max-w-site px-4 sm:px-6">
-      <div class="flex gap-8 flex-col lg:flex-row">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
 
         <!-- Left Sidebar - Category Navigation -->
-        <CategorySidebar categories={productLinks} activeSlug="helium-leak-detector" />
+        <CategorySidebar
+          title="Product Line"
+          eyebrow="Navigation"
+          categories={productLinks}
+          activeSlug="helium-leak-detector"
+        />
 
         <!-- Main Content -->
         <div class="flex-1 min-w-0">

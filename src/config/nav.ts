@@ -7,6 +7,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
   {
     label: 'Products',
+    href: '/products',
     children: [
       { label: 'Helium Leak Detector', href: '/products/helium-leak-detector-SFJ-231' },
       { label: 'Customized Vacuum Chamber Helium Leak Detection System', href: '/products/vacuum-chamber' },
