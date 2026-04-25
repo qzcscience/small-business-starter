@@ -14,6 +14,7 @@ interface Props {
   title?: string;
   eyebrow?: string;
   categories: Category[];
+  activeHref?: string;
   activeSlug?: string;
 }
 
@@ -21,10 +22,16 @@ const {
   title = 'Browse Products',
   eyebrow = 'Catalog',
   categories,
+  activeHref,
   activeSlug,
 } = Astro.props;
 
-const isCurrentPath = (href?: string) => Boolean(activeSlug && href?.includes(activeSlug));
+const isCurrentPath = (href?: string) => {
+  if (!href) return false;
+  if (activeHref) return href === activeHref;
+
+  return Boolean(activeSlug && href.includes(activeSlug));
+};
 ---
 
 <aside class="hidden lg:block lg:w-[17.5rem] xl:w-[18.5rem] shrink-0">

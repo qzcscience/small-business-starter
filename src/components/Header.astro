@@ -65,14 +65,32 @@ const currentPath = Astro.url.pathname;
               <div class="dropdown-panel absolute left-0 top-full z-50 min-w-[240px] rounded-md border border-border bg-background shadow-xl opacity-0 invisible -translate-y-2 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0">
                 <div class="p-2">
                   <div class="flex flex-col gap-1">
-                    {item.children!.map((child) => (
-                      <a
-                        href={child.href}
-                        class="block rounded-md px-3 py-2 text-sm text-text-muted hover:bg-surface hover:text-text transition-colors whitespace-nowrap"
-                      >
-                        {child.label}
-                      </a>
-                    ))}
+                    {item.children!.map((child) => {
+                      const hasGrandchildren = child.children && child.children.length > 0;
+
+                      return (
+                        <div>
+                          <a
+                            href={child.href || '#'}
+                            class="block rounded-md px-3 py-2 text-sm text-text-muted hover:bg-surface hover:text-text transition-colors whitespace-nowrap"
+                          >
+                            {child.label}
+                          </a>
+                          {hasGrandchildren && (
+                            <div class="mb-1 ml-3 border-l border-border pl-2">
+                              {child.children!.map((grandchild) => (
+                                <a
+                                  href={grandchild.href || '#'}
+                                  class="block rounded-md px-3 py-1.5 text-xs text-text-muted hover:bg-surface hover:text-text transition-colors whitespace-nowrap"
+                                >
+                                  {grandchild.label}
+                                </a>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -148,11 +166,26 @@ const currentPath = Astro.url.pathname;
               </button>
             </div>
             <div class="mobile-dropdown-panel hidden pl-4">
-              {item.children!.map((child) => (
-                <a href={child.href} class="block rounded-md px-3 py-2 text-sm text-text-muted hover:bg-surface">
-                  {child.label}
-                </a>
-              ))}
+              {item.children!.map((child) => {
+                const hasGrandchildren = child.children && child.children.length > 0;
+
+                return (
+                  <div>
+                    <a href={child.href || '#'} class="block rounded-md px-3 py-2 text-sm text-text-muted hover:bg-surface">
+                      {child.label}
+                    </a>
+                    {hasGrandchildren && (
+                      <div class="ml-3 border-l border-border pl-2">
+                        {child.children!.map((grandchild) => (
+                          <a href={grandchild.href || '#'} class="block rounded-md px-3 py-1.5 text-xs text-text-muted hover:bg-surface">
+                            {grandchild.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         );

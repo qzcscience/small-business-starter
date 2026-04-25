@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/atoms/Breadcrumb.astro';
+import CategorySidebar from '../../../components/atoms/CategorySidebar.astro';
+import CTA from '../../../components/CTA.astro';
+import { navItems } from '../../../config/nav';
+import {
+  VACUUM_CHAMBER_BASE_PATH,
+  vacuumChamberApplications,
+} from '../../../data/vacuumChamber';
+
+const productLinks =
+  navItems
+    .find((item) => item.label === 'Products')
+    ?.children?.map((child) => ({
+      label: child.label,
+      href: child.href || '#',
+      children: child.children,
+    })) || [];
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Products', href: '/products' },
+  { label: 'Vacuum Chamber Leak Detection System' },
+];
+
+const skuCount = vacuumChamberApplications.reduce(
+  (count, application) =>
+    count + application.groups.reduce((groupCount, group) => groupCount + group.skus.length, 0),
+  0,
+);
+---
+
+<BaseLayout
+  title="Vacuum Chamber Leak Detection System"
+  description="Browse vacuum chamber leak detection applications and matched SKU cards for automotive, HVAC, liquid cooling, power, battery, and custom components."
+>
+  <Header slot="header" />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="py-8 lg:py-12">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
+        <CategorySidebar
+          title="Product Categories"
+          eyebrow="Navigation"
+          categories={productLinks}
+          activeHref={VACUUM_CHAMBER_BASE_PATH}
+        />
+
+        <div class="min-w-0 flex-1">
+          <div class="border-b border-border bg-surface px-6 py-8 sm:px-8 lg:px-10">
+            <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+              Product Line
+            </p>
+            <h1 class="mt-3 font-heading text-h1 font-bold uppercase leading-tight text-text">
+              Vacuum Chamber Leak Detection System
+            </h1>
+            <p class="mt-4 max-w-3xl text-lg leading-relaxed text-text-muted">
+              Browse application-specific vacuum chamber helium leak detection systems and enter
+              each application to compare SKU image cards.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-2 text-sm font-medium text-text-muted">
+              <span class="rounded-md border border-border bg-background px-3 py-2">
+                {vacuumChamberApplications.length} Applications
+              </span>
+              <span class="rounded-md border border-border bg-background px-3 py-2">
+                {skuCount} SKUs
+              </span>
+            </div>
+          </div>
+
+          <div class="py-8 sm:py-10">
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {vacuumChamberApplications.map((application) => {
+                const applicationSkuCount = application.groups.reduce(
+                  (count, group) => count + group.skus.length,
+                  0,
+                );
+
+                return (
+                  <article class="h-full rounded-lg border border-border bg-background p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md">
+                    <a href={`${VACUUM_CHAMBER_BASE_PATH}/${application.slug}`} class="flex h-full flex-col">
+                      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                        {application.eyebrow}
+                      </p>
+                      <h2 class="mt-3 font-heading text-h3 font-semibold text-text">
+                        {application.label}
+                      </h2>
+                      <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                        {application.description}
+                      </p>
+                      <div class="mt-5 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-text-muted">
+                        <span class="rounded-md bg-surface px-3 py-2">
+                          {application.groups.length} Types
+                        </span>
+                        <span class="rounded-md bg-surface px-3 py-2">
+                          {applicationSkuCount} SKUs
+                        </span>
+                      </div>
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    title="Need a Custom Vacuum Chamber?"
+    description="Share your component size, target leak rate, and production workflow. We can help match the right chamber configuration."
+    buttonText="Request a Solution"
+    buttonHref="/contact"
+  />
+
+  <Footer slot="footer" />
+</BaseLayout>
