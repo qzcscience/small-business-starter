@@ -14,18 +14,25 @@ const tabsId = `tabs-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <div class="product-tabs" data-tabs-id={tabsId}>
-  <!-- Tab Navigation -->
-  <div class="tabs-header flex border-b border-border">
+  <!-- Section Navigation -->
+  <nav
+    class="tabs-header sticky top-20 z-10 flex overflow-x-auto border-b border-border bg-white"
+    aria-label="Product detail sections"
+  >
     {tabs.map((tab, index) => (
-      <button
-        type="button"
-        class:list={['tab-btn flex-1 text-center py-5 text-lg font-medium transition-colors', { 'tab-btn-active text-primary border-b-2 border-primary': index === 0 }]}
-        data-tab-target={`#${tab.id}`}
+      <a
+        href={`#${tab.id}`}
+        class:list={[
+          'tab-btn flex min-w-[10rem] flex-1 items-center justify-center border-b-2 px-4 py-5 text-center text-base font-medium transition-colors sm:text-lg',
+          index === 0 ? 'tab-btn-active border-primary text-primary' : 'border-transparent text-text-muted',
+        ]}
+        data-tab-target={tab.id}
+        aria-current={index === 0 ? 'true' : undefined}
       >
         {tab.label}
-      </button>
+      </a>
     ))}
-  </div>
+  </nav>
 
   <!-- Tab Content Slots -->
   <div class="tabs-content">
@@ -33,38 +40,54 @@ const tabsId = `tabs-${Math.random().toString(36).substring(2, 9)}`;
   </div>
 </div>
 
-<script>
+<script define:vars={{ tabsId }}>
   function initTabs() {
-    const tabContainers = document.querySelectorAll('.product-tabs');
+    const container = document.querySelector(`[data-tabs-id="${tabsId}"]`);
+    if (!container || container.dataset.ready === 'true') return;
 
-    tabContainers.forEach((container) => {
-      const buttons = container.querySelectorAll('.tab-btn');
-      const contents = container.querySelectorAll('.tab-content');
+    const links = Array.from(container.querySelectorAll('.tab-btn'));
+    const sections = links
+      .map((link) => document.getElementById(link.getAttribute('data-tab-target')))
+      .filter(Boolean);
 
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const targetId = btn.getAttribute('data-tab-target');
-          if (!targetId) return;
+    if (!links.length || !sections.length) return;
 
-          // Update buttons
-          buttons.forEach((b) => {
-            b.classList.remove('tab-btn-active', 'text-primary', 'border-b-2', 'border-primary');
-            b.classList.add('text-text-muted');
-          });
-          btn.classList.add('tab-btn-active', 'text-primary', 'border-b-2', 'border-primary');
-          btn.classList.remove('text-text-muted');
+    function setActiveTab(activeId) {
+      links.forEach((link) => {
+        const isActive = link.getAttribute('data-tab-target') === activeId;
 
-          // Update content
-          contents.forEach((content) => {
-            if (content.id === targetId.substring(1)) {
-              content.classList.remove('hidden');
-            } else {
-              content.classList.add('hidden');
-            }
-          });
-        });
+        link.classList.toggle('tab-btn-active', isActive);
+        link.classList.toggle('border-primary', isActive);
+        link.classList.toggle('text-primary', isActive);
+        link.classList.toggle('border-transparent', !isActive);
+        link.classList.toggle('text-text-muted', !isActive);
+        link.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+    }
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        const targetId = link.getAttribute('data-tab-target');
+        if (targetId) setActiveTab(targetId);
       });
     });
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visibleEntry = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+
+          if (visibleEntry?.target?.id) setActiveTab(visibleEntry.target.id);
+        },
+        { rootMargin: '-35% 0px -55% 0px' },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    }
+
+    container.dataset.ready = 'true';
   }
 
   initTabs();
@@ -73,8 +96,6 @@ const tabsId = `tabs-${Math.random().toString(36).substring(2, 9)}`;
 
 <style>
   .tab-btn {
-    color: #666;
-    border-bottom: 2px solid transparent;
     margin-bottom: -1px;
   }
 
@@ -87,7 +108,12 @@ const tabsId = `tabs-${Math.random().toString(36).substring(2, 9)}`;
     border-bottom-color: #1f4396;
   }
 
-  .tab-content {
+  :global(.tab-content) {
     padding: 2rem 0;
+    scroll-margin-top: 7rem;
+  }
+
+  :global(.tab-content + .tab-content) {
+    border-top: 1px solid var(--color-border, #e5e7eb);
   }
 </style>

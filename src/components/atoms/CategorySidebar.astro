@@ -23,84 +23,60 @@ const {
   categories,
   activeSlug,
 } = Astro.props;
+
+const isCurrentPath = (href?: string) => Boolean(activeSlug && href?.includes(activeSlug));
 ---
 
 <aside class="hidden lg:block lg:w-[17.5rem] xl:w-[18.5rem] shrink-0">
-  <div class="sticky top-28 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
-    <div class="bg-linear-to-br from-primary to-primary-light px-6 py-5 text-primary-fg">
-      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-primary-fg/70">
+  <div class="sticky top-28 overflow-hidden rounded-lg border border-border bg-background">
+    <div class="border-b border-border bg-surface px-5 py-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-text-muted">
         {eyebrow}
       </p>
-      <h2 class="mt-2 font-heading text-[1.35rem] font-semibold uppercase leading-tight text-primary-fg">
+      <h2 class="mt-1.5 font-heading text-lg font-semibold uppercase leading-tight text-text">
         {title}
       </h2>
     </div>
 
-    <nav aria-label={title} class="p-3">
-      <ul class="space-y-2">
+    <nav aria-label={title} class="bg-background">
+      <ul class="divide-y divide-border">
         {categories.map((category) => {
-          const isActive = category.href?.includes(activeSlug || '');
-          const hasActiveChild = category.children?.some((child) => child.href.includes(activeSlug || ''));
+          const isActive = isCurrentPath(category.href);
+          const hasActiveChild = category.children?.some((child) => isCurrentPath(child.href));
 
           return (
-            <li class="rounded-xl border border-border/70 bg-surface/55 p-1.5 transition-colors">
+            <li>
               <a
                 href={category.href || '#'}
                 class:list={[
-                  'group flex items-center justify-between gap-3 rounded-lg px-4 py-3.5 text-[0.95rem] font-semibold transition-all duration-200',
+                  'block border-l-2 px-5 py-3 text-[0.95rem] font-semibold leading-snug transition-colors',
                   isActive || hasActiveChild
-                    ? 'bg-primary text-primary-fg shadow-sm'
-                    : 'text-text hover:bg-background hover:text-primary',
+                    ? 'border-primary bg-surface text-text'
+                    : 'border-transparent text-text hover:bg-surface',
                 ]}
                 aria-current={isActive ? 'page' : undefined}
               >
-                <span class="leading-snug">{category.label}</span>
-                <svg
-                  class:list={[
-                    'size-4 shrink-0 transition-transform duration-200',
-                    isActive || hasActiveChild ? 'text-primary-fg' : 'text-text-muted group-hover:translate-x-0.5 group-hover:text-primary',
-                  ]}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
+                {category.label}
               </a>
 
               {category.children && category.children.length > 0 && (
-                <ul class="mt-2 space-y-1.5 px-1 pb-1">
+                <ul class="border-t border-border bg-surface/70 py-1">
                   {category.children.map((child) => {
-                    const isChildActive = child.href.includes(activeSlug || '');
+                    const isChildActive = isCurrentPath(child.href);
 
                     return (
                       <li>
                         <a
                           href={child.href}
                           class:list={[
-                            'group flex items-center justify-between gap-3 rounded-lg px-4 py-3 text-sm transition-all duration-200',
+                            'block border-l-2 px-7 py-2.5 text-sm leading-snug transition-colors',
                             isChildActive
-                              ? 'bg-primary/10 font-medium text-primary'
-                              : 'text-text-muted hover:bg-background hover:text-text',
+                              ? 'border-primary bg-background font-medium text-text'
+                              : 'border-transparent text-text-muted hover:bg-background hover:text-text',
                           ]}
                           aria-current={isChildActive ? 'page' : undefined}
                         >
-                          <span class="leading-snug">{child.label}</span>
-                          <svg
-                            class:list={[
-                              'size-3.5 shrink-0 transition-transform duration-200',
-                              isChildActive
-                                ? 'text-primary'
-                                : 'text-text-muted/70 group-hover:translate-x-0.5 group-hover:text-text',
-                            ]}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
+                          {child.label}
                         </a>
                       </li>
                     );
