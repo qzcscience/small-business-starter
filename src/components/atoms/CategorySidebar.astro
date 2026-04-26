@@ -12,19 +12,20 @@ interface Category {
 
 interface Props {
   title?: string;
-  eyebrow?: string;
   categories: Category[];
   activeHref?: string;
   activeSlug?: string;
 }
 
 const {
-  title = 'Browse Products',
-  eyebrow = 'Catalog',
+  title = 'Products',
   categories,
   activeHref,
   activeSlug,
 } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isProductsIndex = currentPath === '/products';
 
 const isCurrentPath = (href?: string) => {
   if (!href) return false;
@@ -36,14 +37,18 @@ const isCurrentPath = (href?: string) => {
 
 <aside class="hidden lg:block lg:w-[17.5rem] xl:w-[18.5rem] shrink-0">
   <div class="sticky top-28 overflow-hidden rounded-lg border border-border bg-background">
-    <div class="border-b border-border bg-surface px-5 py-4">
-      <p class="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-text-muted">
-        {eyebrow}
-      </p>
-      <h2 class="mt-1.5 font-heading text-lg font-semibold uppercase leading-tight text-text">
+    <a
+      href="/products"
+      class:list={[
+        'block border-b border-border px-5 py-4 transition-colors',
+        isProductsIndex ? 'bg-surface text-text' : 'bg-background text-text hover:text-primary',
+      ]}
+      aria-current={isProductsIndex ? 'page' : undefined}
+    >
+      <h2 class="font-heading text-lg font-semibold uppercase leading-tight">
         {title}
       </h2>
-    </div>
+    </a>
 
     <nav aria-label={title} class="bg-background">
       <ul class="divide-y divide-border">
@@ -57,9 +62,11 @@ const isCurrentPath = (href?: string) => {
                 href={category.href || '#'}
                 class:list={[
                   'block border-l-2 px-5 py-3 text-[0.95rem] font-semibold leading-snug transition-colors',
-                  isActive || hasActiveChild
+                  isActive
                     ? 'border-primary bg-surface text-text'
-                    : 'border-transparent text-text hover:bg-surface',
+                    : hasActiveChild
+                      ? 'border-primary bg-background text-text'
+                      : 'border-transparent bg-background text-text hover:text-primary',
                 ]}
                 aria-current={isActive ? 'page' : undefined}
               >
@@ -67,7 +74,7 @@ const isCurrentPath = (href?: string) => {
               </a>
 
               {category.children && category.children.length > 0 && (
-                <ul class="border-t border-border bg-surface/70 py-1">
+                <ul class="border-t border-border bg-background py-1">
                   {category.children.map((child) => {
                     const isChildActive = isCurrentPath(child.href);
 
@@ -78,8 +85,8 @@ const isCurrentPath = (href?: string) => {
                           class:list={[
                             'block border-l-2 px-7 py-2.5 text-sm leading-snug transition-colors',
                             isChildActive
-                              ? 'border-primary bg-background font-medium text-text'
-                              : 'border-transparent text-text-muted hover:bg-background hover:text-text',
+                              ? 'border-primary bg-surface font-medium text-text'
+                              : 'border-transparent bg-background text-text-muted hover:text-text',
                           ]}
                           aria-current={isChildActive ? 'page' : undefined}
                         >
