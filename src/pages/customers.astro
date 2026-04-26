@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/atoms/Breadcrumb.astro';
+import ClientCard from '../components/ClientCard.astro';
+
+type ImageAsset = {
+  src: string;
+  width?: number;
+  height?: number;
+};
+
+type ImageModule = {
+  default: ImageAsset | string;
+};
+
+interface CustomerLogo {
+  name: string;
+  folderName: string;
+  sortOrder: number;
+  image: ImageAsset | string;
+}
+
+interface IndustryGroup {
+  folderName: string;
+  customers: CustomerLogo[];
+}
+
+const imageModules = import.meta.glob('../assets/images/customers/**/*.{png,jpg,jpeg,webp,svg}', {
+  eager: true,
+}) as Record<string, ImageModule>;
+
+const stripExtension = (fileName: string) =>
+  fileName.replace(/\.(png|jpe?g|webp|svg)$/i, '');
+
+const parseCustomerFileName = (fileName: string) => {
+  const baseName = stripExtension(fileName);
+  const orderedMatch = baseName.match(/^(\d+)[\s_-]+(.+)$/);
+
+  if (!orderedMatch) {
+    return {
+      name: baseName,
+      sortOrder: Number.POSITIVE_INFINITY,
+    };
+  }
+
+  return {
+    name: orderedMatch[2].replace(/_/g, ' '),
+    sortOrder: Number(orderedMatch[1]),
+  };
+};
+
+const industrySortOrder = ['HVAC', 'Electric Power'];
+
+const industryGroups = Object.entries(imageModules).reduce<Record<string, CustomerLogo[]>>(
+  (groups, [path, module]) => {
+    const relativePath = path.split('/customers/')[1];
+    if (!relativePath) return groups;
+
+    const pathParts = relativePath.split('/');
+    if (pathParts.length < 2) return groups;
+
+    const folderName = pathParts[0];
+    const fileName = pathParts[pathParts.length - 1];
+    const { name, sortOrder } = parseCustomerFileName(fileName);
+
+    groups[folderName] ||= [];
+    groups[folderName].push({
+      name,
+      folderName,
+      sortOrder,
+      image: module.default,
+    });
+
+    return groups;
+  },
+  {},
+);
+
+const industries: IndustryGroup[] = Object.entries(industryGroups)
+  .map(([folderName, customers]) => ({
+    folderName,
+    customers: customers.sort((a, b) => {
+      if (a.sortOrder !== b.sortOrder) return a.sortOrder - b.sortOrder;
+      return a.name.localeCompare(b.name);
+    }),
+  }))
+  .sort((a, b) => {
+    const aIndex = industrySortOrder.indexOf(a.folderName);
+    const bIndex = industrySortOrder.indexOf(b.folderName);
+
+    if (aIndex !== -1 || bIndex !== -1) {
+      return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+    }
+
+    return a.folderName.localeCompare(b.folderName);
+  });
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Our Customers' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Wayeal Customers by Industry',
+  description:
+    'Wayeal customer logos grouped by industry for helium leak detection, HVAC, refrigeration, electric power, switchgear, transformers, and sealed components.',
+};
+---
+
+<BaseLayout
+  title="Customers by Industry"
+  description="Explore Wayeal customers by industry, including HVAC, refrigeration, and electric power applications for helium leak detection solutions."
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="border-b border-border bg-surface/70 py-7 sm:py-9 lg:py-10">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <h1 class="max-w-4xl font-heading text-h1 font-bold uppercase text-text">
+        Customers by Industry
+      </h1>
+      <p class="mt-3 max-w-3xl text-sm leading-relaxed text-text-muted sm:text-base">
+        Wayeal supports industry customers with helium leak detection solutions for
+        HVAC, refrigeration, electric power equipment, sealed components, and
+        production-line quality control.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-7 sm:py-9 lg:py-10">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="space-y-4">
+        {industries.map((industry) => (
+          <section class="rounded-lg border border-border bg-background p-3 shadow-sm sm:p-4">
+            <div class="mb-3 border-b border-border pb-2">
+              <h2 class="font-heading text-h3 font-bold uppercase text-text">
+                {industry.folderName}
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 min-[520px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10">
+              {industry.customers.map((customer) => (
+                <ClientCard
+                  name={customer.name}
+                  folderName={customer.folderName}
+                  image={customer.image}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

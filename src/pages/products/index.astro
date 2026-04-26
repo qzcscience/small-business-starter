@@ -6,9 +6,35 @@ import Breadcrumb from '../../components/atoms/Breadcrumb.astro';
 import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
 import CTA from '../../components/CTA.astro';
 import { products } from '../../data/products';
+import {
+  VACUUM_CHAMBER_BASE_PATH,
+  vacuumChamberApplications,
+} from '../../data/vacuumChamber';
+import { accessories, accessoryGroups } from '../../data/accessories';
 import { navItems } from '../../config/nav';
+import heliumRecoveryImage from '../../assets/images/products/helium-recovery/wyh-531-helium-recovery-system.png';
 
-const productList = Object.values(products);
+const heliumLeakDetector = products['helium-leak-detector'];
+const vacuumApplicationSections = vacuumChamberApplications.map((application) => ({
+  ...application,
+  href: `${VACUUM_CHAMBER_BASE_PATH}/${application.slug}`,
+  skus: application.groups.flatMap((group) =>
+    group.skus.map((sku) => ({
+      ...sku,
+      equipmentLabel: group.label,
+      href: `${VACUUM_CHAMBER_BASE_PATH}/${application.slug}/${sku.slug}`,
+    })),
+  ),
+}));
+const vacuumSkuCount = vacuumApplicationSections.reduce(
+  (count, application) => count + application.skus.length,
+  0,
+);
+const accessoryPreviewImages = accessories
+  .map((accessory) => accessory.images[0])
+  .filter((image): image is { src: string; alt: string } => Boolean(image?.src))
+  .slice(0, 4);
+const productDisplayCount = 1 + vacuumSkuCount + 1 + 1;
 const productLinks =
   navItems
     .find((item) => item.label === 'Products')
@@ -53,43 +79,202 @@ const breadcrumbs = [
                   </p>
                 </div>
                 <p class="text-sm font-medium text-text-muted">
-                  {productList.length} Product{productList.length === 1 ? '' : 's'}
+                  {productDisplayCount} Product{productDisplayCount === 1 ? '' : 's'}
                 </p>
               </div>
             </div>
 
-            <div class="p-5 sm:p-6 lg:p-8">
-              <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {productList.map((product) => (
+            <div class="space-y-12 p-5 sm:p-6 lg:p-8">
+              <section class="scroll-mt-28">
+                <div class="mb-5">
+                  <h2 class="font-heading text-h2 font-semibold uppercase text-text">
+                    Helium Leak Detector
+                  </h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
                   <article class="group h-full">
                     <a
-                      href={product.pageHref}
+                      href={heliumLeakDetector.pageHref}
                       class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
                     >
-                      <div class="flex aspect-[4/3] items-center justify-center overflow-hidden bg-linear-to-br from-surface to-background p-6">
+                      <div class="flex aspect-[4/3] items-center justify-center overflow-hidden bg-surface p-6">
                         <img
-                          src={product.images[0]?.src}
-                          alt={product.images[0]?.alt || product.title}
+                          src={heliumLeakDetector.images[0]?.src}
+                          alt={heliumLeakDetector.images[0]?.alt || heliumLeakDetector.title}
                           class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
                           loading="lazy"
                         />
                       </div>
 
-                      <div class="flex flex-1 flex-col border-t border-border px-5 py-4 text-center">
+                      <div class="flex flex-1 flex-col border-t border-border p-5">
                         <p class="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
-                          Product Model
+                          {heliumLeakDetector.name}
                         </p>
-                        <h2 class="mt-2 font-heading text-h3 font-semibold uppercase text-primary">
-                          {product.name}
-                        </h2>
-                        <p class="mt-2 text-sm leading-relaxed text-text-muted">
-                          {product.title}
+                        <h3 class="mt-2 font-heading text-h3 font-semibold leading-snug text-text">
+                          {heliumLeakDetector.title}
+                        </h3>
+                        <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                          {heliumLeakDetector.description}
                         </p>
                       </div>
                     </a>
                   </article>
-                ))}
-              </div>
+                </div>
+              </section>
+
+              <section class="scroll-mt-28">
+                <div class="mb-6">
+                  <a
+                    href={VACUUM_CHAMBER_BASE_PATH}
+                    class="font-heading text-h2 font-semibold uppercase text-text transition-colors hover:text-primary"
+                  >
+                    Vacuum Chamber Leak Detection System
+                  </a>
+                  <p class="mt-2 max-w-3xl leading-relaxed text-text-muted">
+                    Browse application-specific vacuum chamber helium leak detection systems.
+                  </p>
+                </div>
+
+                <div class="space-y-10">
+                  {vacuumApplicationSections.map((application) => (
+                    <section id={application.slug} class="scroll-mt-28">
+                      <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                          <a
+                            href={application.href}
+                            class="font-heading text-h3 font-semibold text-text transition-colors hover:text-primary"
+                          >
+                            {application.label}
+                          </a>
+                          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-text-muted">
+                            {application.description}
+                          </p>
+                        </div>
+                        <p class="text-sm font-medium text-text-muted">
+                          {application.skus.length} SKU{application.skus.length === 1 ? '' : 's'}
+                        </p>
+                      </div>
+
+                      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        {application.skus.map((sku) => (
+                          <article class="group h-full">
+                            <a
+                              href={sku.href}
+                              class="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-background shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md"
+                            >
+                              <div class="flex aspect-[4/3] items-center justify-center bg-surface p-6">
+                                <img
+                                  src={sku.image}
+                                  alt={sku.name}
+                                  class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div class="flex flex-1 flex-col border-t border-border p-5">
+                                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                                  {sku.sku}
+                                </p>
+                                <h3 class="mt-2 font-heading text-xl font-semibold leading-snug text-text">
+                                  {sku.name}
+                                </h3>
+                                <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                                  {sku.shortDescription}
+                                </p>
+                                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-text-muted">
+                                  {sku.equipmentLabel}
+                                </p>
+                              </div>
+                            </a>
+                          </article>
+                        ))}
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              </section>
+
+              <section class="scroll-mt-28">
+                <div class="mb-5">
+                  <h2 class="font-heading text-h2 font-semibold uppercase text-text">
+                    Helium Recovery System
+                  </h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  <article class="group h-full">
+                    <a
+                      href="/products/helium-recovery"
+                      class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                    >
+                      <div class="flex aspect-[4/3] items-center justify-center overflow-hidden bg-surface p-6">
+                        <img
+                          src={heliumRecoveryImage.src}
+                          width={heliumRecoveryImage.width}
+                          height={heliumRecoveryImage.height}
+                          alt="WYH-531 helium recovery system"
+                          class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      </div>
+
+                      <div class="flex flex-1 flex-col border-t border-border p-5">
+                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                          WYH-531
+                        </p>
+                        <h3 class="mt-2 font-heading text-h3 font-semibold leading-snug text-text">
+                          WYH-531 Helium Recovery System
+                        </h3>
+                        <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                          Recover and reuse helium from leak testing workflows, with actual recovery efficiency up to 98%.
+                        </p>
+                      </div>
+                    </a>
+                  </article>
+                </div>
+              </section>
+
+              <section class="scroll-mt-28">
+                <div class="mb-5">
+                  <h2 class="font-heading text-h2 font-semibold uppercase text-text">
+                    Accessories
+                  </h2>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  <article class="group h-full">
+                    <a
+                      href="/products/accessories"
+                      class="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-all duration-200 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+                    >
+                      <div class="grid aspect-[4/3] grid-cols-2 gap-2 overflow-hidden bg-surface p-4">
+                        {accessoryPreviewImages.map((image) => (
+                          <div class="flex min-h-0 items-center justify-center rounded-md bg-background p-3">
+                            <img
+                              src={image.src}
+                              alt={image.alt}
+                              class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+                              loading="lazy"
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div class="flex flex-1 flex-col border-t border-border p-5">
+                        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                          {accessories.length} SKU{accessories.length === 1 ? '' : 's'}
+                        </p>
+                        <h3 class="mt-2 font-heading text-h3 font-semibold leading-snug text-text">
+                          Accessories
+                        </h3>
+                        <p class="mt-3 flex-1 text-sm leading-relaxed text-text-muted">
+                          {accessoryGroups[0]?.summary || 'Accessories and consumables for helium leak detection systems.'}
+                        </p>
+                      </div>
+                    </a>
+                  </article>
+                </div>
+              </section>
             </div>
           </div>
         </div>

@@ -1,0 +1,163 @@
+---
+type ImageAsset = {
+  src: string;
+  width?: number;
+  height?: number;
+};
+
+interface Props {
+  name: string;
+  folderName: string;
+  image: ImageAsset | string;
+}
+
+const { name, folderName, image } = Astro.props;
+
+const normalizeIndustryName = (value: string) =>
+  value.toLowerCase().replace(/[\s_-]+/g, '');
+
+const getSolutionText = (folderName: string) => {
+  const normalized = normalizeIndustryName(folderName);
+
+  const solutionMap: Record<string, string> = {
+    hvac:
+      'Helium leak testing for heat exchangers, coils, compressors, and refrigerant circuits.',
+    electricpower:
+      'Helium leak testing for switchgear, transformers, GIS, and sealed power components.',
+  };
+
+  return (
+    solutionMap[normalized] ||
+    `Helium leak testing and quality control for ${folderName} applications.`
+  );
+};
+
+const solution = getSolutionText(folderName);
+const imageSrc = typeof image === 'string' ? image : image.src;
+const imageWidth = typeof image === 'string' ? undefined : image.width;
+const imageHeight = typeof image === 'string' ? undefined : image.height;
+const imageAlt = `${name} - ${solution} - Wayeal`;
+---
+
+<article class="client-card group" tabindex="0">
+  <div class="client-default">
+    <img
+      src={imageSrc}
+      width={imageWidth}
+      height={imageHeight}
+      alt={imageAlt}
+      loading="lazy"
+      class="client-logo"
+    />
+  </div>
+
+  <div class="client-copy">
+    <p>{solution}</p>
+  </div>
+</article>
+
+<style>
+  .client-card {
+    position: relative;
+    height: 3.75rem;
+    overflow: visible;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-background);
+    outline: none;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .client-card:focus-within,
+  .client-card:hover {
+    z-index: 10;
+    border-color: rgb(226 232 240 / 0.9);
+    box-shadow: 0 8px 18px rgb(15 23 42 / 0.08);
+    transform: translateY(-2px);
+  }
+
+  .client-card:focus-visible {
+    outline: 2px solid rgb(249 115 22 / 0.45);
+    outline-offset: 2px;
+  }
+
+  .client-default,
+  .client-copy {
+    position: absolute;
+    inset: 0;
+    padding: 0.45rem;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
+  .client-default {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .client-default::before {
+    position: absolute;
+    inset: 0.35rem;
+    z-index: -1;
+    border-radius: var(--radius-sm);
+    background: #ffffff;
+    content: '';
+  }
+
+  .client-logo {
+    max-height: 2.2rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .client-copy {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+
+  .client-copy p {
+    color: var(--color-text);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .client-card:hover .client-default,
+  .client-card:focus .client-default,
+  .client-card:focus-within .client-default {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+
+  .client-card:hover .client-copy,
+  .client-card:focus .client-copy,
+  .client-card:focus-within .client-copy {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (min-width: 768px) {
+    .client-card {
+      height: 3.5rem;
+    }
+
+    .client-logo {
+      max-height: 2.25rem;
+    }
+
+    .client-copy p {
+      font-size: 0.65rem;
+    }
+  }
+</style>
