@@ -34,6 +34,7 @@ export const navItems: NavItem[] = [
   },
   {
     label: 'Industry Solutions',
+    href: vacuumChamberBaseHref,
     children: vacuumChamberApplications,
   },
   { label: 'Our Customers', href: '/customers' },

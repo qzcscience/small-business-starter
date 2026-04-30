@@ -4,6 +4,14 @@ import { brand } from '../config/brand';
 import { logoImage } from '../config/images';
 
 const currentPath = Astro.url.pathname;
+const topLevelNavHrefs = navItems
+  .map((item) => item.href)
+  .filter((href): href is string => Boolean(href));
+const pathMatchesHref = (path: string, href: string) =>
+  path === href || (href !== '/' && path.startsWith(`${href}/`));
+const activeTopLevelHref = [...topLevelNavHrefs]
+  .filter((href) => pathMatchesHref(currentPath, href))
+  .sort((a, b) => b.length - a.length)[0];
 ---
 
 <header
@@ -26,7 +34,7 @@ const currentPath = Astro.url.pathname;
     <nav class="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
       {navItems.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
-        const isActive = item.href && (currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)));
+        const isActive = item.href === activeTopLevelHref;
         const topLevelClasses = [
           'nav-item inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200',
           isActive
@@ -211,93 +219,135 @@ const currentPath = Astro.url.pathname;
 
 <script>
   (() => {
-    const headerEl = document.querySelector('header');
-    const btnEl = document.getElementById('menu-toggle');
-    const menuEl = document.getElementById('mobile-menu');
-    const iconOpenEl = document.getElementById('menu-icon-open');
-    const iconCloseEl = document.getElementById('menu-icon-close');
-
-    if (!headerEl || !btnEl || !menuEl || !iconOpenEl || !iconCloseEl) return;
-
-    const header = headerEl as HTMLElement;
-    const btn = btnEl as HTMLButtonElement;
-    const menu = menuEl as HTMLElement;
-    const iconOpen = iconOpenEl as HTMLElement;
-    const iconClose = iconCloseEl as HTMLElement;
-    if (header.dataset.menuInit === 'true') return;
-    header.dataset.menuInit = 'true';
-
-    const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
-    const closeDropdowns = () => {
-      header.querySelectorAll('.mobile-dropdown-panel').forEach((panel) => panel.classList.add('hidden'));
-      header.querySelectorAll('.mobile-dropdown-toggle svg').forEach((icon) => icon.classList.remove('rotate-180'));
+    type MenuWindow = Window & {
+      __wayealMobileMenuController?: AbortController;
+      __wayealMobileMenuBooted?: boolean;
     };
 
-    const setMenuOpen = (nextOpen: boolean) => {
-      if (isDesktop()) nextOpen = false;
-      btn.setAttribute('aria-expanded', String(nextOpen));
-      menu.classList.toggle('hidden', !nextOpen);
-      iconOpen.classList.toggle('hidden', nextOpen);
-      iconClose.classList.toggle('hidden', !nextOpen);
-      if (!nextOpen) closeDropdowns();
-    };
+    const menuWindow = window as MenuWindow;
 
-    function syncActiveLinks() {
-      const path = window.location.pathname;
-      const desktopLinks = header.querySelectorAll('nav[aria-label="Primary navigation"] a');
-      const mobileLinks = header.querySelectorAll('#mobile-menu nav a');
+    const initMobileMenu = () => {
+      const headerEl = document.querySelector('header');
+      const btnEl = document.getElementById('menu-toggle');
+      const menuEl = document.getElementById('mobile-menu');
+      const iconOpenEl = document.getElementById('menu-icon-open');
+      const iconCloseEl = document.getElementById('menu-icon-close');
 
-      desktopLinks.forEach((link) => {
-        const href = link.getAttribute('href') || '';
-        const isActive = href === path || (href !== '/' && path.startsWith(href));
-        link.classList.toggle('text-primary', isActive);
-        link.classList.toggle('text-text-muted', !isActive);
+      if (!headerEl || !btnEl || !menuEl || !iconOpenEl || !iconCloseEl) return;
+
+      menuWindow.__wayealMobileMenuController?.abort();
+      menuWindow.__wayealMobileMenuController = new AbortController();
+      const { signal } = menuWindow.__wayealMobileMenuController;
+
+      const header = headerEl as HTMLElement;
+      const btn = btnEl as HTMLButtonElement;
+      const menu = menuEl as HTMLElement;
+      const iconOpen = iconOpenEl as HTMLElement;
+      const iconClose = iconCloseEl as HTMLElement;
+
+      const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+      const closeDropdowns = () => {
+        header.querySelectorAll('.mobile-dropdown-panel').forEach((panel) => panel.classList.add('hidden'));
+        header.querySelectorAll('.mobile-dropdown-toggle svg').forEach((icon) => icon.classList.remove('rotate-180'));
+      };
+
+      const setMenuOpen = (nextOpen: boolean) => {
+        if (isDesktop()) nextOpen = false;
+        btn.setAttribute('aria-expanded', String(nextOpen));
+        menu.classList.toggle('hidden', !nextOpen);
+        iconOpen.classList.toggle('hidden', nextOpen);
+        iconClose.classList.toggle('hidden', !nextOpen);
+        if (!nextOpen) closeDropdowns();
+      };
+
+      function syncActiveLinks() {
+        const path = window.location.pathname;
+        const desktopLinks = Array.from(header.querySelectorAll<HTMLAnchorElement>('nav[aria-label="Primary navigation"] .nav-item[href]'));
+        const mobileLinks = Array.from(header.querySelectorAll<HTMLAnchorElement>('#mobile-menu nav .mobile-nav-link[href]'));
+        const topLevelLinks = [...desktopLinks, ...mobileLinks];
+        const linkMatchesPath = (href: string) => path === href || (href !== '/' && path.startsWith(`${href}/`));
+        const activeHref = topLevelLinks
+          .map((link) => link.getAttribute('href') || '')
+          .filter((href) => href && linkMatchesPath(href))
+          .sort((a, b) => b.length - a.length)[0];
+
+        desktopLinks.forEach((link) => {
+          const href = link.getAttribute('href') || '';
+          const isActive = href === activeHref;
+          link.classList.toggle('bg-primary/10', isActive);
+          link.classList.toggle('text-primary', isActive);
+          link.classList.toggle('text-text-muted', !isActive);
+        });
+
+        mobileLinks.forEach((link) => {
+          const href = link.getAttribute('href') || '';
+          const isActive = href === activeHref;
+          link.classList.toggle('text-primary', isActive);
+          link.classList.toggle('bg-primary/10', isActive);
+          link.classList.toggle('text-text-muted', !isActive);
+        });
+      }
+
+      header.querySelectorAll('.mobile-dropdown-toggle').forEach((toggleBtn) => {
+        toggleBtn.addEventListener(
+          'click',
+          () => {
+            const panel = toggleBtn.parentElement?.nextElementSibling;
+            const icon = toggleBtn.querySelector('svg');
+            if (!(panel instanceof HTMLElement)) return;
+            panel.classList.toggle('hidden');
+            icon?.classList.toggle('rotate-180');
+          },
+          { signal },
+        );
       });
 
-      mobileLinks.forEach((link) => {
-        const href = link.getAttribute('href') || '';
-        const isActive = href === path || (href !== '/' && path.startsWith(href));
-        link.classList.toggle('text-primary', isActive);
-        link.classList.toggle('bg-primary/10', isActive);
-      });
-    }
+      document.addEventListener(
+        'click',
+        (event) => {
+          if (!(event.target instanceof Element)) return;
+          if (!event.target.closest('.mobile-dropdown')) closeDropdowns();
+        },
+        { signal },
+      );
 
-    header.querySelectorAll('.mobile-dropdown-toggle').forEach((toggleBtn) => {
-      toggleBtn.addEventListener('click', () => {
-        const panel = toggleBtn.parentElement?.nextElementSibling;
-        const icon = toggleBtn.querySelector('svg');
-        if (!(panel instanceof HTMLElement)) return;
-        panel.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-      });
-    });
+      btn.addEventListener(
+        'click',
+        () => {
+          if (isDesktop()) return;
+          const isOpen = btn.getAttribute('aria-expanded') === 'true';
+          setMenuOpen(!isOpen);
+        },
+        { signal },
+      );
 
-    document.addEventListener('click', (event) => {
-      if (!(event.target instanceof Element)) return;
-      if (!event.target.closest('.mobile-dropdown')) closeDropdowns();
-    });
+      menu.addEventListener(
+        'click',
+        (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          if (target.closest('a[href]')) setMenuOpen(false);
+        },
+        { signal },
+      );
 
-    btn.addEventListener('click', () => {
-      if (isDesktop()) return;
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      setMenuOpen(!isOpen);
-    });
+      document.addEventListener('astro:before-preparation', () => setMenuOpen(false), { signal });
+      window.addEventListener('resize', () => setMenuOpen(false), { signal });
 
-    menu.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-      if (target.closest('a[href]')) setMenuOpen(false);
-    });
-
-    document.addEventListener('astro:before-preparation', () => setMenuOpen(false));
-    document.addEventListener('astro:after-swap', () => {
       setMenuOpen(false);
       syncActiveLinks();
-    });
+    };
 
-    window.addEventListener('resize', () => setMenuOpen(false));
+    if (!menuWindow.__wayealMobileMenuBooted) {
+      menuWindow.__wayealMobileMenuBooted = true;
+      document.addEventListener('astro:page-load', initMobileMenu);
+      document.addEventListener('astro:after-swap', initMobileMenu);
+    }
 
-    setMenuOpen(false);
-    syncActiveLinks();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenu, { once: true });
+    } else {
+      initMobileMenu();
+    }
   })();
 </script>
