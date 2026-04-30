@@ -7,7 +7,7 @@ A fast, mobile-first website template for trade and service businesses — handy
 ## What's included
 
 - Full homepage with Hero, Trust Bar, Services, About, Reviews, Gallery, and CTA sections
-- Inner pages: About, Services, Contact (with Netlify Forms), Reviews, Blog
+- Inner pages: About, Services, Contact (with Netlify Forms), Reviews
 - SEO-ready: `<title>`, meta descriptions, canonical URLs, Open Graph, JSON-LD structured data, sitemap, robots.txt
 - Mobile-first responsive layout with a hamburger drawer nav and sticky desktop header
 - Astro View Transitions for smooth page navigation
@@ -124,13 +124,10 @@ small-business-starter/
 │   │   └── Banner.astro        # Inner-page hero with auto breadcrumbs
 │   ├── config/
 │   │   └── brand.ts            # ✏️  Visual identity (colors, fonts, tagline)
-│   ├── content/
-│   │   └── blog/               # ✏️  Markdown blog posts (.md files)
 │   ├── data/
 │   │   └── client.ts           # ✏️  Business info (phone, address, socials)
 │   ├── layouts/
-│   │   ├── BaseLayout.astro    # Master HTML shell (SEO, fonts, skip link)
-│   │   └── PostLayout.astro    # Blog post layout
+│   │   └── BaseLayout.astro    # Master HTML shell (SEO, fonts, skip link)
 │   ├── pages/
 │   │   ├── index.astro         # Homepage
 │   │   ├── about.astro
@@ -139,9 +136,6 @@ small-business-starter/
 │   │   ├── contact/
 │   │   │   ├── index.astro     # Contact form (Netlify Forms-ready)
 │   │   │   └── success.astro   # Confirmation page after form submit
-│   │   └── blog/
-│   │       ├── index.astro     # Blog listing
-│   │       └── [...slug].astro # Individual post pages (auto-generated)
 │   └── styles/
 │       ├── global.css          # Base styles, dark mode, reduced motion
 │       └── theme.css           # Tailwind v4 @theme design tokens
@@ -210,30 +204,6 @@ Recommended image specs:
 | Gallery | 800 × 600 px each | 4:3 landscape |
 
 Supported formats: `.jpg` `.jpeg` `.png` `.webp` `.avif`
-
----
-
-## Writing blog posts
-
-Blog posts live in `src/content/blog/` as Markdown files. Create a new `.md` file and add the required frontmatter at the top:
-
-```md
----
-title: "5 Signs You Need a New Roof"
-description: "A short summary shown on the blog listing and in search results."
-author: "Jane Smith"
-date: 2026-04-01
-tags: ["roofing", "maintenance"]
-draft: false
----
-
-Your post content goes here. Standard Markdown is supported.
-```
-
-The filename becomes the URL slug. Keep it lowercase with hyphens:
-- `how-to-prepare-for-a-plumbing-inspection.md` → `/blog/how-to-prepare-for-a-plumbing-inspection`
-
-Set `draft: true` to write a post without publishing it.
 
 ---
 
