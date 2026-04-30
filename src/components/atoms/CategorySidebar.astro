@@ -1,49 +1,50 @@
 ---
+import CategorySidebarItem from './CategorySidebarItem.astro';
+
 interface CategoryChild {
   label: string;
   href: string;
+  children?: CategoryChild[];
 }
 
 interface Category {
   label: string;
   href?: string;
-  children?: CategoryChild[];
+  children?: Category[];
 }
 
 interface Props {
   title?: string;
   categories: Category[];
+  rootHref?: string;
   activeHref?: string;
   activeSlug?: string;
+  collapsible?: boolean;
 }
 
 const {
   title = 'Products',
   categories,
+  rootHref = '/products',
   activeHref,
   activeSlug,
+  collapsible = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isProductsIndex = currentPath === '/products';
-
-const isCurrentPath = (href?: string) => {
-  if (!href) return false;
-  if (activeHref) return href === activeHref;
-
-  return Boolean(activeSlug && href.includes(activeSlug));
-};
+const normalizedRootHref = rootHref.replace(/\/$/, '') || '/';
+const isRootIndex = currentPath === normalizedRootHref;
 ---
 
-<aside class="hidden lg:block lg:w-[17.5rem] xl:w-[18.5rem] shrink-0">
+<aside class="category-sidebar hidden shrink-0 lg:block lg:w-[17.5rem] xl:w-[18.5rem]">
   <div class="sticky top-28 overflow-hidden rounded-lg border border-border bg-background">
     <a
-      href="/products"
+      href={rootHref}
       class:list={[
         'block border-b border-border px-5 py-4 transition-colors',
-        isProductsIndex ? 'bg-surface text-text' : 'bg-background text-text hover:text-primary',
+        isRootIndex ? 'bg-surface text-text' : 'bg-background text-text hover:text-primary',
       ]}
-      aria-current={isProductsIndex ? 'page' : undefined}
+      aria-current={isRootIndex ? 'page' : undefined}
     >
       <h2 class="font-heading text-lg font-semibold uppercase leading-tight">
         {title}
@@ -52,55 +53,48 @@ const isCurrentPath = (href?: string) => {
 
     <nav aria-label={title} class="bg-background">
       <ul class="divide-y divide-border">
-        {categories.map((category) => {
-          const isActive = isCurrentPath(category.href);
-          const hasActiveChild = category.children?.some((child) => isCurrentPath(child.href));
-
-          return (
-            <li>
-              <a
-                href={category.href || '#'}
-                class:list={[
-                  'block border-l-2 px-5 py-3 text-[0.95rem] font-semibold leading-snug transition-colors',
-                  isActive
-                    ? 'border-primary bg-surface text-text'
-                    : hasActiveChild
-                      ? 'border-primary bg-background text-text'
-                      : 'border-transparent bg-background text-text hover:text-primary',
-                ]}
-                aria-current={isActive ? 'page' : undefined}
-              >
-                {category.label}
-              </a>
-
-              {category.children && category.children.length > 0 && (
-                <ul class="border-t border-border bg-background py-1">
-                  {category.children.map((child) => {
-                    const isChildActive = isCurrentPath(child.href);
-
-                    return (
-                      <li>
-                        <a
-                          href={child.href}
-                          class:list={[
-                            'block border-l-2 px-7 py-2.5 text-sm leading-snug transition-colors',
-                            isChildActive
-                              ? 'border-primary bg-surface font-medium text-text'
-                              : 'border-transparent bg-background text-text-muted hover:text-text',
-                          ]}
-                          aria-current={isChildActive ? 'page' : undefined}
-                        >
-                          {child.label}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
+        {categories.map((category) => (
+          <CategorySidebarItem
+            category={category}
+            activeHref={activeHref}
+            activeSlug={activeSlug}
+            collapsible={collapsible}
+          />
+        ))}
       </ul>
     </nav>
+
+    <slot />
   </div>
 </aside>
+
+<script>
+  (() => {
+    const initKey = '__categorySidebarCollapse';
+
+    if (window[initKey]) return;
+    window[initKey] = true;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const toggle = target.closest('.category-sidebar-toggle');
+      if (!(toggle instanceof HTMLButtonElement)) return;
+
+      const panelId = toggle.getAttribute('aria-controls');
+      if (!panelId) return;
+
+      const panel = document.getElementById(panelId);
+      if (!(panel instanceof HTMLElement)) return;
+
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+      const nextExpanded = !isExpanded;
+      const icon = toggle.querySelector('[data-sidebar-toggle-icon]');
+
+      toggle.setAttribute('aria-expanded', String(nextExpanded));
+      panel.hidden = !nextExpanded;
+      if (icon) icon.textContent = nextExpanded ? '-' : '+';
+    });
+  })();
+</script>

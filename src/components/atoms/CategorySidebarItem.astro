@@ -1,0 +1,131 @@
+---
+interface Category {
+  label: string;
+  slug?: string;
+  href?: string;
+  children?: Category[];
+}
+
+interface Props {
+  category: Category;
+  activeHref?: string;
+  activeSlug?: string;
+  depth?: number;
+  collapsible?: boolean;
+}
+
+const { category, activeHref, activeSlug, depth = 0, collapsible = false } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const normalizePath = (href?: string) => {
+  if (!href) return '';
+  return href.replace(/\/$/, '') || '/';
+};
+
+const isCurrentPath = (href?: string) => {
+  if (!href) return false;
+
+  if (activeHref) {
+    return normalizePath(href) === normalizePath(activeHref);
+  }
+
+  if (activeSlug) {
+    return href.includes(activeSlug);
+  }
+
+  return normalizePath(href) === currentPath;
+};
+
+const hasActiveDescendant = (items?: Category[]): boolean =>
+  Boolean(items?.some((item) => isCurrentPath(item.href) || hasActiveDescendant(item.children)));
+
+const isActive = isCurrentPath(category.href);
+const hasActiveChild = hasActiveDescendant(category.children);
+const isSectionActive = !isActive && hasActiveChild;
+const hasChildren = Boolean(category.children?.length);
+const isExpanded = !collapsible || isActive || hasActiveChild;
+const panelId = `category-sidebar-${depth}-${category.slug || category.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+const baseClasses = [
+  'category-sidebar-link block border-l-2 leading-snug transition-colors',
+  depth === 0 ? 'py-3 text-[0.95rem] font-semibold' : '',
+  depth === 1 ? 'py-2.5 text-sm' : '',
+  depth >= 2 ? 'py-2 text-xs' : '',
+  collapsible ? 'px-4' : '',
+  !collapsible && depth === 0 ? 'px-5' : '',
+  !collapsible && depth === 1 ? 'px-7' : '',
+  !collapsible && depth >= 2 ? 'px-9' : '',
+].filter(Boolean);
+
+const activeClasses = [
+  'border-primary',
+  'bg-surface',
+  depth === 0 ? 'font-semibold' : 'font-medium',
+  'text-text',
+];
+
+const sectionActiveClasses = ['border-primary', 'bg-background', 'text-text'];
+const inactiveClasses = [
+  'border-transparent',
+  'bg-background',
+  'text-text-muted',
+  depth === 0 ? 'hover:text-primary' : 'hover:text-text',
+];
+
+const stateClasses = isActive
+  ? activeClasses
+  : isSectionActive
+    ? sectionActiveClasses
+    : inactiveClasses;
+
+const listClasses = [
+  depth === 0 ? 'border-t border-border bg-background py-1' : 'bg-background py-1',
+  depth > 0 ? 'ml-4 border-l border-border' : '',
+].filter(Boolean);
+---
+
+<li>
+  {collapsible && hasChildren ? (
+    <div class="flex items-stretch">
+      <a
+        href={category.href || '#'}
+        class:list={[...baseClasses, ...stateClasses, 'min-w-0 flex-1']}
+        aria-current={isActive ? 'page' : undefined}
+      >
+        {category.label}
+      </a>
+      <button
+        type="button"
+        class="category-sidebar-toggle flex min-h-[40px] w-10 shrink-0 items-center justify-center border-l border-border text-sm font-semibold text-text-muted transition-colors hover:bg-surface hover:text-text"
+        aria-label={`Toggle ${category.label}`}
+        aria-expanded={String(isExpanded)}
+        aria-controls={panelId}
+      >
+        <span data-sidebar-toggle-icon>{isExpanded ? '-' : '+'}</span>
+      </button>
+    </div>
+  ) : (
+    <a
+      href={category.href || '#'}
+      class:list={[...baseClasses, ...stateClasses]}
+      aria-current={isActive ? 'page' : undefined}
+    >
+      {category.label}
+    </a>
+  )}
+
+  {hasChildren && (
+    <ul id={panelId} class:list={listClasses} hidden={collapsible && !isExpanded}>
+      {category.children!.map((child) => (
+        <Astro.self
+          category={child}
+          activeHref={activeHref}
+          activeSlug={activeSlug}
+          depth={depth + 1}
+          collapsible={collapsible}
+        />
+      ))}
+    </ul>
+  )}
+</li>

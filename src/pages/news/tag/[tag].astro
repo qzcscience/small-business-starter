@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/atoms/Breadcrumb.astro';
+import CTA from '../../../components/CTA.astro';
+import NewsList from '../../../components/news/NewsList.astro';
+import NewsSidebar from '../../../components/news/NewsSidebar.astro';
+import {
+  NEWS_BASE_PATH,
+  getNewsTags,
+  getPublishedNews,
+  slugifyNewsTag,
+} from '../../../data/news';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedNews();
+  return getNewsTags(entries).map((tag) => ({
+    params: { tag: tag.slug },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const allEntries = await getPublishedNews();
+const entries = allEntries.filter((entry) =>
+  entry.data.tags.some((entryTag) => slugifyNewsTag(entryTag) === tag.slug),
+);
+const tags = getNewsTags(allEntries);
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'News', href: NEWS_BASE_PATH },
+  { label: `#${tag.label}` },
+];
+---
+
+<BaseLayout
+  title={`News tagged ${tag.label}`}
+  description={`Browse Wayeal news tagged ${tag.label}.`}
+>
+  <Header slot="header" />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="py-8 lg:py-12">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
+        <NewsSidebar tags={tags} activeTagSlug={tag.slug} />
+
+        <div class="min-w-0 flex-1">
+          <div class="mb-8 rounded-lg border border-border bg-background px-6 py-6 shadow-sm sm:px-8">
+            <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+              News Tag
+            </p>
+            <h1 class="mt-3 font-heading text-h1 font-bold uppercase leading-tight text-text">
+              Tag: {tag.label}
+            </h1>
+            <p class="mt-3 max-w-3xl text-base leading-relaxed text-text-muted sm:text-lg">
+              Articles and updates marked with #{tag.label}.
+            </p>
+          </div>
+
+          <NewsList
+            entries={entries}
+            emptyMessage={`No news tagged ${tag.label} yet.`}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

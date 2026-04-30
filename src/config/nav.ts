@@ -1,3 +1,5 @@
+import { resourceNavItems } from '../data/resources';
+
 export interface NavItem {
   label: string;
   href?: string;
@@ -35,7 +37,7 @@ export const navItems: NavItem[] = [
     children: vacuumChamberApplications,
   },
   { label: 'Our Customers', href: '/customers' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'Resources', href: '/resources', children: resourceNavItems },
   { label: 'News', href: '/news' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
