@@ -1,0 +1,23 @@
+---
+import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
+import { getAboutSection } from '../../data/about';
+
+const section = getAboutSection('virtual-factory-tour')!;
+---
+
+<AboutDetailShell section={section}>
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    {section.blocks.map((block) => (
+      <section class="rounded-lg border border-border bg-surface/50 p-5">
+        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
+          {block.title}
+        </h2>
+        <div class="mt-4 space-y-4">
+          {block.body.map((paragraph) => (
+            <p class="leading-relaxed text-text-muted">{paragraph}</p>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</AboutDetailShell>

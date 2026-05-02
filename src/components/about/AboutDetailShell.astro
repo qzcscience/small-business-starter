@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Breadcrumb from '../atoms/Breadcrumb.astro';
+import CategorySidebar from '../atoms/CategorySidebar.astro';
+import CTA from '../CTA.astro';
+import {
+  ABOUT_BASE_PATH,
+  aboutNavItems,
+  type AboutSection,
+} from '../../data/about';
+
+interface Props {
+  section: AboutSection;
+}
+
+const { section } = Astro.props;
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: ABOUT_BASE_PATH },
+  { label: section.label },
+];
+---
+
+<BaseLayout
+  title={section.title}
+  description={section.description}
+>
+  <Header slot="header" />
+
+  <Breadcrumb items={breadcrumbs} />
+
+  <section class="py-8 lg:py-12">
+    <div class="mx-auto max-w-site px-4 sm:px-6">
+      <div class="flex flex-col gap-8 lg:flex-row lg:gap-10">
+        <CategorySidebar
+          title="About Us"
+          rootHref={ABOUT_BASE_PATH}
+          categories={aboutNavItems}
+          activeHref={section.href}
+        />
+
+        <div class="min-w-0 flex-1">
+          <article class="rounded-lg border border-border bg-background shadow-sm">
+            <div class="border-b border-border bg-surface/60 px-6 py-6 sm:px-8 lg:px-10">
+              <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+                {section.eyebrow}
+              </p>
+              <h1 class="mt-3 font-heading text-h1 font-bold uppercase leading-tight text-text">
+                {section.title}
+              </h1>
+              <p class="mt-3 max-w-3xl text-base leading-relaxed text-text-muted sm:text-lg">
+                {section.summary}
+              </p>
+            </div>
+
+            <div class="space-y-8 p-5 sm:p-6 lg:p-8">
+              {section.highlights.length > 0 && (
+                <section class="rounded-lg border border-border bg-background p-5">
+                  <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
+                    Key Highlights
+                  </h2>
+                  <ul class="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3" role="list">
+                    {section.highlights.map((highlight) => (
+                      <li class="rounded-lg border border-border bg-surface/60 p-4 text-sm leading-relaxed text-text-muted">
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              <slot />
+
+              <div class="border-t border-border pt-6">
+                <a
+                  href={ABOUT_BASE_PATH}
+                  class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-light"
+                >
+                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                  </svg>
+                  Back to About Us
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>
