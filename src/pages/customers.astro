@@ -51,7 +51,14 @@ const parseCustomerFileName = (fileName: string) => {
   };
 };
 
-const industrySortOrder = ['HVAC', 'Electric Power'];
+const industrySortOrder = [
+  'Automotive Parts',
+  'HVAC',
+  'Server Liquid Cooling',
+  'Lithium-ion Batteries',
+  'Electric Power',
+  'Others',
+];
 
 const industryGroups = Object.entries(imageModules).reduce<Record<string, CustomerLogo[]>>(
   (groups, [path, module]) => {

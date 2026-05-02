@@ -25,11 +25,14 @@ export const client = {
     mapLink: 'https://maps.app.goo.gl/wJ4teoYa3kDxnYTFA',
   },
   socials: {
-    facebook: 'https://www.facebook.com/',
-    instagram: 'https://www.instagram.com/',
-    google: 'https://www.google.com/maps',
+    facebook: 'https://www.facebook.com/profile.php?id=100070207605253',
+    instagram: 'https://www.instagram.com/qi_oliver/',
+    google: 'https://maps.app.goo.gl/wJ4teoYa3kDxnYTFA',
+    youtube: 'https://www.youtube.com/@oliverqi1987/playlists',
+    linkedin: 'https://www.linkedin.com/in/oliver-wayeal/',
+    whatsapp: 'https://wa.me/+8615754603228',
   },
-  domain: 'https://www.example.com',
+  domain: 'https://maps.app.goo.gl/wJ4teoYa3kDxnYTFA',
 } as const;
 
 export type Client = typeof client;

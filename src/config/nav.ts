@@ -1,4 +1,5 @@
 import { resourceNavItems } from '../data/resources';
+import { aboutNavItems } from '../data/about';
 
 export interface NavItem {
   label: string;
@@ -40,6 +41,6 @@ export const navItems: NavItem[] = [
   { label: 'Our Customers', href: '/customers' },
   { label: 'Resources', href: '/resources', children: resourceNavItems },
   { label: 'News', href: '/news' },
-  { label: 'About Us', href: '/about' },
+  { label: 'About Us', href: '/about', children: aboutNavItems },
   { label: 'Contact', href: '/contact' },
 ];
