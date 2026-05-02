@@ -5,6 +5,12 @@ import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import { brand } from '../../config/brand';
 import { client } from '../../data/client';
+
+const contactAddressLines = [
+  'Street: No.8 Wenqu Road',
+  'Location: Hefei, Anhui, China',
+  'Zip: 230088',
+];
 ---
 
 <BaseLayout title="Contact" description={`Get in touch with ${brand.name}. Request a free quote or ask us a question.`}>
@@ -111,9 +117,9 @@ import { client } from '../../data/client';
             rel="noopener noreferrer"
             class="mt-1 block text-text-muted transition-colors hover:text-text"
           >
-            {client.address.lineOne}<br />
-            {client.address.lineTwo && <>{client.address.lineTwo}<br /></>}
-            {client.address.city}, {client.address.state} {client.address.zip}
+            {contactAddressLines[0]}<br />
+            {contactAddressLines[1]}<br />
+            {contactAddressLines[2]}
           </a>
         </div>
 

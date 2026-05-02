@@ -14,8 +14,8 @@
 
 export const brand = {
   // ── Site Identity ──────────────────────────────────────────────────────────
-  name: 'Small Business Starter',
-  tagline: 'Professional service you can trust.',
+  name: 'Wayeal',
+  tagline: 'Serving the industry leaders with precision leak detection solutions.',
   description:
     'A fast, mobile-first small-business website template built with Astro 6 and Tailwind v4. Fully customisable for any trade or service business.',
   url: 'https://example.com',
