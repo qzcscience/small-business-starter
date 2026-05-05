@@ -15,9 +15,9 @@
 export const brand = {
   // ── Site Identity ──────────────────────────────────────────────────────────
   name: 'Wayeal',
-  tagline: 'Serving the industry leaders with precision leak detection solutions.',
+  tagline: 'Helium Leak Detection Solutions',
   description:
-    'A fast, mobile-first small-business website template built with Astro 6 and Tailwind v4. Fully customisable for any trade or service business.',
+    'Precision instruments for Automotive, HVAC, Server liquid cooling, Electric power, Lithium-ion batteries, and beyond',
   url: 'https://example.com',
   locale: 'en_US',
 

@@ -13,13 +13,15 @@ interface Props {
 }
 
 const {
-  topper = "Our Work",
-  heading = "Recent Projects",
-  description = "See the quality and attention to detail we bring to every project.",
+  topper = "Applications",
+  heading = "Industrial Leak Testing Applications",
+  description = "Explore helium leak detection equipment, accessories, and production-line solutions for sealed components, batteries, HVAC, automotive parts, liquid cooling, and power equipment.",
   images = defaultImages,
-  ctaLabel = "View All Projects",
-  ctaHref = "/services",
+  ctaLabel,
+  ctaHref,
 } = Astro.props;
+
+const hasCta = Boolean(ctaLabel && ctaHref);
 ---
 
 <section class="py-section">
@@ -92,7 +94,7 @@ const {
     </div>
 
     {
-      ctaLabel && (
+      hasCta && (
         <div class="mt-10 text-center">
           <a
             href={ctaHref}

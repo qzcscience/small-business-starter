@@ -9,13 +9,54 @@ test.describe('Homepage', () => {
 
   test('has correct page title', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/Small Business Starter/i);
+    await expect(page).toHaveTitle(/Wayeal/i);
   });
 
   test('has meta description', async ({ page }) => {
     await page.goto('/');
     const meta = page.locator('meta[name="description"]');
     await expect(meta).toHaveAttribute('content', /.+/);
+  });
+
+  test('loads the company video only after clicking play', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.getByRole('heading', { level: 2, name: 'About Wayeal' })).toBeVisible();
+    await expect(page.locator('iframe[src*="youtube-nocookie.com"]')).toHaveCount(0);
+
+    await page.getByRole('button', { name: 'Play About Wayeal video' }).click();
+
+    const iframe = page.locator('iframe[title="About Wayeal video"]');
+    await expect(iframe).toBeVisible();
+    await expect(iframe).toHaveAttribute('src', /youtube-nocookie\.com\/embed\/dZR7PMBhHFc/);
+  });
+
+  test('company video fits on mobile without horizontal overflow', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    await expect(overflow).toBe(false);
+    await expect(page.getByRole('button', { name: 'Play About Wayeal video' })).toBeVisible();
+  });
+
+  test('FAQ questions expand answers on click', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/');
+
+    await expect(page.getByRole('heading', { level: 2, name: 'Frequently Asked Questions' })).toBeVisible();
+    await expect(page.getByText('What is the typical lead time?')).toBeVisible();
+    await expect(page.getByText('What warranty coverage do you provide?')).toBeVisible();
+    await expect(page.getByText('Which payment methods do you accept?')).toBeVisible();
+
+    const leadTimeAnswer = page.getByText('Standard lead times depend on product configuration');
+    await expect(leadTimeAnswer).toBeHidden();
+
+    await page.getByText('What is the typical lead time?').click();
+    await expect(leadTimeAnswer).toBeVisible();
+
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    await expect(overflow).toBe(false);
   });
 
   test('mobile menu remains interactive after client-side navigation', async ({ page }) => {

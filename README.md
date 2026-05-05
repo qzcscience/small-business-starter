@@ -6,8 +6,8 @@ A fast, mobile-first website template for trade and service businesses — handy
 
 ## What's included
 
-- Full homepage with Hero, Trust Bar, Services, About, Reviews, Gallery, and CTA sections
-- Inner pages: About, Services, Contact (with Netlify Forms), Reviews
+- Full homepage with Hero, Trust Bar, About, Gallery, and CTA sections
+- Inner pages: About and Contact (with Netlify Forms)
 - SEO-ready: `<title>`, meta descriptions, canonical URLs, Open Graph, JSON-LD structured data, sitemap, robots.txt
 - Mobile-first responsive layout with a hamburger drawer nav and sticky desktop header
 - Astro View Transitions for smooth page navigation
@@ -115,10 +115,8 @@ small-business-starter/
 │   │   ├── Header.astro        # Sticky nav with mobile hamburger drawer
 │   │   ├── Footer.astro        # Dark footer with columns and social links
 │   │   ├── Hero.astro          # Homepage hero with dual CTA
-│   │   ├── TrustBar.astro      # Trust signals strip (years, reviews, guarantee)
-│   │   ├── Services.astro      # Services grid
+│   │   ├── TrustBar.astro      # Trust signals strip (credentials and metrics)
 │   │   ├── About.astro         # About section with benefits list
-│   │   ├── Reviews.astro       # Customer testimonials grid
 │   │   ├── Gallery.astro       # Project photo grid with skeleton loading
 │   │   ├── CTA.astro           # Full-bleed call-to-action section
 │   │   └── Banner.astro        # Inner-page hero with auto breadcrumbs
@@ -131,8 +129,6 @@ small-business-starter/
 │   ├── pages/
 │   │   ├── index.astro         # Homepage
 │   │   ├── about.astro
-│   │   ├── services.astro
-│   │   ├── reviews.astro
 │   │   ├── contact/
 │   │   │   ├── index.astro     # Contact form (Netlify Forms-ready)
 │   │   │   └── success.astro   # Confirmation page after form submit

@@ -37,7 +37,7 @@ import type { ImageMetadata } from 'astro';
 //   2. Uncomment and update the line below
 //   3. Replace the heroImage export at the bottom of this section
 //
-import heroImageSrc from '../assets/images/hero/hero.jpg';
+import heroImageSrc from '../assets/images/hero/hero-products-collage.png';
 export const heroImage: ImageMetadata = heroImageSrc;
 
 // ── Logo ─────────────────────────────────────────────────────────────────────
@@ -67,8 +67,8 @@ export const aboutImage: ImageMetadata | undefined = undefined;
 // appear in the gallery automatically — no code changes needed.
 //
 // The file name becomes the alt text:
-//   kitchen-remodel.jpg    → "Kitchen Remodel"
-//   deck-installation.jpg  → "Deck Installation"
+//   vacuum-chamber-system.jpg → "Vacuum Chamber System"
+//   sfj-231-leak-detector.jpg → "Sfj 231 Leak Detector"
 //
 // Recommended: landscape images, at least 800 × 600 px each.
 // Aim for consistent proportions (4:3 works best with the gallery grid).
@@ -95,12 +95,12 @@ const discovered = Object.entries(
 // Unsplash placeholders used when the gallery folder is empty.
 // Replace by adding your own images — the placeholders are removed automatically.
 const placeholders: GalleryImage[] = [
-  { src: 'https://images.unsplash.com/photo-1772567732969-c1506edf80a0?w=600&q=80', alt: 'Completed kitchen renovation' },
-  { src: 'https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=600&q=80', alt: 'Bathroom remodel with modern fixtures' },
-  { src: 'https://images.unsplash.com/photo-1761166518480-49279513d65f?w=600&q=80', alt: 'Fresh landscaping and walkway installation' },
-  { src: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80', alt: 'Interior painting and trim work' },
-  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80', alt: 'Electrical panel upgrade' },
-  { src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', alt: 'Deck construction and staining' },
+  { src: 'https://images.unsplash.com/photo-1772567732969-c1506edf80a0?w=600&q=80', alt: 'Vacuum chamber helium leak detection system for sealed components' },
+  { src: 'https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=600&q=80', alt: 'Helium mass spectrometer leak detector for production quality control' },
+  { src: 'https://images.unsplash.com/photo-1761166518480-49279513d65f?w=600&q=80', alt: 'Automated industrial leak testing workflow with fixtures and tooling' },
+  { src: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80', alt: 'Helium recovery solution for leak testing production lines' },
+  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80', alt: 'Leak testing application for batteries HVAC automotive and power equipment' },
+  { src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', alt: 'Wayeal industrial helium leak detection equipment and accessories' },
 ];
 
 export const galleryImages: GalleryImage[] = discovered.length > 0 ? discovered : placeholders;

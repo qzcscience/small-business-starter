@@ -4,18 +4,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import TrustBar from '../components/TrustBar.astro';
-import Services from '../components/Services.astro';
+import CompanyVideo from '../components/CompanyVideo.astro';
 import About from '../components/About.astro';
-import Reviews from '../components/Reviews.astro';
 import Gallery from '../components/Gallery.astro';
+import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
-import { brand } from '../config/brand';
 import { client } from '../data/client';
 ---
 
 <BaseLayout
-  title={brand.name}
-  description={brand.description}
+  title="Wayeal | Helium Leak Detection Systems Manufacturer"
+  description="Wayeal manufactures helium mass spectrometer leak detectors, vacuum chamber helium leak detection systems, helium recovery systems, and production-line leak testing solutions with ISO 9001, ISO 14001, ISO 45001, ISO 50001, CE and UL certifications."
   schema={{
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -37,10 +36,10 @@ import { client } from '../data/client';
 
   <Hero />
   <TrustBar />
-  <Services />
+  <CompanyVideo />
   <About />
-  <Reviews />
   <Gallery />
+  <FAQ />
   <CTA />
 
   <Footer slot="footer" />

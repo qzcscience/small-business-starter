@@ -1,0 +1,72 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  topper?: string;
+  heading?: string;
+  description?: string;
+  items?: FAQItem[];
+}
+
+const defaultItems: FAQItem[] = [
+  {
+    question: 'What information should I provide for a recommendation?',
+    answer:
+      'Share your part size, material, sealing structure, target leak rate, cycle time, production volume, automation requirements, and preferred helium handling method. These details help Wayeal recommend the right helium leak testing system for your workflow.',
+  },
+  {
+    question: 'Can Wayeal support customized fixtures or chamber systems?',
+    answer:
+      'Yes. Wayeal supports customized fixtures, vacuum chamber leak detection systems, helium recovery configurations, and production-line integration for parts that require repeatable industrial leak testing.',
+  },
+  {
+    question: 'Do you support commissioning and operator training?',
+    answer:
+      'Yes. Wayeal can support equipment commissioning, method setup, operator training, spare parts, and long-term technical support so the helium leak detection process runs reliably in production.',
+  },
+];
+
+const {
+  topper = 'FAQ',
+  heading = 'Frequently Asked Questions',
+  description = 'Quick answers for teams planning helium leak testing equipment or production-line integration.',
+  items = defaultItems,
+} = Astro.props;
+---
+
+<section class="bg-surface py-section">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="mx-auto mb-10 max-w-2xl text-center lg:mb-12">
+      <span class="text-topper font-bold uppercase tracking-widest text-accent">{topper}</span>
+      <h2 class="mt-2 font-heading text-h2 font-bold uppercase text-text">
+        {heading}
+      </h2>
+      <p class="mt-3 text-text-muted leading-relaxed">{description}</p>
+    </div>
+
+    <div class="mx-auto max-w-3xl divide-y divide-border border-y border-border">
+      {
+        items.map(({ question, answer }) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-bold text-text transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary sm:text-lg [&::-webkit-details-marker]:hidden">
+              <span>{question}</span>
+              <span
+                class="relative grid size-8 shrink-0 place-items-center rounded-md border border-border text-primary transition-colors group-open:bg-primary group-open:text-primary-fg"
+                aria-hidden="true"
+              >
+                <span class="absolute h-0.5 w-3 bg-current" />
+                <span class="absolute h-3 w-0.5 bg-current transition-transform group-open:rotate-90 group-open:opacity-0" />
+              </span>
+            </summary>
+            <p class="pb-5 pr-12 text-text-muted leading-relaxed">
+              {answer}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

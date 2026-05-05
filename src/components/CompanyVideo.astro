@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import posterImage from '../assets/images/company-video/poster.jpg';
+
+interface Props {
+  title?: string;
+  videoId?: string;
+  posterAlt?: string;
+}
+
+const {
+  title = 'See Wayeal in Action',
+  videoId = 'dZR7PMBhHFc',
+  posterAlt = 'Wayeal company introduction video poster',
+} = Astro.props;
+
+const embedSrc = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+---
+
+<section class="bg-background py-section" aria-labelledby="company-video-title">
+  <div class="mx-auto max-w-site px-4 sm:px-6">
+    <div class="mx-auto max-w-5xl">
+      <h2
+        id="company-video-title"
+        class="mb-8 text-center font-heading text-h2 font-bold uppercase text-text"
+      >
+        {title}
+      </h2>
+
+      <div
+        class="relative overflow-hidden rounded-lg bg-dark shadow-lg aspect-video"
+        data-company-video
+        data-video-src={embedSrc}
+      >
+        <Image
+          src={posterImage}
+          alt={posterAlt}
+          width={1200}
+          height={675}
+          loading="lazy"
+          decoding="async"
+          class="size-full object-cover"
+          data-company-video-poster
+        />
+
+        <div
+          class="absolute inset-0 bg-linear-to-t from-dark/50 via-dark/10 to-transparent"
+          aria-hidden="true"
+          data-company-video-overlay
+        />
+
+        <button
+          type="button"
+          class="absolute inset-0 flex items-center justify-center text-white focus-visible:outline-2 focus-visible:outline-offset-[-6px] focus-visible:outline-accent"
+          aria-label="Play About Wayeal video"
+          data-company-video-button
+        >
+          <span class="flex size-16 items-center justify-center rounded-full bg-accent text-accent-fg shadow-lg transition-transform duration-200 hover:scale-105 sm:size-20">
+            <svg
+              class="ml-1 size-7 sm:size-9"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M8 5v14l11-7L8 5z" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initCompanyVideos() {
+    document.querySelectorAll<HTMLElement>('[data-company-video]').forEach((video) => {
+      if (video.dataset.companyVideoInit === 'true') return;
+      video.dataset.companyVideoInit = 'true';
+
+      const button = video.querySelector<HTMLButtonElement>('[data-company-video-button]');
+      const poster = video.querySelector<HTMLElement>('[data-company-video-poster]');
+      const overlay = video.querySelector<HTMLElement>('[data-company-video-overlay]');
+      const videoSrc = video.dataset.videoSrc;
+
+      if (!button || !videoSrc) return;
+
+      button.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = videoSrc;
+        iframe.title = 'About Wayeal video';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.className = 'absolute inset-0 size-full border-0';
+
+        poster?.remove();
+        overlay?.remove();
+        button.remove();
+        video.append(iframe);
+      });
+    });
+  }
+
+  initCompanyVideos();
+  document.addEventListener('astro:after-swap', initCompanyVideos);
+</script>
