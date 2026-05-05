@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">SFZ-344 car AC condenser leak detection system placeholder</title>
+  <desc id="desc">Placeholder illustration of a vacuum chamber helium leak detection system for automotive AC condensers.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <path d="M0 760h1200v140H0z" fill="#e2e8f0"/>
+  <path d="M112 674h976v86H112z" fill="#cbd5e1"/>
+  <path d="M170 260h520v414H170z" rx="18" fill="#ffffff" stroke="#1b3a6b" stroke-width="18"/>
+  <path d="M220 310h420v270H220z" rx="10" fill="#dbeafe" stroke="#1b3a6b" stroke-width="10"/>
+  <path d="M700 282h326v392H700z" rx="16" fill="#ffffff" stroke="#0f172a" stroke-width="10"/>
+  <path d="M746 330h234v92H746z" rx="8" fill="#1b3a6b"/>
+  <circle cx="790" cy="520" r="34" fill="#22c55e"/>
+  <circle cx="880" cy="520" r="34" fill="#f97316"/>
+  <circle cx="970" cy="520" r="34" fill="#64748b"/>
+  <path d="M320 646h88v104h-88zM518 646h88v104h-88zM770 646h76v104h-76zM930 646h76v104h-76z" fill="#334155"/>
+  <path d="M286 404h286v84H286z" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="8"/>
+  <path d="M324 430h210M324 462h210" stroke="#94a3b8" stroke-width="12" stroke-linecap="round"/>
+  <path d="M660 480c46 0 74 34 104 34h58" fill="none" stroke="#f97316" stroke-width="14" stroke-linecap="round"/>
+  <text x="600" y="122" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#0f172a">SFZ-344 System Placeholder</text>
+  <text x="600" y="176" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#475569">Replace with actual car AC condenser leak detection equipment photo</text>
+</svg>

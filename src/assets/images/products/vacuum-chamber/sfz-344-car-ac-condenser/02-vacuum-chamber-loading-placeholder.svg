@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Vacuum chamber loading placeholder</title>
+  <desc id="desc">Placeholder illustration showing automotive condenser loading into a vacuum chamber.</desc>
+  <rect width="1200" height="900" fill="#ffffff"/>
+  <rect y="720" width="1200" height="180" fill="#e2e8f0"/>
+  <path d="M132 220h522v500H132z" rx="20" fill="#f8fafc" stroke="#1b3a6b" stroke-width="16"/>
+  <path d="M216 306h352v290H216z" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="8"/>
+  <path d="M706 308h314l66 58v252H706z" rx="16" fill="#f8fafc" stroke="#0f172a" stroke-width="10"/>
+  <path d="M740 414h290" stroke="#94a3b8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M740 470h290" stroke="#94a3b8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M740 526h290" stroke="#94a3b8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M680 468h-94" stroke="#f97316" stroke-width="16" stroke-linecap="round"/>
+  <path d="M620 424l66 44-66 44" fill="none" stroke="#f97316" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="310" cy="756" r="34" fill="#334155"/>
+  <circle cx="476" cy="756" r="34" fill="#334155"/>
+  <circle cx="790" cy="756" r="34" fill="#334155"/>
+  <circle cx="1000" cy="756" r="34" fill="#334155"/>
+  <text x="600" y="118" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#0f172a">Loading Placeholder</text>
+  <text x="600" y="172" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#475569">Replace with fixture, loading, or chamber-door photo</text>
+</svg>

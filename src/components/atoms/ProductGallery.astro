@@ -12,8 +12,19 @@ interface Props {
 const { images, videoSrc } = Astro.props;
 
 const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
+const videoPoster = images[0];
 const slides = [
-  ...(videoSrc ? [{ type: 'video', src: videoSrc, alt: 'Product video' }] : []),
+  ...(videoSrc
+    ? [
+        {
+          type: 'video',
+          src: videoSrc,
+          alt: 'Product video',
+          posterSrc: videoPoster?.src,
+          posterAlt: videoPoster?.alt || 'Product video poster',
+        },
+      ]
+    : []),
   ...images.map((image, index) => ({
     type: 'image',
     src: image.src,
@@ -32,14 +43,44 @@ const hasMultipleSlides = slides.length > 1;
       {slides.map((slide, index) => (
         <figure class="gallery-slide flex min-w-full items-center justify-center [aspect-ratio:4/3] p-4 sm:p-6">
           {slide.type === 'video' ? (
-            <iframe
-              src={slide.src}
-              title="Product video"
-              class="h-full w-full rounded-md border border-border bg-background"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              loading="lazy"
-            />
+            <div
+              class="relative h-full w-full overflow-hidden rounded-md border border-border bg-background"
+              data-video-slide
+              data-video-src={slide.src}
+              data-video-title="Product video"
+            >
+              {slide.posterSrc ? (
+                <img
+                  src={slide.posterSrc}
+                  alt={slide.posterAlt}
+                  class="size-full object-contain"
+                  loading="eager"
+                  decoding="async"
+                  data-video-poster
+                />
+              ) : (
+                <div class="flex size-full items-center justify-center bg-surface text-sm font-medium text-text-muted" data-video-poster>
+                  Product video
+                </div>
+              )}
+              <div
+                class="absolute inset-0 bg-linear-to-t from-dark/35 via-dark/5 to-transparent"
+                aria-hidden="true"
+                data-video-overlay
+              />
+              <button
+                type="button"
+                class="absolute inset-0 flex items-center justify-center text-white focus-visible:outline-2 focus-visible:outline-offset-[-6px] focus-visible:outline-primary"
+                aria-label="Play product video"
+                data-video-button
+              >
+                <span class="flex size-14 items-center justify-center rounded-full bg-primary text-white shadow-lg transition-transform duration-200 hover:scale-105 sm:size-16">
+                  <svg class="ml-1 size-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </button>
+            </div>
           ) : (
             <img
               src={slide.src}
@@ -130,10 +171,43 @@ const hasMultipleSlides = slides.length > 1;
     const nextButton = gallery.querySelector('.gallery-next');
     const thumbs = Array.from(gallery.querySelectorAll('.gallery-thumb'));
     const slideCount = gallery.querySelectorAll('.gallery-slide').length;
+    const videoButtons = Array.from(gallery.querySelectorAll('[data-video-button]'));
 
     if (!track || slideCount === 0) return;
 
     let activeIndex = 0;
+
+    function getAutoplaySrc(src) {
+      try {
+        const url = new URL(src, window.location.href);
+        url.searchParams.set('autoplay', '1');
+        url.searchParams.set('rel', '0');
+        return url.toString();
+      } catch {
+        const separator = src.includes('?') ? '&' : '?';
+        return `${src}${separator}autoplay=1&rel=0`;
+      }
+    }
+
+    function loadVideo(button) {
+      const video = button.closest('[data-video-slide]');
+      const videoSrc = video?.dataset.videoSrc;
+      if (!video || !videoSrc || video.dataset.videoLoaded === 'true') return;
+
+      const iframe = document.createElement('iframe');
+      iframe.src = getAutoplaySrc(videoSrc);
+      iframe.title = video.dataset.videoTitle || 'Product video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.className = 'absolute inset-0 size-full border-0 bg-background';
+
+      video.querySelector('[data-video-poster]')?.remove();
+      video.querySelector('[data-video-overlay]')?.remove();
+      button.remove();
+      video.dataset.videoLoaded = 'true';
+      video.append(iframe);
+    }
 
     function setActiveSlide(nextIndex) {
       activeIndex = (nextIndex + slideCount) % slideCount;
@@ -151,6 +225,9 @@ const hasMultipleSlides = slides.length > 1;
 
     prevButton?.addEventListener('click', () => setActiveSlide(activeIndex - 1));
     nextButton?.addEventListener('click', () => setActiveSlide(activeIndex + 1));
+    videoButtons.forEach((button) => {
+      button.addEventListener('click', () => loadVideo(button));
+    });
     thumbs.forEach((thumb) => {
       thumb.addEventListener('click', () => {
         const index = Number(thumb.getAttribute('data-slide-index'));

@@ -1,0 +1,36 @@
+%%{init: {"theme": "base", "htmlLabels": true, "fontFamily": "Arial, sans-serif", "themeVariables": {"background": "transparent", "primaryColor": "#eff6ff", "primaryBorderColor": "#1b3a6b", "primaryTextColor": "#0f172a", "lineColor": "#64748b", "fontFamily": "Arial, sans-serif"}, "flowchart": {"useMaxWidth": false, "wrappingWidth": 280, "nodeSpacing": 70, "rankSpacing": 90, "curve": "basis"}}}%%
+flowchart TD
+    A["Manually connect<br/>workpiece connector<br/>with chamber"] --> B["Press start,<br/>chamber door close"]
+    B --> C["Evacuate the chamber,<br/>high-pressure N2 charging"]
+
+    C --> D{"Gross leak check"}
+
+    D -- NG --> E["Alarm,<br/>vent workpiece,<br/>door open"]
+    E --> F["Take out<br/>NG workpiece"]
+    F --> G["Stick NG label<br/>on workpiece"]
+
+    D -- OK --> H["Vent workpiece,<br/>and evacuate<br/>workpiece"]
+    H --> I["Chamber and workpiece<br/>vacuum levels reach;<br/>workpiece He charging"]
+
+    I --> J{"Helium leak check"}
+
+    J -- NG --> K["Alarm;<br/>Helium recovery;<br/>Door open"]
+    K --> L["Take out<br/>NG workpiece"]
+    L --> M["Stick NG label<br/>on workpiece"]
+
+    J -- OK --> N["Helium recovery;<br/>door open"]
+    N --> O["Take out<br/>OK workpiece"]
+    O --> P["Stick OK label<br/>on workpiece"]
+
+    classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px;
+    classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px;
+    classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px;
+    classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px;
+
+    class A,B,C,H,I process;
+    class D,J decision;
+    class E,F,G,K,L,M ng;
+    class N,O,P ok;
+
+    linkStyle 3,4,5,9,10,11 stroke:#b91c1c,stroke-width:2px;
+    linkStyle 6,7,8,12,13,14 stroke:#15803d,stroke-width:2px;

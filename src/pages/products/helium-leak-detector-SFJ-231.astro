@@ -7,11 +7,18 @@ import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
 import ProductGallery from '../../components/atoms/ProductGallery.astro';
 import ProductInfo from '../../components/molecules/ProductInfo.astro';
 import ProductTabs from '../../components/molecules/ProductTabs.astro';
-import { brand } from '../../config/brand';
 import { products } from '../../data/products';
 import { navItems } from '../../config/nav';
 
 const product = products['helium-leak-detector'];
+const productOverview = product.overview || product.description;
+const productBenefits = product.benefits || [];
+const productSpecSections = product.specSections || [
+  {
+    title: 'Specifications',
+    specs: product.specs,
+  },
+];
 
 const productLinks = navItems.find(item => item.label === 'Products')?.children?.map(child => ({
   label: child.label,
@@ -76,96 +83,95 @@ const breadcrumbs = [
 
               <!-- Overview Tab -->
               <div id="overview" class="tab-content">
-                <h2 class="text-2xl font-bold text-text mb-4">产品概述</h2>
+                <h2 class="text-2xl font-bold text-text mb-4">Product Overview</h2>
                 <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
-                <div class="text-text-muted leading-relaxed text-lg">
-                  <p>{product.description}</p>
+                <div class="space-y-6 text-text-muted">
+                  <p class="text-lg leading-relaxed">{productOverview}</p>
+
+                  {productBenefits.length > 0 && (
+                    <div>
+                      <h3 class="mb-3 font-heading text-xl font-semibold text-text">
+                        Benefits at a Glance
+                      </h3>
+                      <ul class="grid gap-3 sm:grid-cols-2">
+                        {productBenefits.map((benefit) => (
+                          <li class="flex gap-3 rounded-md border border-border bg-surface p-4 text-sm leading-relaxed text-text-muted">
+                            <span class="mt-1 size-2 shrink-0 rounded-full bg-primary" aria-hidden="true"></span>
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </div>
 
               <!-- Specs Tab -->
               <div id="specs" class="tab-content">
-                <h2 class="text-2xl font-bold text-text mb-4">规格参数</h2>
+                <h2 class="text-2xl font-bold text-text mb-4">Specifications</h2>
                 <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
-                <div class="overflow-x-auto">
-                  <table class="w-full border border-border">
-                    <tbody>
-                      <tr class="border-b border-border">
-                        <td class="bg-surface p-3 font-medium text-gray-800 w-[140px] border-r border-border">产品规格</td>
-                        <td class="border-r border-border p-3">名称</td>
-                        <td class="p-3">氦质谱检漏仪</td>
-                        <td class="bg-surface p-3 font-medium text-gray-800 w-[180px] border-r border-border">性能参数</td>
-                        <td class="border-r border-border p-3">最小可检漏率（负压模式）</td>
-                        <td class="p-3">5×10⁻¹³ Pa·m³/s</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="bg-surface p-3 font-medium text-gray-800 border-r border-border" rowspan="9"></td>
-                        <td class="border-r border-border p-3">规格型号</td>
-                        <td class="p-3">HM-400</td>
-                        <td class="bg-surface p-3 font-medium text-gray-800 border-r border-border" rowspan="9"></td>
-                        <td class="border-r border-border p-3">最小可检漏率（吸腔模式）</td>
-                        <td class="p-3">1×10⁻⁸ Pa·m³/s</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3">尺寸 (mm)</td>
-                        <td class="p-3">L760×W370×H1036</td>
-                        <td class="border-r border-border p-3">漏率显示范围</td>
-                        <td class="p-3">1×10⁻³ ~ 1×10⁻¹³ Pa·m³/s</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3">电压及功耗</td>
-                        <td class="p-3">220V 10A，50Hz</td>
-                        <td class="border-r border-border p-3" rowspan="3">进气口压力</td>
-                        <td class="p-3">粗检：1500Pa</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3">重量</td>
-                        <td class="p-3">80kg</td>
-                        <td class="p-3">中检：200Pa</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3" rowspan="2">最高工作压力</td>
-                        <td class="p-3" rowspan="2">&lt;1500Pa</td>
-                        <td class="p-3">精检：40Pa</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3">启动时间</td>
-                        <td class="p-3">≤ 3min</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3" rowspan="2">显示</td>
-                        <td class="p-3" rowspan="2">触摸彩屏</td>
-                        <td class="border-r border-border p-3">响应时间</td>
-                        <td class="p-3">≤ 1s</td>
-                      </tr>
-                      <tr class="border-b border-border">
-                        <td class="border-r border-border p-3">粗抽泵抽速</td>
-                        <td class="p-3">16m³/h</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div class="space-y-8">
+                  {productSpecSections.map((section) => (
+                    <section>
+                      <h3 class="mb-3 font-heading text-xl font-semibold text-text">
+                        {section.title}
+                      </h3>
+                      <div class="overflow-x-auto">
+                        <table class="w-full min-w-[520px] border border-border text-sm sm:text-base">
+                          <tbody>
+                            {section.specs.map((spec) => (
+                              <tr class="border-b border-border last:border-b-0">
+                                <th scope="row" class="w-[42%] border-r border-border bg-surface p-3 text-left font-medium text-gray-800">
+                                  {spec.label}
+                                </th>
+                                <td class="p-3 text-text-muted">
+                                  {spec.value}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  ))}
                 </div>
               </div>
 
               <!-- Applications Tab -->
               <div id="applications" class="tab-content">
-                <h2 class="text-2xl font-bold text-text mb-4">应用场景</h2>
+                <h2 class="text-2xl font-bold text-text mb-4">Applications</h2>
                 <div class="w-[62px] h-[5px] bg-primary mb-6"></div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                   {product.applications.map((app) => (
-                    <a href={app.href || '#'} class="group">
-                      <div class="aspect-square rounded-xl overflow-hidden mb-2">
-                        <img
-                          src={app.image}
-                          alt={app.name}
-                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div class="text-sm font-medium text-gray-700 text-center group-hover:text-primary transition-colors">
+                    <article class="flex h-full flex-col rounded-lg border border-border bg-background p-5 shadow-sm">
+                      <h3 class="font-heading text-xl font-semibold text-text">
                         {app.name}
-                      </div>
-                    </a>
+                      </h3>
+                      {app.description && (
+                        <p class="mt-3 text-sm leading-relaxed text-text-muted">
+                          {app.description}
+                        </p>
+                      )}
+                      {app.workpieces && app.workpieces.length > 0 && (
+                        <div class="mt-4">
+                          <p class="text-xs font-semibold uppercase tracking-wider text-text-muted">
+                            Typical workpieces
+                          </p>
+                          <ul class="mt-3 flex flex-wrap gap-2">
+                            {app.workpieces.map((workpiece) => (
+                              <li class="rounded-md border border-border bg-surface px-2.5 py-1 text-xs font-medium text-text-muted">
+                                {workpiece}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {app.href && (
+                        <a href={app.href} class="mt-5 text-sm font-semibold text-primary hover:underline">
+                          View related solution
+                        </a>
+                      )}
+                    </article>
                   ))}
                 </div>
               </div>
@@ -180,7 +186,7 @@ const breadcrumbs = [
                       <a
                         href={download.href}
                         download
-                        class="group flex items-center justify-between gap-4 rounded-md border border-border bg-background px-4 py-3 transition-colors hover:border-primary hover:bg-surface"
+                        class="group flex min-w-0 items-center justify-between gap-4 rounded-md border border-border bg-background px-4 py-3 transition-colors hover:border-primary hover:bg-surface"
                       >
                         <div class="min-w-0">
                           <div class="truncate font-medium text-text group-hover:text-primary">

@@ -1,0 +1,723 @@
+[
+  {
+    "industry": "Automotive Parts",
+    "customerName": "BYD",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "EV drive unit housings",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "CHERY",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Refrigerant lines",
+      "Thermal management assemblies",
+      "Sealed automotive components"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "DANA",
+    "heliumLeakWorkpieces": [
+      "Battery cooling plates",
+      "E-axle housings",
+      "Transmission oil coolers",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "VALEO",
+    "heliumLeakWorkpieces": [
+      "Automotive condensers",
+      "Battery cooling plates",
+      "Refrigerant lines",
+      "Heat exchangers"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "MAHLE",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Battery cooling plates",
+      "Oil coolers",
+      "Refrigerant circuits"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "SCHAEFFLER",
+    "heliumLeakWorkpieces": [
+      "E-axle housings",
+      "Bearing assemblies",
+      "Thermal management assemblies",
+      "Sealed actuator housings"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "AIR-INTERNATIONAL",
+    "heliumLeakWorkpieces": [
+      "Automotive HVAC modules",
+      "Evaporators",
+      "Condensers",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "ATLAS",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Radiator assemblies",
+      "Refrigerant lines",
+      "Sealed automotive components"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "BMW",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Refrigerant lines",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "CHANGAN",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Automotive heat exchangers",
+      "Refrigerant lines",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "HUAXIANG",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Refrigerant lines",
+      "Automotive HVAC modules",
+      "Sealed automotive components"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "JAC",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Refrigerant lines",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "KH",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Refrigerant lines",
+      "Sealed automotive components",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "NIO",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Thermal management assemblies",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "PENGFEI",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Refrigerant lines",
+      "Battery cooling plates",
+      "Sealed automotive components"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "SANHUA",
+    "heliumLeakWorkpieces": [
+      "Electronic expansion valves",
+      "Refrigerant valve bodies",
+      "Thermal management manifolds",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "SONGZ",
+    "heliumLeakWorkpieces": [
+      "Automotive HVAC modules",
+      "Condensers",
+      "Evaporators",
+      "Refrigerant circuits"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "TCCI",
+    "heliumLeakWorkpieces": [
+      "Automotive condensers",
+      "Automotive HVAC modules",
+      "Refrigerant lines",
+      "Thermal management assemblies"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "TESLA",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Thermal management manifolds",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "TUOPU",
+    "heliumLeakWorkpieces": [
+      "Battery cooling plates",
+      "Chassis thermal assemblies",
+      "Sealed automotive components",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "VOLKSWAGEN",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Automotive heat exchangers",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "VOLVO",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Thermal management assemblies",
+      "Refrigerant circuits"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "XPENG",
+    "heliumLeakWorkpieces": [
+      "Battery pack housings",
+      "Battery cooling plates",
+      "Thermal management manifolds",
+      "Refrigerant lines"
+    ]
+  },
+  {
+    "industry": "Automotive Parts",
+    "customerName": "YINLUN",
+    "heliumLeakWorkpieces": [
+      "Automotive heat exchangers",
+      "Battery cooling plates",
+      "Oil coolers",
+      "Refrigerant circuits"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "Midea",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "Gree",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "Panasonic",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "Haier",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "Hisense",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "TCL",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Compressor shells"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "DunAn",
+    "heliumLeakWorkpieces": [
+      "Refrigerant valves",
+      "Electronic expansion valves",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Manifold assemblies"
+    ]
+  },
+  {
+    "industry": "HVAC",
+    "customerName": "HIGA",
+    "heliumLeakWorkpieces": [
+      "Evaporator coils",
+      "Condenser coils",
+      "Heat exchangers",
+      "Refrigerant circuits",
+      "Brazed tube assemblies"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "QVC",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "BOYD",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "COOLIT",
+    "heliumLeakWorkpieces": [
+      "Direct-to-chip cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "PARKER",
+    "heliumLeakWorkpieces": [
+      "Quick disconnect couplings",
+      "Liquid cooling manifolds",
+      "Sealed coolant fittings",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "COOLERMASTER",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "DELTA",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "CDU heat exchangers",
+      "Liquid cooling modules",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "READORE",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "ENVICOOL",
+    "heliumLeakWorkpieces": [
+      "CDU heat exchangers",
+      "Liquid cooling manifolds",
+      "Cold plates",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Server Liquid Cooling",
+    "customerName": "HAIWU",
+    "heliumLeakWorkpieces": [
+      "Cold plates",
+      "Liquid cooling manifolds",
+      "CDU heat exchangers",
+      "Coolant loops"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "CATL",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "BYD",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "Gotion",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "EVE",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "SVOLT",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "hithium",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Energy storage modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "Farasis",
+    "heliumLeakWorkpieces": [
+      "Pouch battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "CORNEX",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Energy storage modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "REPT",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Battery modules",
+      "Battery pack housings",
+      "Battery cooling plates"
+    ]
+  },
+  {
+    "industry": "Lithium-ion Batteries",
+    "customerName": "Phylion",
+    "heliumLeakWorkpieces": [
+      "Battery cells",
+      "Cell covers",
+      "Light EV battery packs",
+      "Battery modules",
+      "Battery pack housings"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Eaton",
+    "heliumLeakWorkpieces": [
+      "GIS enclosures",
+      "SF6 switchgear tanks",
+      "Transformer tanks",
+      "Sealed pole units",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "NARI",
+    "heliumLeakWorkpieces": [
+      "GIS enclosures",
+      "SF6 switchgear tanks",
+      "Transformer tanks",
+      "Sealed relay housings",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Siyuan",
+    "heliumLeakWorkpieces": [
+      "GIS enclosures",
+      "SF6 switchgear tanks",
+      "Transformer tanks",
+      "Sealed pole units",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "TBEA",
+    "heliumLeakWorkpieces": [
+      "Transformer tanks",
+      "Oil-filled bushings",
+      "Sealed power modules",
+      "GIS enclosures",
+      "SF6 switchgear tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Xuji",
+    "heliumLeakWorkpieces": [
+      "GIS enclosures",
+      "SF6 switchgear tanks",
+      "Sealed pole units",
+      "Vacuum interrupters",
+      "Transformer tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Huatech",
+    "heliumLeakWorkpieces": [
+      "SF6 switchgear tanks",
+      "GIS enclosures",
+      "Sealed pole units",
+      "Vacuum interrupters",
+      "Transformer tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "astor",
+    "heliumLeakWorkpieces": [
+      "Transformer tanks",
+      "Oil-filled bushings",
+      "Sealed power components",
+      "GIS enclosures",
+      "SF6 switchgear tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "beta",
+    "heliumLeakWorkpieces": [
+      "SF6 switchgear tanks",
+      "GIS enclosures",
+      "Sealed pole units",
+      "Vacuum interrupters",
+      "Transformer tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Murge",
+    "heliumLeakWorkpieces": [
+      "SF6 switchgear tanks",
+      "GIS enclosures",
+      "Sealed pole units",
+      "Vacuum interrupters",
+      "Transformer tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "TaiKai",
+    "heliumLeakWorkpieces": [
+      "GIS enclosures",
+      "SF6 switchgear tanks",
+      "Transformer tanks",
+      "Sealed pole units",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "CYG",
+    "heliumLeakWorkpieces": [
+      "Sealed power modules",
+      "Switchgear housings",
+      "Transformer tanks",
+      "GIS enclosures",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "CHINT",
+    "heliumLeakWorkpieces": [
+      "SF6 switchgear tanks",
+      "GIS enclosures",
+      "Sealed pole units",
+      "Vacuum interrupters",
+      "Transformer tanks"
+    ]
+  },
+  {
+    "industry": "Electric Power",
+    "customerName": "Xinji",
+    "heliumLeakWorkpieces": [
+      "Transformer tanks",
+      "SF6 switchgear tanks",
+      "GIS enclosures",
+      "Sealed pole units",
+      "Vacuum interrupters"
+    ]
+  },
+  {
+    "industry": "Others",
+    "customerName": "YANGTZE-MEMORY",
+    "heliumLeakWorkpieces": [
+      "Semiconductor packages",
+      "Wafer process chambers",
+      "Vacuum process chambers",
+      "Sealed electronic assemblies"
+    ]
+  },
+  {
+    "industry": "Others",
+    "customerName": "LONGi",
+    "heliumLeakWorkpieces": [
+      "PV process chambers",
+      "Vacuum process chambers",
+      "Sealed module assemblies",
+      "Heat transfer components"
+    ]
+  },
+  {
+    "industry": "Others",
+    "customerName": "LUXSHARE-ICT",
+    "heliumLeakWorkpieces": [
+      "Sealed electronic assemblies",
+      "Connector housings",
+      "Precision metal enclosures",
+      "Thermal management components"
+    ]
+  },
+  {
+    "industry": "Others",
+    "customerName": "SANAN-OPTOELECTRONICS",
+    "heliumLeakWorkpieces": [
+      "LED packages",
+      "Optoelectronic packages",
+      "Vacuum process chambers",
+      "Sealed electronic assemblies"
+    ]
+  },
+  {
+    "industry": "Others",
+    "customerName": "FOXCONN",
+    "heliumLeakWorkpieces": [
+      "Sealed electronic assemblies",
+      "Precision metal enclosures",
+      "Connector housings",
+      "Thermal management components"
+    ]
+  }
+]

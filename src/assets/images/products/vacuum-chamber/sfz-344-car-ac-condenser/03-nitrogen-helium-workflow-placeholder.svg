@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Nitrogen and helium leak test workflow placeholder</title>
+  <desc id="desc">Placeholder process illustration for nitrogen gross leak testing, helium fine leak testing, and recovery.</desc>
+  <rect width="1200" height="900" fill="#f8fafc"/>
+  <path d="M112 320h206v210H112zM390 320h206v210H390zM668 320h206v210H668zM946 320h142v210H946z" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="8"/>
+  <circle cx="215" cy="402" r="44" fill="#1b3a6b"/>
+  <circle cx="493" cy="402" r="44" fill="#2563eb"/>
+  <circle cx="771" cy="402" r="44" fill="#f97316"/>
+  <circle cx="1017" cy="402" r="44" fill="#22c55e"/>
+  <path d="M318 425h72M596 425h72M874 425h72" stroke="#f97316" stroke-width="14" stroke-linecap="round"/>
+  <path d="M362 389l36 36-36 36M640 389l36 36-36 36M918 389l36 36-36 36" fill="none" stroke="#f97316" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="215" y="632" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#0f172a">N2 Gross Test</text>
+  <text x="493" y="632" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#0f172a">Evacuate</text>
+  <text x="771" y="632" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#0f172a">He Fine Test</text>
+  <text x="1017" y="632" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#0f172a">Recover</text>
+  <text x="600" y="128" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" fill="#0f172a">Workflow Placeholder</text>
+  <text x="600" y="182" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#475569">Replace with process diagram or line photo</text>
+</svg>

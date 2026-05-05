@@ -7,36 +7,20 @@ type ImageAsset = {
 
 interface Props {
   name: string;
-  folderName: string;
   image: ImageAsset | string;
+  heliumLeakWorkpieces: string[];
 }
 
-const { name, folderName, image } = Astro.props;
+const { name, image, heliumLeakWorkpieces } = Astro.props;
 
-const normalizeIndustryName = (value: string) =>
-  value.toLowerCase().replace(/[\s_-]+/g, '');
-
-const getSolutionText = (folderName: string) => {
-  const normalized = normalizeIndustryName(folderName);
-
-  const solutionMap: Record<string, string> = {
-    hvac:
-      'Helium leak testing for heat exchangers, coils, compressors, and refrigerant circuits.',
-    electricpower:
-      'Helium leak testing for switchgear, transformers, GIS, and sealed power components.',
-  };
-
-  return (
-    solutionMap[normalized] ||
-    `Helium leak testing and quality control for ${folderName} applications.`
-  );
-};
-
-const solution = getSolutionText(folderName);
+const workpieces = heliumLeakWorkpieces.map((item) => item.trim()).filter(Boolean);
+const displayWorkpieces = workpieces.length
+  ? workpieces
+  : ['Application workpieces to be confirmed'];
 const imageSrc = typeof image === 'string' ? image : image.src;
 const imageWidth = typeof image === 'string' ? undefined : image.width;
 const imageHeight = typeof image === 'string' ? undefined : image.height;
-const imageAlt = `${name} - ${solution} - Wayeal`;
+const imageAlt = `${name} - likely helium leak-tested workpieces: ${displayWorkpieces.join(', ')} - Wayeal`;
 ---
 
 <article class="client-card group" tabindex="0">
@@ -52,14 +36,18 @@ const imageAlt = `${name} - ${solution} - Wayeal`;
   </div>
 
   <div class="client-copy">
-    <p>{solution}</p>
+    <ul aria-label={`Likely helium leak-tested workpieces for ${name}`}>
+      {displayWorkpieces.map((workpiece) => (
+        <li>{workpiece}</li>
+      ))}
+    </ul>
   </div>
 </article>
 
 <style>
   .client-card {
     position: relative;
-    height: 3.75rem;
+    min-height: 8.75rem;
     overflow: visible;
     border: 1px solid transparent;
     border-radius: var(--radius-md);
@@ -88,7 +76,7 @@ const imageAlt = `${name} - ${solution} - Wayeal`;
   .client-copy {
     position: absolute;
     inset: 0;
-    padding: 0.45rem;
+    padding: 0.6rem;
     transition:
       opacity 180ms ease,
       transform 180ms ease;
@@ -111,7 +99,7 @@ const imageAlt = `${name} - ${solution} - Wayeal`;
   }
 
   .client-logo {
-    max-height: 2.2rem;
+    max-height: 3rem;
     width: 100%;
     object-fit: contain;
   }
@@ -125,12 +113,22 @@ const imageAlt = `${name} - ${solution} - Wayeal`;
     transform: translateY(0.35rem);
   }
 
-  .client-copy p {
+  .client-copy ul {
+    display: flex;
+    max-height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.22rem;
+  }
+
+  .client-copy li {
     color: var(--color-text);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 700;
-    line-height: 1.25;
+    line-height: 1.15;
     text-align: center;
+    overflow-wrap: anywhere;
   }
 
   .client-card:hover .client-default,
@@ -149,15 +147,15 @@ const imageAlt = `${name} - ${solution} - Wayeal`;
 
   @media (min-width: 768px) {
     .client-card {
-      height: 3.5rem;
+      min-height: 8.25rem;
     }
 
     .client-logo {
-      max-height: 2.25rem;
+      max-height: 3.2rem;
     }
 
-    .client-copy p {
-      font-size: 0.65rem;
+    .client-copy li {
+      font-size: 0.58rem;
     }
   }
 </style>

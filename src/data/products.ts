@@ -8,8 +8,10 @@ export interface ProductSpec {
 
 export interface ProductApplication {
   name: string;
-  image: string;
+  image?: string;
   href?: string;
+  description?: string;
+  workpieces?: string[];
 }
 
 export interface ProductDownload {
@@ -19,15 +21,23 @@ export interface ProductDownload {
   extension: string;
 }
 
+export interface ProductSpecSection {
+  title: string;
+  specs: ProductSpec[];
+}
+
 export interface Product {
   slug: string;
   pageHref: string;
   name: string;
   title: string;
   description: string;
+  overview?: string;
+  benefits?: string[];
   images: { src: string; alt?: string }[];
   videoSrc?: string;
   specs: ProductSpec[];
+  specSections?: ProductSpecSection[];
   applications: ProductApplication[];
   downloads: ProductDownload[];
   ctaLabel: string;
@@ -105,10 +115,10 @@ function getProductDownloads(name: string): ProductDownload[] {
 }
 
 const sfj231Images = getProductImages('SFJ-231', [
-  { src: 'https://picsum.photos/600/450?random=11', alt: 'HM-400 正面视图' },
-  { src: 'https://picsum.photos/600/450?random=12', alt: 'HM-400 操作面板' },
-  { src: 'https://picsum.photos/600/450?random=13', alt: 'HM-400 侧面视图' },
-  { src: 'https://picsum.photos/600/450?random=14', alt: 'HM-400 检测中' },
+  { src: 'https://picsum.photos/600/450?random=11', alt: 'SFJ-231 mobile helium leak detector front view' },
+  { src: 'https://picsum.photos/600/450?random=12', alt: 'SFJ-231 touch screen control panel' },
+  { src: 'https://picsum.photos/600/450?random=13', alt: 'SFJ-231 helium leak detector side view' },
+  { src: 'https://picsum.photos/600/450?random=14', alt: 'SFJ-231 leak testing workflow' },
 ]);
 
 export const products: Record<string, Product> = {
@@ -117,24 +127,86 @@ export const products: Record<string, Product> = {
     pageHref: '/products/helium-leak-detector-SFJ-231',
     name: 'SFJ-231',
     title: 'Helium Leak Detector SFJ-231',
-    description: 'The Wayeal SFJ-231 is a state-of-the-art helium leak detector designed for ultra-high sensitivity and fast response.',
+    description:
+      'The Wayeal SFJ-231 is a mobile helium mass spectrometer leak detector for high-sensitivity vacuum and sniffer testing, with fast response, automatic helium background clearing, touch-screen operation, and production-ready communication interfaces.',
+    overview:
+      'SFJ-231 is designed for manufacturers and quality teams that need a movable helium leak detector for both vacuum-mode and sniffer-mode inspection. It combines a 16 m³/h backing pump, high helium pumping speed, a 7-inch touch screen, and flexible data interfaces for production, maintenance, and laboratory workflows.',
+    benefits: [
+      'Powerful rotary vane pump with 16 m³/h backing pump capacity',
+      'German turbo molecular pump for fast helium pumping speed',
+      'Intelligent 7-inch LCD touch screen for operator-friendly control',
+      'USB and bus interfaces for flexible data communication',
+      'Multiple leak detection methods with spray gun and sniffer probe workflows',
+      'Automatic helium background clearing for reliable high-sensitivity testing',
+    ],
     images: sfj231Images,
-    videoSrc: 'https://www.youtube.com/embed/dZR7PMBhHFc',
+    videoSrc: 'https://www.youtube-nocookie.com/embed/dZR7PMBhHFc?rel=0',
     specs: [
-      { label: 'Ultra-high sensitivity', value: 'Minimum 5×10⁻¹³ Pa・m³/s' },
-      { label: 'Ultra-fast response', value: 'Fully self-developed algorithm' },
-      { label: 'Core parts', value: 'Self production' },
-      { label: 'Certification', value: 'CE Certified' },
+      { label: 'Vacuum mode', value: '5.0×10⁻¹³ Pa·m³/s' },
+      { label: 'Sniffer mode', value: '5.0×10⁻⁹ Pa·m³/s' },
+      { label: 'Response / startup', value: '<1 s / ≤2 min' },
+      { label: 'Integration', value: 'I/O, RS232/485, MES, USB' },
+    ],
+    specSections: [
+      {
+        title: 'Performance Indicators',
+        specs: [
+          { label: 'Minimum detectable leak rate, vacuum mode', value: '5.0×10⁻¹³ Pa·m³/s' },
+          { label: 'Minimum detectable leak rate, sniffer mode', value: '5.0×10⁻⁹ Pa·m³/s' },
+          { label: 'Response time', value: '<1 s' },
+          { label: 'Startup time', value: '≤2 min' },
+          { label: 'Inlet pressure', value: 'Gross: 1500 Pa; Fine: 200 Pa; Ultra: 40 Pa' },
+          { label: 'Pumping speed during evacuation', value: '16 m³/h' },
+          { label: 'Pumping speed for He', value: '2.5 l/s' },
+          { label: 'Detectable masses', value: '2, 3, 4 (H2, He3, He4)' },
+        ],
+      },
+      {
+        title: 'Basic Configuration',
+        specs: [
+          { label: 'HMI', value: '7-inch LCD touch screen' },
+          { label: 'Ion source', value: '2 pcs, iridium-coated yttrium oxide, automatic switching' },
+          { label: 'Dimensions (W × D × H)', value: '645 × 678 × 965 mm' },
+          { label: 'Weight', value: '110 kg' },
+          { label: 'Inlet flange', value: 'DN25 KF' },
+          { label: 'Power supply', value: 'AC220 V, 50/60 Hz' },
+          { label: 'Operating temperature', value: '0-40°C' },
+          { label: 'Display language', value: 'Chinese and English' },
+          { label: 'Interface', value: 'I/O, RS232/485, MES, USB' },
+        ],
+      },
     ],
     applications: [
-      { name: '电子与半导体', image: 'https://picsum.photos/200/200?random=20' },
-      { name: '航空航天', image: 'https://picsum.photos/200/200?random=21' },
-      { name: '核工业', image: 'https://picsum.photos/200/200?random=22' },
-      { name: '金属制造', image: 'https://picsum.photos/200/200?random=23' },
-      { name: '空调制冷', image: 'https://picsum.photos/200/200?random=24' },
-      { name: '能源行业', image: 'https://picsum.photos/200/200?random=25' },
-      { name: '汽车行业', image: 'https://picsum.photos/200/200?random=26' },
-      { name: '医疗器械', image: 'https://picsum.photos/200/200?random=27' },
+      {
+        name: 'Lithium-ion batteries',
+        description: 'High-sensitivity inspection for sealed battery components and thermal management parts.',
+        workpieces: ['Battery cells', 'Cell covers', 'Battery modules', 'Battery pack housings', 'Battery cooling plates'],
+      },
+      {
+        name: 'Automotive thermal management',
+        description: 'Vacuum and sniffer leak testing for pressure-bearing and refrigerant-side vehicle components.',
+        workpieces: ['Battery cooling plates', 'Automotive heat exchangers', 'Refrigerant lines', 'Thermal management assemblies'],
+      },
+      {
+        name: 'HVAC and refrigeration',
+        description: 'Tracer-gas leak detection for refrigerant circuits and brazed heat-transfer assemblies.',
+        workpieces: ['Evaporator coils', 'Condenser coils', 'Heat exchangers', 'Compressor shells', 'Refrigerant circuits'],
+      },
+      {
+        name: 'Server liquid cooling',
+        description: 'Leak testing for coolant loops and sealed assemblies used in data-center liquid cooling systems.',
+        workpieces: ['Cold plates', 'Liquid cooling manifolds', 'CDU heat exchangers', 'Quick disconnect couplings'],
+      },
+      {
+        name: 'Electric power equipment',
+        description: 'Inspection support for sealed gas, oil-filled, and vacuum components in power equipment.',
+        workpieces: ['GIS enclosures', 'SF6 switchgear tanks', 'Transformer tanks', 'Sealed pole units', 'Vacuum interrupters'],
+      },
+      {
+        name: 'Semiconductor and electronics',
+        description: 'Sensitive leak testing for process equipment, precision enclosures, and sealed electronic assemblies.',
+        workpieces: ['Semiconductor packages', 'Vacuum process chambers', 'Connector housings', 'Precision metal enclosures'],
+      },
     ],
     get downloads() {
       return getProductDownloads('SFJ-231');

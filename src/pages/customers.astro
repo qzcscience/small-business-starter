@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumb from '../components/atoms/Breadcrumb.astro';
 import ClientCard from '../components/ClientCard.astro';
+import customerWorkpieceEntries from '../data/customerWorkpieces.json';
 
 type ImageAsset = {
   src: string;
@@ -20,11 +21,18 @@ interface CustomerLogo {
   folderName: string;
   sortOrder: number;
   image: ImageAsset | string;
+  heliumLeakWorkpieces: string[];
 }
 
 interface IndustryGroup {
   folderName: string;
   customers: CustomerLogo[];
+}
+
+interface CustomerWorkpieceEntry {
+  industry: string;
+  customerName: string;
+  heliumLeakWorkpieces: string[];
 }
 
 const imageModules = import.meta.glob('../assets/images/customers/**/*.{png,jpg,jpeg,webp,svg}', {
@@ -60,6 +68,26 @@ const industrySortOrder = [
   'Others',
 ];
 
+const fallbackWorkpieces = ['Application workpieces to be confirmed'];
+
+const normalizeLookupPart = (value: string) =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, '');
+
+const getWorkpieceKey = (industry: string, customerName: string) =>
+  `${normalizeLookupPart(industry)}::${normalizeLookupPart(customerName)}`;
+
+const customerWorkpieceLookup = new Map<string, string[]>(
+  (customerWorkpieceEntries as CustomerWorkpieceEntry[]).map((entry) => [
+    getWorkpieceKey(entry.industry, entry.customerName),
+    entry.heliumLeakWorkpieces.map((item) => item.trim()).filter(Boolean),
+  ]),
+);
+
+const getCustomerWorkpieces = (industry: string, customerName: string) => {
+  const workpieces = customerWorkpieceLookup.get(getWorkpieceKey(industry, customerName));
+  return workpieces?.length ? workpieces : fallbackWorkpieces;
+};
+
 const industryGroups = Object.entries(imageModules).reduce<Record<string, CustomerLogo[]>>(
   (groups, [path, module]) => {
     const relativePath = path.split('/customers/')[1];
@@ -78,6 +106,7 @@ const industryGroups = Object.entries(imageModules).reduce<Record<string, Custom
       folderName,
       sortOrder,
       image: module.default,
+      heliumLeakWorkpieces: getCustomerWorkpieces(folderName, name),
     });
 
     return groups;
@@ -154,8 +183,8 @@ const schema = {
               {industry.customers.map((customer) => (
                 <ClientCard
                   name={customer.name}
-                  folderName={customer.folderName}
                   image={customer.image}
+                  heliumLeakWorkpieces={customer.heliumLeakWorkpieces}
                 />
               ))}
             </div>
