@@ -1,0 +1,33 @@
+%%{init: {"theme": "base", "htmlLabels": true, "fontFamily": "Arial, sans-serif", "themeVariables": {"background": "transparent", "primaryColor": "#eff6ff", "primaryBorderColor": "#1b3a6b", "primaryTextColor": "#0f172a", "lineColor": "#64748b", "fontFamily": "Arial, sans-serif"}, "flowchart": {"useMaxWidth": false, "wrappingWidth": 280, "nodeSpacing": 70, "rankSpacing": 90, "curve": "basis"}}}%%
+flowchart TD
+    A["Manually transport<br/>the workpiece<br/>into the chamber"] --> B["Press the start,<br/>vacuum chamber<br/>door close"]
+    B --> C["Automatically evacuate<br/>the vacuum chamber,<br/>and fill high-pressure N2<br/>into the workpiece"]
+
+    C --> D{"Gross Leak Detection"}
+
+    D -- NG --> E["Alarm, automatic deflation<br/>of workpiece, inflation<br/>and door opening<br/>of vacuum chamber"]
+    E --> F["Take out<br/>the leaking workpiece"]
+
+    D -- OK --> G["After N2 discharge,<br/>pre-evacuate the workpiece<br/>to the set value"]
+    G --> H["When the vacuum chamber<br/>reaches the set vacuum degree,<br/>open the leak detection valve,<br/>fill helium into the workpiece<br/>for fine leak detection"]
+
+    H --> I{"Helium Leak Detection"}
+
+    I -- NG --> J["Alarm, automatic<br/>helium recovery,<br/>inflation and door opening<br/>of vacuum chamber"]
+    J --> K["Take out<br/>the leaking workpiece"]
+
+    I -- OK --> L["Automatic helium recovery,<br/>inflation and door opening<br/>of vacuum chamber"]
+    L --> M["Manually take out<br/>the qualified workpiece"]
+
+    classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px;
+    classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px;
+    classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px;
+    classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px;
+
+    class A,B,C,G,H process;
+    class D,I decision;
+    class E,F,J,K ng;
+    class L,M ok;
+
+    linkStyle 3,4,8,9 stroke:#b91c1c,stroke-width:2px;
+    linkStyle 5,6,7,10,11 stroke:#15803d,stroke-width:2px;

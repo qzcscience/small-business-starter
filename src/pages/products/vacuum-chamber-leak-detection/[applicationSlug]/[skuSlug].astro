@@ -7,6 +7,7 @@ import CategorySidebar from '../../../../components/atoms/CategorySidebar.astro'
 import ProductGallery from '../../../../components/atoms/ProductGallery.astro';
 import CTA from '../../../../components/CTA.astro';
 import sfz344WorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/system-workflow-mermaid.svg?raw';
+import sfz344LiquidCoolingWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-liquid-cooling-plate/system-workflow-mermaid.svg?raw';
 import { brand } from '../../../../config/brand';
 import { navItems } from '../../../../config/nav';
 import {
@@ -34,7 +35,11 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site ?? brand.url).toString();
 const imageUrl = new URL(primaryImage, Astro.site ?? brand.url).toString();
 const sourceContent = sku.sourceContent;
 const workflowDiagram = sourceContent?.workflowDiagram;
-const workflowDiagramMarkup = sku.slug === 'sfz-344-car-ac-condenser' ? sfz344WorkflowDiagramSvg : undefined;
+const workflowDiagramMarkupBySlug: Record<string, string> = {
+  'sfz-344-car-ac-condenser': sfz344WorkflowDiagramSvg,
+  'sfz-344-liquid-cooling-plate': sfz344LiquidCoolingWorkflowDiagramSvg,
+};
+const workflowDiagramMarkup = workflowDiagramMarkupBySlug[sku.slug];
 const specSections = sku.specSections?.length
   ? sku.specSections
   : [
@@ -79,10 +84,14 @@ const schema = {
 const ctaTitle =
   sku.slug === 'sfz-344-car-ac-condenser'
     ? 'Configure SFZ-344 For Your Condenser'
+    : sku.slug === 'sfz-344-liquid-cooling-plate'
+      ? 'Configure SFZ-344 For Your Liquid Cooling Plate'
     : 'Confirm This SKU For Your Part';
 const ctaDescription =
   sku.slug === 'sfz-344-car-ac-condenser'
     ? 'Send us your condenser dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
+    : sku.slug === 'sfz-344-liquid-cooling-plate'
+      ? 'Send us your liquid cooling plate dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : 'Send us your part dimensions, target leak rate, fixture needs, and expected throughput. We will recommend the best chamber configuration.';
 ---
 
