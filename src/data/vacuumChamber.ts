@@ -10,6 +10,8 @@ import sfz344RecoveryImage from '../assets/images/products/vacuum-chamber/sfz-34
 import sfz344PrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/chamber-principle-diagram.png?url';
 import sfz344WorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/system-workflow-mermaid.svg?url';
 import sfz344LiquidCoolingWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-liquid-cooling-plate/system-workflow-mermaid.svg?url';
+import sfz344RmuPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-rmu/rmu-system-principle.png?url';
+import sfz344RmuWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-rmu/system-workflow-mermaid.svg?url';
 
 export const VACUUM_CHAMBER_BASE_PATH = '/products/vacuum-chamber-leak-detection';
 
@@ -501,18 +503,153 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
         summary: 'Leak testing systems for sealed electrical power equipment.',
         skus: [
           {
-            slug: 'vcld-power-gis-1000',
-            sku: 'VCLD-POWER-GIS-1000',
-            name: 'Gas-Insulated Equipment Leak Detection System',
-            image: commonImage,
-            shortDescription: 'Vacuum chamber leak testing for sealed power equipment components.',
+            slug: 'SFZ-344-RMU',
+            sku: 'SFZ-344-RMU',
+            name: 'SFZ-344 RMU Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for RMU, GIS, and sealed switchgear helium leak testing.',
             description:
-              'Configured for gas-insulated equipment parts that require reliable sealing before final assembly.',
+              'A configurable vacuum chamber helium leak detection solution for RMU, GIS, and sealed switchgear components, designed around part size, test pressure, leak rate, takt time, and helium recovery requirements.',
             specs: [
-              { label: 'Application', value: 'GIS parts and sealed switchgear components' },
-              { label: 'Test method', value: 'Vacuum chamber helium leak detection' },
-              { label: 'Configuration', value: 'Custom chamber and tooling' },
+              { label: 'Application', value: 'RMU, GIS parts, sealed switchgear, and gas-insulated power equipment' },
+              { label: 'Test method', value: 'Vacuum evacuation gross leak check + vacuum chamber helium fine leak test' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Helium recovery, sniffer leak location workflow, industrial PC, MES integration' },
             ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 RMU helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 RMU helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 RMU vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 RMU helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 RMU vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and RMU fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Vacuum evacuation, helium leak test, and SF6 charging workflow placeholder for RMU components',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 RMU system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '1×10⁻⁶ Pa·m³/s' },
+                { label: 'Chamber Quantity', value: '1' },
+                { label: 'Chamber Size', value: 'Shall be determined by customer products' },
+                { label: 'Number of Workpieces Tested per Chamber', value: '1' },
+                { label: 'Cycle Time', value: 'Shall be determined by the customer' },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Helium Pressure', value: '0-0.05 MPa, with adjustable pressure within this range' },
+                  ],
+                },
+                {
+                  label: 'SF6 or SF6-free gas charging pressure (absolute pressure)',
+                  value: '0.05-0.15 MPa, adjustable within this range',
+                },
+                { label: 'Leak Detector Start Testing Pressure', value: '≤ 30 Pa inside the vacuum chamber' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 1000 Pa, adjustable upward' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344RmuPrincipleImage,
+                alt: 'SFZ-344 RMU vacuum chamber helium leak detection system principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Vacuum Evacuation for Gross Leak Detection',
+                  paragraphs: [
+                    'During leak detection, place the workpiece on the pallet, manually push the pallet and workpiece into the vacuum chamber, connect the workpiece to the system, and press the dual-start button. The chamber door closes automatically, and the remaining processes are completed by the system.',
+                    'After the chamber door is securely closed, the system opens Valve V3 and closes the other valves to evacuate the vacuum chamber and workpiece simultaneously. It monitors the vacuum levels inside both the workpiece and the chamber, keeping the pressure difference between them within 0.05 MPa.',
+                    'When the vacuum chamber reaches 100 Pa and the workpiece is evacuated to 30000 Pa, the system holds pressure for 30 seconds. The pressure and holding time are adjustable. It then measures the vacuum-level changes of both the workpiece and chamber.',
+                    'If the vacuum-level change in the chamber does not exceed the set value, for example 100 Pa, the workpiece is treated as free of gross leaks and the system continues evacuation for medium and micro leak detection.',
+                    'If the vacuum-level change exceeds the set value, the system identifies a gross leak, triggers audible and visual alarms, inflates the workpiece and chamber synchronously, and opens a selection interface for termination or manual leak location.',
+                    'For manual location, the chamber door opens and the workpiece can be inflated with nitrogen at the specified pressure while maintaining the pressure-difference requirement. After manual inspection, the operator confirms deflation and the system ends the detection with a prompt.',
+                  ],
+                },
+                {
+                  title: 'Medium and Micro Leak Detection',
+                  paragraphs: [
+                    'If no gross leaks are detected and both the vacuum chamber and workpiece meet the required vacuum levels, for example 30 Pa absolute pressure for the chamber and 30000 Pa absolute pressure for the workpiece, the system proceeds to medium and micro leak detection.',
+                    'For medium leak detection, low-pressure helium, for example 0.01 MPa, is filled into the workpiece. If no medium leak is detected, helium at the set pressure is filled into the workpiece to simulate the actual operating environment for micro leak testing.',
+                    'For unqualified workpieces with medium or micro leaks, the system triggers an alarm, fills the vacuum chamber to atmospheric pressure, and simultaneously inflates the workpiece with helium to 150000 Pa absolute pressure while keeping the internal-external pressure difference within 0.05 MPa.',
+                    'The detection program is terminated and the workpiece is removed from the chamber. The operator can switch to sniffer leak detection mode to inspect suspicious points such as joints and welds for precise leak location.',
+                    'If no micro leaks are detected, the system automatically proceeds to the next procedure.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Close chamber door',
+                  'Evacuate chamber to 100 Pa',
+                  'Evacuate workpiece to 30000 Pa',
+                ],
+                grossLeakDecision: '30 s gross leak check',
+                grossLeakNg: [
+                  'Workpiece and chamber vent to air pressure',
+                  'Open door',
+                ],
+                grossLeakOk: [
+                  'Chamber pressure reaches 30 Pa',
+                  'Helium background test',
+                  'Helium charging to 50000 Pa',
+                ],
+                heliumLeakDecision: 'Helium leak test in vacuum mode',
+                heliumLeakNg: [
+                  'Chamber vent and door open',
+                  'Helium charging to 150000 Pa',
+                  'Take out workpiece and use sniffer',
+                ],
+                heliumLeakOk: [
+                  'Helium recovery to 1000 Pa',
+                  'SF6 charging in pressure steps',
+                  'Take out workpiece',
+                ],
+                legend: 'OK: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344RmuWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 RMU vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
           },
         ],
       },

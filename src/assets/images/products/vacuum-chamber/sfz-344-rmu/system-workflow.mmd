@@ -1,0 +1,110 @@
+flowchart TD
+    %% 样式定义
+    classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px
+    classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px
+    classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px
+    classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px
+
+    %% --- 第一部分：原文件 1 的逻辑 ---
+    subgraph Row1 [ ]
+        direction LR
+        A1[Chamber]
+        A2[Work piece]
+    end
+
+    %% Chamber 侧流程
+    A1 --> B1[Close door]
+    B1 --> B2[Chamber pressure 100Pa]
+    B2 --> B3{30S gross leak check}
+
+
+
+    %% Work piece 侧流程
+    A2 --> E1[Connect workpiece]
+    E1 --> E2[Workpiece pressure 30000 Pa]
+
+    %% 中间对齐层
+    B3 -- OK --> D1[Chamber pressure 30Pa]
+
+    subgraph Row2 [ ]
+        direction LR
+        D2{Helium Background test}
+        E3[Helium charging to 50000 Pa]
+    end
+
+    D1 --> D2
+    E2 --> E3
+
+    %% 核心衔接点
+    D2 -- OK --> F1{Helium leak test<br/>vacuum mode}
+    D2 -- NG --> C1[Workpiece and chamber<br/>vent to air pressure]
+    E3 --> F1
+
+    %% Gross Leak NOK 回路
+    B3 -- NG --> C1
+    C1 --> C2[Open door]
+
+    %% --- 第二部分：原文件 2 的逻辑 ---
+
+    %% NOK 分支逻辑
+    subgraph Row_NOK [ ]
+        direction LR
+        NL[Chamber]
+        NR[Work piece]
+    end
+
+    F1 -- NG ---> NL
+    F1 -- NG ---> NR
+
+
+    subgraph Row3 [ ]
+        direction LR
+        H1[Chamber keep 30 Pa]
+        H2[Helium recovery to 1000 Pa]
+    end
+
+    %% OK 分支逻辑
+    F1 -- OK --> H1[Chamber keep 30 Pa]
+    F1 -- OK --> H2[Helium recovery to 1000 Pa]
+
+    H2 --> J1[SF6 charging 30000Pa]
+
+    subgraph Row4 [ ]
+        direction LR
+        I1[Fill air to 60000Pa]
+        J2[SF6 charging 90000Pa]
+    end
+
+    H1 --> I1
+    J1 --> J2
+
+    %% 处理路径
+    NL --> G1[Chamber vent]
+    G1 --> G2[Open door]
+
+    I1 --> I2[Fill air to 90000Pa]
+    I2 --> I3[Fill air to 100000Pa]
+    I3 --> I4[Open door]
+
+    J2 --> J3[SF6 charging 120000Pa]
+    J3 --> J4[SF6 charging 150000Pa]
+    J4 --> J5[Take out workpiece]
+
+    NR --> K1[Helium charging to 150000Pa]
+    K1 --> K2[Take out work piece, use sniffer]
+    K2 --> K3[Back to chamber, He recovery]
+
+    %% 样式应用
+    class A1,A2,B1,B2,E1,E2,E3 process
+    class B3,D2,F1 decision
+    class C1,C2,NL,NR,G1,G2,K1,K2,K3 ng
+    class D1,H1,H2,I1,I2,I3,I4,J1,J2,J3,J4,J5 ok
+
+    linkStyle 9,11,12,13,14,20,21,28,29,30 stroke:#b91c1c,stroke-width:2px
+    linkStyle 5,6,8,15,16,17,18,19,22,23,24,25,26,27 stroke:#15803d,stroke-width:2px
+
+    style Row1 fill:none,stroke:none
+    style Row2 fill:none,stroke:none
+    style Row_NOK fill:none,stroke:none
+    style Row3 fill:none,stroke:none
+    style Row4 fill:none,stroke:none
