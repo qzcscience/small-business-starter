@@ -12,6 +12,10 @@ import sfz344WorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-
 import sfz344LiquidCoolingWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-liquid-cooling-plate/system-workflow-mermaid.svg?url';
 import sfz344RmuPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-rmu/rmu-system-principle.png?url';
 import sfz344RmuWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-rmu/system-workflow-mermaid.svg?url';
+import sfz344CircuitBreakerPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-circuit-breaker/circuit-breaker-system-principle.png?url';
+import sfz344CircuitBreakerWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-circuit-breaker/system-workflow-mermaid.svg?url';
+import sfz344EvaporatorCondenserPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-evaporator-condenser/system-principle.png?url';
+import sfz344EvaporatorCondenserWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-evaporator-condenser/system-workflow-mermaid.svg?url';
 
 export const VACUUM_CHAMBER_BASE_PATH = '/products/vacuum-chamber-leak-detection';
 
@@ -304,18 +308,153 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
         summary: 'Chamber systems for evaporators, condensers, and coils.',
         skus: [
           {
-            slug: 'vcld-hvac-hx-800',
-            sku: 'VCLD-HVAC-HX-800',
-            name: 'HVAC Heat Exchanger Leak Detection System',
-            image: commonImage,
-            shortDescription: 'Helium leak testing platform for HVAC heat exchanger assemblies.',
+            slug: 'SFZ-344-Evaporator-Condenser',
+            sku: 'SFZ-344 Evaporator & Condenser',
+            name: 'SFZ-344 Evaporator & Condenser Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for evaporator and condenser helium leak testing.',
             description:
-              'A vacuum chamber system for HVAC heat exchanger production lines requiring repeatable refrigerant leak testing.',
+              'A configurable vacuum chamber helium leak detection solution for HVAC evaporators, condensers, and heat exchanger coils, designed around workpiece size, target leak rate, cycle time, handling method, and helium recovery requirements.',
             specs: [
-              { label: 'Application', value: 'Evaporators, condensers, and coils' },
-              { label: 'Test method', value: 'Vacuum chamber helium leak detection' },
-              { label: 'Configuration', value: 'Production-line chamber' },
+              { label: 'Application', value: 'HVAC evaporators, condensers, and heat exchanger coils' },
+              { label: 'Test method', value: 'Nitrogen gross leak check + vacuum chamber helium fine leak test' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Three-in-one station, helium recovery, barcode scanning, industrial PC, MES integration' },
             ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 evaporator and condenser helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 evaporator and condenser helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 evaporator and condenser vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 evaporator and condenser helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 evaporator and condenser vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and evaporator condenser fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Nitrogen gross leak and helium fine leak workflow placeholder for evaporators and condensers',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 evaporator and condenser system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '1.0×10⁻⁶ Pa·m³/s (2 g/year)' },
+                { label: 'Chamber Quantity', value: '1' },
+                {
+                  label: 'Chamber Size',
+                  value: 'Shall be determined by customer products, for example 1300 (W) × 800 (H) × 400 (D) mm',
+                },
+                { label: 'Number of Workpieces Tested per Chamber', value: '1~4, determined by the customer workpiece size' },
+                { label: 'Cycle Time', value: 'Shall be determined by the customer' },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Nitrogen Pressure', value: '0~4.0 MPa, adjustable within this range' },
+                    { label: 'Helium Pressure', value: '0~1.5 MPa, adjustable within this range' },
+                  ],
+                },
+                { label: 'Leak Detector Start Testing Pressure', value: '≤ 30 Pa inside the vacuum chamber' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 2000 Pa, adjustable upward' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344EvaporatorCondenserPrincipleImage,
+                alt: 'SFZ-344 evaporator and condenser helium leak detection system working principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Three-in-one Station',
+                  paragraphs: [
+                    'One or more operators complete the workpiece gross leak detection, vacuuming, and helium filling operations at the nitrogen filling gross leak detection, vacuuming, and helium filling three-in-one station.',
+                    'When the workpiece runs to the three-in-one station via the assembly line, it is manually connected to the three-in-one connector, and the device automatically pressurizes the workpiece for gross leak detection. After the leak detection is completed, the device automatically pre-vacuums the qualified workpiece. When the workpiece is evacuated to the set vacuum level, the device automatically fills the workpiece with helium.',
+                    'When the pressure inside the workpiece reaches the set pressure, the connector is manually unplugged. If any of the leak detection, vacuuming, or helium filling procedures fails, the system will alarm.',
+                  ],
+                },
+                {
+                  title: 'Helium Leak Detection Station',
+                  paragraphs: [
+                    'After the helium-filled workpiece runs along the assembly line to the leak detection station, one or more operators put the helium-filled workpiece into the vacuum chamber for leak detection.',
+                    'After the vacuum leak detection is completed, the workpiece is manually taken out of the vacuum chamber and placed on the assembly line. The workpiece runs along the assembly line and enters the recovery station.',
+                  ],
+                },
+                {
+                  title: 'Helium Recovery Station',
+                  paragraphs: [
+                    'The helium recovery operation inside the workpiece is carried out at the recovery station by one or more operators.',
+                    'The workpiece is conveyed to the recovery station either by the production line or by manual handling. The operator connects the device to the workpiece using a quick connector and presses the button. The device then automatically recovers the helium from the workpiece.',
+                    'After the recovery process is completed, the system automatically provides a notification. The operator disconnects the quick connector, and the workpiece proceeds to the next process step.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Load workpiece to three-in-one station and connect the coupler',
+                  'Charge high-pressure nitrogen into the workpiece',
+                  'Gross leak detection',
+                ],
+                grossLeakDecision: 'Gross leak detection',
+                grossLeakNg: [
+                  'System alarm and vent nitrogen',
+                  'Disconnect connectors and take out workpiece from conveyor',
+                ],
+                grossLeakOk: [
+                  'Vent nitrogen, evacuate workpiece, and charge helium',
+                  'Load workpiece into chamber and start leak detection',
+                ],
+                heliumLeakDecision: 'Helium leak detection',
+                heliumLeakNg: [
+                  'System alarm',
+                  'Mark NG',
+                ],
+                heliumLeakOk: [
+                  'Take out workpiece from chamber and put it into helium recovery station',
+                  'Connect the recovery coupler and recycle helium',
+                  'Disconnect the connectors',
+                ],
+                legend: 'OK: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344EvaporatorCondenserWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 evaporator and condenser vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
           },
         ],
       },
@@ -632,6 +771,326 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
               workflowDiagram: {
                 src: sfz344RmuWorkflowDiagram,
                 alt: 'Mermaid workflow diagram for SFZ-344 RMU vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
+          },
+          {
+            slug: 'SFZ-344-Circuit-Breaker',
+            sku: 'SFZ-344-Circuit-Breaker',
+            name: 'SFZ-344 Circuit Breaker Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for circuit breaker and sealed power equipment helium leak testing.',
+            description:
+              'A configurable vacuum chamber helium leak detection solution for circuit breakers and sealed electric-power components, designed around part size, SF6 or SF6-free gas filling pressure, target leak rate, cycle time, and helium recovery requirements.',
+            specs: [
+              { label: 'Application', value: 'Circuit breakers and sealed electric-power components' },
+              { label: 'Test method', value: 'Vacuum gross leak check + vacuum chamber helium fine leak test + SF6 or SF6-free gas filling' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Helium recovery, SF6 or SF6-free gas charging, industrial PC, MES integration' },
+            ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 circuit breaker helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 circuit breaker helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 circuit breaker vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 circuit breaker helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 circuit breaker vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and circuit breaker fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Vacuum evacuation, helium leak test, and SF6 charging workflow placeholder for circuit breaker components',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 circuit breaker system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '3.0×10⁻⁸ Pa·m³/s (0.1%/year)' },
+                { label: 'Chamber Quantity', value: '1' },
+                {
+                  label: 'Chamber Size',
+                  value: 'Shall be determined by customer products, for example 900 (W) × 600 (H) × 400 (D) mm',
+                },
+                { label: 'Number of Workpieces Tested per Chamber', value: '1' },
+                { label: 'Cycle Time', value: 'Shall be determined by the customer' },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Helium Pressure', value: '0.15-0.18 MPa, with adjustable pressure within this range' },
+                  ],
+                },
+                {
+                  label: 'SF6 or SF6-free gas charging pressure (absolute pressure)',
+                  value: '0-0.2 MPa, adjustable within this range',
+                },
+                { label: 'Leak Detector Start Testing Pressure', value: '≤ 30 Pa inside the vacuum chamber' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 2000 Pa, adjustable upward' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344CircuitBreakerPrincipleImage,
+                alt: 'SFZ-344 circuit breaker vacuum chamber helium leak detection system principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Gross Leak Detection Under Vacuum and Pressure Holding',
+                  paragraphs: [
+                    'Place the workpiece into the vacuum chamber and complete the connections. Press the Start button once. The vacuum chamber door will close automatically. Open V3 and close all other valves to pre-evacuate the vacuum chamber.',
+                    'After the chamber reaches a certain vacuum level, the workpiece will undergo a pressure holding test for several seconds. If there is no large leak, the pressure will remain stable. The system will then continue evacuating both the vacuum chamber and the workpiece to the preset value.',
+                    'If the pressure cannot be maintained within the specified time, it indicates a large leak in the workpiece. The system will automatically trigger an audible and visual alarm. At this point, stop the system, press the Reset button, open the chamber door, and remove the workpiece.',
+                  ],
+                },
+                {
+                  title: 'Micro Leak Detection',
+                  paragraphs: [
+                    'If no large leak is detected, the system will automatically open V4 to evacuate the workpiece. At this stage, both the vacuum chamber and the workpiece are evacuated simultaneously.',
+                    'When the vacuum chamber pressure reaches 30 Pa and the workpiece pressure reaches 2000 Pa, the leak detector will start automatically to measure the helium background level inside the chamber and record the value.',
+                    'During the leak test, the measured leak rate will be automatically compensated by subtracting the background value, ensuring that the displayed value represents the actual leak rate of the workpiece.',
+                    'The system will then close V4 and open V5 to fill the workpiece with helium for fine leak testing. The system automatically determines whether the workpiece passes or fails and provides prompts or audible and visual alarms accordingly.',
+                  ],
+                },
+                {
+                  title: 'Helium Recovery',
+                  paragraphs: [
+                    'After the fine leak test is completed, the system automatically enters the helium recovery process.',
+                  ],
+                },
+                {
+                  title: 'SF6 Filling',
+                  paragraphs: [
+                    'After the helium inside the workpiece has been recovered, the vacuum chamber remains under vacuum. The system automatically opens the SF6 filling interface, and SF6 gas is charged into the workpiece.',
+                    'Once the filling process is completed, open the chamber door, remove the workpiece, and the inspection process is finished.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Manually load workpiece into chamber and connect the connectors',
+                  'Press start, chamber door close',
+                  'Evacuate the chamber and detect the workpiece pressure',
+                ],
+                grossLeakDecision: 'Gross leak check',
+                grossLeakNg: [
+                  'Alarm, vent workpiece, door open',
+                  'Take out NG workpiece',
+                ],
+                grossLeakOk: [
+                  'Evacuate workpiece',
+                  'Chamber and workpiece vacuum level reach; workpiece He charging',
+                ],
+                heliumLeakDecision: 'Helium leak check',
+                heliumLeakNg: [
+                  'Alarm; helium recovery; door open',
+                  'Take out NG workpiece',
+                ],
+                heliumLeakOk: [
+                  'Helium recovery',
+                  'Evacuate workpiece',
+                  'SF6 charging',
+                  'Door open, take out workpiece',
+                ],
+                legend: 'OK: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344CircuitBreakerWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 circuit breaker vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
+          },
+          {
+            slug: 'SFZ-344-Load-Break-Switch',
+            sku: 'SFZ-344-Load-Break-Switch',
+            name: 'SFZ-344 Load Break Switch Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for load break switch and sealed power equipment helium leak testing.',
+            description:
+              'A configurable vacuum chamber helium leak detection solution for load break switches and sealed electric-power components, designed around part size, SF6 or SF6-free gas filling pressure, target leak rate, cycle time, and helium recovery requirements.',
+            specs: [
+              { label: 'Application', value: 'Load break switches and sealed electric-power components' },
+              { label: 'Test method', value: 'Vacuum gross leak check + vacuum chamber helium fine leak test + SF6 or SF6-free gas filling' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Helium recovery, SF6 or SF6-free gas charging, industrial PC, MES integration' },
+            ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 load break switch helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 load break switch helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 load break switch vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 load break switch helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 load break switch vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and load break switch fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Vacuum evacuation, helium leak test, and SF6 charging workflow placeholder for load break switch components',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 load break switch system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '3.0×10⁻⁷ Pa·m³/s (0.1%/year)' },
+                { label: 'Chamber Quantity', value: '1' },
+                {
+                  label: 'Chamber Size',
+                  value: 'Shall be determined by customer products, for example 1050 (W) × 950 (H) × 1600 (D) mm',
+                },
+                { label: 'Number of Workpieces Tested per Chamber', value: '1' },
+                { label: 'Cycle Time', value: 'Shall be determined by the customer' },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Helium Pressure', value: '0.15-0.18 MPa, with adjustable pressure within this range' },
+                  ],
+                },
+                {
+                  label: 'SF6 or SF6-free gas charging pressure (absolute pressure)',
+                  value: '0-0.2 MPa, adjustable within this range',
+                },
+                { label: 'Leak Detector Start Testing Pressure', value: '≤ 30 Pa inside the vacuum chamber' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 2000 Pa, adjustable upward' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344CircuitBreakerPrincipleImage,
+                alt: 'SFZ-344 load break switch vacuum chamber helium leak detection system principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Gross Leak Detection Under Vacuum and Pressure Holding',
+                  paragraphs: [
+                    'Place the workpiece into the vacuum chamber and complete the connections. Press the Start button once. The vacuum chamber door will close automatically. Open V3 and close all other valves to pre-evacuate the vacuum chamber.',
+                    'After the chamber reaches a certain vacuum level, the workpiece will undergo a pressure holding test for several seconds. If there is no large leak, the pressure will remain stable. The system will then continue evacuating both the vacuum chamber and the workpiece to the preset value.',
+                    'If the pressure cannot be maintained within the specified time, it indicates a large leak in the workpiece. The system will automatically trigger an audible and visual alarm. At this point, stop the system, press the Reset button, open the chamber door, and remove the workpiece.',
+                  ],
+                },
+                {
+                  title: 'Micro Leak Detection',
+                  paragraphs: [
+                    'If no large leak is detected, the system will automatically open V4 to evacuate the workpiece. At this stage, both the vacuum chamber and the workpiece are evacuated simultaneously.',
+                    'When the vacuum chamber pressure reaches 30 Pa and the workpiece pressure reaches 2000 Pa, the leak detector will start automatically to measure the helium background level inside the chamber and record the value.',
+                    'During the leak test, the measured leak rate will be automatically compensated by subtracting the background value, ensuring that the displayed value represents the actual leak rate of the workpiece.',
+                    'The system will then close V4 and open V5 to fill the workpiece with helium for fine leak testing. The system automatically determines whether the workpiece passes or fails and provides prompts or audible and visual alarms accordingly.',
+                  ],
+                },
+                {
+                  title: 'Helium Recovery',
+                  paragraphs: [
+                    'After the fine leak test is completed, the system automatically enters the helium recovery process.',
+                  ],
+                },
+                {
+                  title: 'SF6 Filling',
+                  paragraphs: [
+                    'After the helium inside the workpiece has been recovered, the vacuum chamber remains under vacuum. The system automatically opens the SF6 filling interface, and SF6 gas is charged into the workpiece.',
+                    'Once the filling process is completed, open the chamber door, remove the workpiece, and the inspection process is finished.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Manually load workpiece into chamber and connect the connectors',
+                  'Press start, chamber door close',
+                  'Evacuate the chamber and detect the workpiece pressure',
+                ],
+                grossLeakDecision: 'Gross leak check',
+                grossLeakNg: [
+                  'Alarm, vent workpiece, door open',
+                  'Take out NG workpiece',
+                ],
+                grossLeakOk: [
+                  'Evacuate workpiece',
+                  'Chamber and workpiece vacuum level reach; workpiece He charging',
+                ],
+                heliumLeakDecision: 'Helium leak check',
+                heliumLeakNg: [
+                  'Alarm; helium recovery; door open',
+                  'Take out NG workpiece',
+                ],
+                heliumLeakOk: [
+                  'Helium recovery',
+                  'Evacuate workpiece',
+                  'SF6 charging',
+                  'Door open, take out workpiece',
+                ],
+                legend: 'OK: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344CircuitBreakerWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 load break switch vacuum chamber helium leak detection',
               },
               optionalConfigurations: [
                 { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },

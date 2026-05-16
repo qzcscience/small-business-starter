@@ -1,0 +1,47 @@
+%%{init: {"theme": "base", "htmlLabels": true, "fontFamily": "Arial, sans-serif", "themeVariables": {"background": "transparent", "primaryColor": "#eff6ff", "primaryBorderColor": "#1b3a6b", "primaryTextColor": "#0f172a", "lineColor": "#64748b", "fontFamily": "Arial, sans-serif"}, "flowchart": {"useMaxWidth": false, "wrappingWidth": 280, "nodeSpacing": 70, "rankSpacing": 90, "curve": "basis"}}}%%
+flowchart TD
+  A["Manual:<br/>Load workpiece to Three-in-one station;<br/>Connect workpiece male connector with female coupler;<br/>Press start button"]
+  B["Automatic:<br/>Charge high pressure N2 into workpiece"]
+  C{"Automatic:<br/>Gross leak detection"}
+  D["Automatic:<br/>Vent N2;<br/>Evacuate the workpiece;<br/>Charge Helium"]
+  E["Manual:<br/>Load workpiece into chamber;<br/>Press start button"]
+  F["Automatic:<br/>Chamber door close;<br/>Evacuate chamber to below 30 Pa"]
+  G{"Automatic:<br/>Helium Leak detection"}
+  H["Manual:<br/>Take out workpiece from Chamber<br/>Put workpiece into Helium recovery station"]
+  I["Manual:<br/>Connect workpiece male connector with female coupler at Helium recovery station;<br/>Press start button"]
+  J["Automatic:<br/>Recycling Helium"]
+  K["Manual:<br/>Disconnect the connectors"]
+
+  L["Automatic:<br/>System alarm;<br/>Vent N2;"]
+  M["Manual:<br/>Disconnect the connectors<br/>Take out workpiece from conveyor"]
+  N["Automatic:<br/>System alarm"]
+  O["Manual:<br/>Mark NG"]
+
+  A --> B
+  B --> C
+  C -- "OK" --> D
+  C -- "NG" --> L
+  L --> M
+
+  D --> E
+  E --> F
+  F --> G
+  G -- "OK" --> H
+  H --> I
+  I --> J
+  J --> K
+
+  G -- "NG" --> N
+  N --> O
+
+  classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px;
+  classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px;
+  classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px;
+  classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px;
+
+  class A,B,D,E,F,H,I,J,K process;
+  class C,G decision;
+  class L,M,N,O ng;
+
+  linkStyle 3,4,11,12 stroke:#b91c1c,stroke-width:2px;
+  linkStyle 2,5,6,7,8,9,10 stroke:#15803d,stroke-width:2px;
