@@ -1,3 +1,5 @@
+import { siteVideos, type SiteVideo } from './videos';
+
 export interface ResourceDownload {
   title: string;
   standard: string;
@@ -12,6 +14,7 @@ export interface ResourceNode {
   href: string;
   description: string;
   downloads?: ResourceDownload[];
+  videos?: SiteVideo[];
   children?: ResourceNode[];
 }
 
@@ -208,6 +211,7 @@ export const resources: ResourceCategory[] = [
     href: `${RESOURCE_BASE_PATH}/videos`,
     description:
       'Video resources for product walkthroughs, application examples, and leak testing method explainers.',
+    videos: siteVideos,
   },
   {
     label: 'Useful Tools',
