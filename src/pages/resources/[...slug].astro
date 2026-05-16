@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Breadcrumb from '../../components/atoms/Breadcrumb.astro';
 import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
 import CTA from '../../components/CTA.astro';
+import LeakRateUnitConverter from '../../components/resources/LeakRateUnitConverter.astro';
 import {
   RESOURCE_BASE_PATH,
   resourceRoutes,
@@ -30,6 +31,7 @@ const downloads = node.downloads || [];
 const videos = node.videos || [];
 const childCount = children.length;
 const nestedCount = children.reduce((count, child) => count + (child.children?.length || 0), 0);
+const isLeakRateUnitConverter = route.slug.join('/') === 'useful-tools/leak-rate-unit-converter';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -137,6 +139,8 @@ const breadcrumbs = [
                 ))}
               </div>
             )}
+
+            {route.isLeaf && isLeakRateUnitConverter && <LeakRateUnitConverter />}
 
             {route.isLeaf && downloads.length > 0 && (
               <div class="p-5 sm:p-6 lg:p-8">
