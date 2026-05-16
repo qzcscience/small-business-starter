@@ -1,8 +1,17 @@
+export interface ResourceDownload {
+  title: string;
+  standard: string;
+  href: string;
+  fileName: string;
+  extension: string;
+}
+
 export interface ResourceNode {
   label: string;
   slug: string;
   href: string;
   description: string;
+  downloads?: ResourceDownload[];
   children?: ResourceNode[];
 }
 
@@ -124,12 +133,72 @@ export const resources: ResourceCategory[] = [
         slug: 'product-catalogs',
         href: `${RESOURCE_BASE_PATH}/downloads/product-catalogs`,
         description: 'Browse product overview materials for helium leak detectors and related systems.',
+        downloads: [
+          {
+            title: 'Wayeal One-stop Leak Detection Solutions',
+            standard: 'Catalog',
+            href: '/downloads/resources/product-catalogs/wayeal-one-stop-leak-detection-solutions.pdf',
+            fileName: 'wayeal-one-stop-leak-detection-solutions.pdf',
+            extension: 'PDF',
+          },
+        ],
       },
       {
         label: 'Certifications (CE / UL / ISO)',
         slug: 'certifications-ce-ul-iso',
         href: `${RESOURCE_BASE_PATH}/downloads/certifications-ce-ul-iso`,
         description: 'Certification references for compliance review and procurement documentation.',
+        downloads: [
+          {
+            title: 'Wayeal ISO 9001 Quality Management System Certificate',
+            standard: 'ISO 9001',
+            href: '/downloads/resources/certifications-ce-ul-iso/wayeal-iso-9001-quality-management-system.pdf',
+            fileName: 'wayeal-iso-9001-quality-management-system.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'Wayeal ISO 14001 Environmental Management System Certificate',
+            standard: 'ISO 14001',
+            href: '/downloads/resources/certifications-ce-ul-iso/wayeal-iso-14001-environmental-management-system.pdf',
+            fileName: 'wayeal-iso-14001-environmental-management-system.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'Wayeal ISO 45001 Occupational Health and Safety Management System Certificate',
+            standard: 'ISO 45001',
+            href: '/downloads/resources/certifications-ce-ul-iso/wayeal-iso-45001-occupational-health-safety-management-system.pdf',
+            fileName: 'wayeal-iso-45001-occupational-health-safety-management-system.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'Wayeal ISO 50001 Energy Management System Certificate',
+            standard: 'ISO 50001',
+            href: '/downloads/resources/certifications-ce-ul-iso/wayeal-iso-50001-energy-management-system.pdf',
+            fileName: 'wayeal-iso-50001-energy-management-system.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'Wayeal ISO/IEC 20000-1:2018 Information Technology Service Management System Certificate',
+            standard: 'ISO/IEC 20000-1:2018',
+            href: '/downloads/resources/certifications-ce-ul-iso/wayeal-iso-iec-20000-1-information-technology-service-management-system.pdf',
+            fileName: 'wayeal-iso-iec-20000-1-information-technology-service-management-system.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'SFJ-231 CE Certificate',
+            standard: 'CE',
+            href: '/downloads/products/SFJ-231/SFJ-231-CE-Certificate.pdf',
+            fileName: 'SFJ-231-CE-Certificate.pdf',
+            extension: 'PDF',
+          },
+          {
+            title: 'SFJ-231 NRTL Certificate',
+            standard: 'NRTL',
+            href: '/downloads/products/SFJ-231/SFJ-231-NRTL-Certificate.pdf',
+            fileName: 'SFJ-231-NRTL-Certificate.pdf',
+            extension: 'PDF',
+          },
+        ],
       },
     ],
   },
