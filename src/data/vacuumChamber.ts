@@ -10,6 +10,8 @@ import sfz344RecoveryImage from '../assets/images/products/vacuum-chamber/sfz-34
 import sfz344PrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/chamber-principle-diagram.png?url';
 import sfz344WorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/system-workflow-mermaid.svg?url';
 import sfz344LiquidCoolingWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-liquid-cooling-plate/system-workflow-mermaid.svg?url';
+import sfz344BellowsWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-bellows/system-workflow-mermaid.svg?url';
+import sfz344ManifoldWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-manifold/system-workflow-mermaid.svg?url';
 import sfz344RmuPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-rmu/rmu-system-principle.png?url';
 import sfz344RmuWorkflowDiagram from '../assets/images/products/vacuum-chamber/sfz-344-rmu/system-workflow-mermaid.svg?url';
 import sfz344CircuitBreakerPrincipleImage from '../assets/images/products/vacuum-chamber/sfz-344-circuit-breaker/circuit-breaker-system-principle.png?url';
@@ -101,41 +103,6 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
     description:
       'Vacuum chamber helium leak detection systems for AC condensers, automotive heat exchangers, battery trays, thermal management modules, fuel components, and precision automotive parts.',
     groups: [
-      {
-        slug: 'battery-tray',
-        label: 'Battery Tray Leak Detection',
-        summary: 'Systems for EV battery trays, covers, and structural housings.',
-        skus: [
-          {
-            slug: 'vcld-auto-bt-1200',
-            sku: 'VCLD-AUTO-BT-1200',
-            name: 'Battery Tray Vacuum Chamber Leak Detection System',
-            image: commonImage,
-            shortDescription: 'Configurable chamber system for EV battery tray helium leak testing.',
-            description:
-              'Designed for large automotive battery tray assemblies that require stable vacuum pumping, helium detection, and repeatable fixture positioning.',
-            specs: [
-              { label: 'Application', value: 'EV battery tray and cover assemblies' },
-              { label: 'Test method', value: 'Vacuum chamber helium leak detection' },
-              { label: 'Configuration', value: 'Custom chamber and tooling' },
-            ],
-          },
-          {
-            slug: 'vcld-auto-bt-compact',
-            sku: 'VCLD-AUTO-BT-COMPACT',
-            name: 'Compact Battery Housing Leak Detection System',
-            image: commonImage,
-            shortDescription: 'Compact chamber platform for smaller battery housings and covers.',
-            description:
-              'A compact vacuum chamber platform for lower-volume or smaller-format battery housing inspection.',
-            specs: [
-              { label: 'Application', value: 'Battery housing and cover parts' },
-              { label: 'Test method', value: 'Helium accumulation and vacuum testing' },
-              { label: 'Configuration', value: 'Single-station chamber' },
-            ],
-          },
-        ],
-      },
       {
         slug: 'thermal-management',
         label: 'AC Condensers and Thermal Management Parts',
@@ -605,6 +572,312 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
               workflowDiagram: {
                 src: sfz344LiquidCoolingWorkflowDiagram,
                 alt: 'Mermaid workflow diagram for SFZ-344 liquid cooling plate vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
+          },
+          {
+            slug: 'sfz-344-bellows',
+            sku: 'SFZ-344 Bellows',
+            name: 'SFZ-344 Bellows Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for liquid cooling bellows helium leak testing.',
+            description:
+              'A configurable vacuum chamber helium leak detection solution for server liquid cooling bellows, designed around part size, leak rate, takt time, chamber quantity, and helium recovery requirements.',
+            specs: [
+              { label: 'Application', value: 'Liquid cooling bellows and flexible cooling assemblies' },
+              { label: 'Test method', value: 'Gross leak pressure-hold check + vacuum chamber helium micro leak test' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Dual-chamber operation, helium recovery, barcode scanning, industrial PC, MES integration' },
+            ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 liquid cooling bellows helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 liquid cooling bellows helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 liquid cooling bellows vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 liquid cooling bellows helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 liquid cooling bellows vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and liquid cooling bellows fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Pressure-hold gross leak and helium micro leak workflow placeholder for liquid cooling bellows',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 liquid cooling bellows system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '3.0 × 10⁻⁷ Pa·m³/s' },
+                { label: 'Chamber Quantity', value: '2' },
+                { label: 'Chamber Size', value: 'Determined by customer products, for example 1000 (length) × 600 (width) × 300 (height) mm' },
+                { label: 'Workpieces Per Chamber', value: '1-4, determined by the customer fixture and workpiece size' },
+                {
+                  label: 'Cycle Time:',
+                  children: [
+                    { label: 'Single Chamber', value: 'For example 80 s/chamber, excluding manual handling time' },
+                    { label: 'Interleaved Dual-Chamber Operation', value: 'For example 40 s/chamber, excluding manual handling time' },
+                    { label: 'Note', value: 'Cycle time is configurable based on customer requirements. The above figures are for reference only.' },
+                  ],
+                },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Helium Pressure', value: '0-1.0 MPa, adjustable within this range' },
+                  ],
+                },
+                { label: 'Leak Detector Start Pressure', value: '≤ 30 Pa inside the vacuum chamber' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 2000 Pa, adjustable upward' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344PrincipleImage,
+                alt: 'Vacuum chamber helium leak detection and recovery principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Gross Leak Pressure-Hold Leak Detection',
+                  paragraphs: [
+                    'Place the workpiece into the vacuum chamber and complete the sealing process. Press the start button once, and the chamber door will close automatically. Valve V3 opens while all other valves remain closed. The vacuum chamber is pre-evacuated first. After the chamber reaches the preset vacuum level, the workpiece enters a pressure-holding stage for several seconds.',
+                    'If no gross leak is present, the pressure remains stable, and the system continues evacuating both the chamber and the workpiece to the target vacuum level.',
+                    'If the pressure cannot be maintained within the preset time, the system determines that a gross leak exists in the workpiece and automatically triggers an audible and visual alarm. The system must then be stopped, the reset button pressed, and the workpiece removed after opening the chamber door.',
+                  ],
+                },
+                {
+                  title: 'Helium Micro Leak Detection',
+                  paragraphs: [
+                    'If no gross leak is detected, the system automatically opens V4 to evacuate the workpiece. At this stage, both the vacuum chamber and the workpiece are evacuated simultaneously.',
+                    'When the chamber pressure reaches 30 Pa and the workpiece pressure reaches 2000 Pa, the helium leak detector starts automatically to measure and record the helium background level inside the chamber.',
+                    'The measured leak rate during testing will be compensated by subtracting this background value, ensuring that the displayed value represents the actual leak rate of the workpiece.',
+                    'After the background measurement is completed, V4 closes and V5 opens to charge the workpiece with low-pressure helium for fine leak testing.',
+                    'The system automatically determines whether the workpiece passes the test and provides corresponding prompts or audible and visual alarms.',
+                  ],
+                },
+                {
+                  title: 'Helium Recovery',
+                  paragraphs: [
+                    'After completion of the fine leak test, the system automatically enters the helium recovery process.',
+                    'Once recovery is completed, the system closes V1, V3, V4, and V5, and pauses the leak detector. Valves V6 and V7 then open to vent both the vacuum chamber and the workpiece. The workpiece can subsequently be removed, completing the test cycle.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Manually carry liquid cooling bellows into the chamber, manually seal the workpiece with fixture',
+                  'Press start button; vacuum chamber door closes',
+                  'Automatically evacuate vacuum chamber, then perform workpiece gross leak pressure-hold check',
+                ],
+                grossLeakDecision: 'Gross leak check passed?',
+                grossLeakNg: [
+                  'Alarm; automatically vent workpiece, fill chamber and open chamber door',
+                  'Remove leaking workpiece',
+                ],
+                grossLeakOk: [
+                  'Pre-evacuate workpiece to the set pressure',
+                  'Chamber reaches set vacuum level; leak detection valve opens, fill helium into workpiece and perform micro leak detection',
+                ],
+                heliumLeakDecision: 'Micro leak check passed?',
+                heliumLeakNg: [
+                  'Alarm; automatically recover helium, fill chamber and open door',
+                  'Remove leaking workpiece',
+                ],
+                heliumLeakOk: [
+                  'Automatically recover helium, fill chamber and open door',
+                  'Remove qualified workpiece',
+                ],
+                legend: 'Qualified: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344BellowsWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 liquid cooling bellows vacuum chamber helium leak detection',
+              },
+              optionalConfigurations: [
+                { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Vacuum Pump', value: 'Leybold / Edwards / Atlas Copco' },
+                { label: 'Compressor', value: 'Ingersoll Rand / Desran' },
+                { label: 'Solenoid Valve', value: 'GSR / COAX / CKD / SMC' },
+                { label: 'Vacuum Gauge', value: 'Wayeal / Inficon / Leybold' },
+                { label: 'Pressure Sensor', value: 'Micro Sensor / Airtac / WIKA' },
+                { label: 'Vacuum Valve', value: 'Wayeal / CKD' },
+                { label: 'Safety Light Curtain', value: 'Lion / SENSORC' },
+                { label: 'PLC (Programmable Logic Controller)', value: 'Schneider / Siemens / Mitsubishi / Omron / Inovance' },
+                { label: 'Touch Screen Panel', value: 'Weinview / Schneider Electric' },
+                { label: 'Handheld Barcode Scanner', value: 'Honeywell / Keyence' },
+                { label: 'Industrial PC', value: 'Advantech' },
+                { label: 'Printer', value: 'TSC' },
+                { label: 'Electrical Components', value: 'Schneider / Panasonic / IDEC, etc.' },
+              ],
+            },
+          },
+          {
+            slug: 'sfz-344-manifold',
+            sku: 'SFZ-344 Manifold',
+            name: 'SFZ-344 Manifold Helium Leak Detection System',
+            image: sfz344FrontLeftImage,
+            shortDescription:
+              'Configurable SFZ-344 vacuum chamber platform for liquid cooling manifold helium leak testing.',
+            description:
+              'A configurable vacuum chamber helium leak detection solution for server liquid cooling manifolds, designed around part size, leak rate, takt time, chamber quantity, and helium recovery requirements.',
+            specs: [
+              { label: 'Application', value: 'Liquid cooling manifolds and manifold assemblies' },
+              { label: 'Test method', value: 'Nitrogen gross leak pressure-hold detection + vacuum chamber helium micro leak test' },
+              { label: 'Platform', value: 'SFZ-344 configurable vacuum chamber system' },
+              { label: 'Options', value: 'Dual-chamber operation, helium recovery, barcode scanning, industrial PC, MES integration' },
+            ],
+            images: [
+              {
+                src: sfz344FrontLeftImage,
+                alt: 'SFZ-344 liquid cooling manifold helium leak detection system front-left view',
+              },
+              {
+                src: sfz344FrontRightImage,
+                alt: 'SFZ-344 liquid cooling manifold helium leak detection system front-right view',
+              },
+              {
+                src: sfz344FrontViewImage,
+                alt: 'SFZ-344 liquid cooling manifold vacuum chamber helium leak detection system front view',
+              },
+              {
+                src: sfz344TopLayoutImage,
+                alt: 'SFZ-344 liquid cooling manifold helium leak detection system top layout',
+              },
+              {
+                src: sfz344SystemImage,
+                alt: 'SFZ-344 liquid cooling manifold vacuum chamber helium leak detection system placeholder',
+              },
+              {
+                src: sfz344LoadingImage,
+                alt: 'Vacuum chamber loading and liquid cooling manifold fixture placeholder',
+              },
+              {
+                src: sfz344WorkflowImage,
+                alt: 'Nitrogen gross leak and helium micro leak workflow placeholder for liquid cooling manifolds',
+              },
+              {
+                src: sfz344RecoveryImage,
+                alt: 'Helium recovery module placeholder for SFZ-344 liquid cooling manifold system',
+              },
+            ],
+            videoSrc: 'https://www.youtube-nocookie.com/embed/snoiqqyFoIQ?rel=0',
+            sourceContent: {
+              technicalSpecs: [
+                { label: 'Leak Rate Standard', value: '5.0 × 10⁻⁷ Pa·m³/s' },
+                { label: 'Chamber Quantity', value: '1' },
+                { label: 'Chamber Size', value: 'Determined by customer products, for example 2500 (width) × 1100 (depth) × 300 (height) mm' },
+                { label: 'Number of Workpieces Tested per Chamber', value: '1-2, determined by the customer fixture and workpiece size' },
+                {
+                  label: 'Cycle Time:',
+                  children: [
+                    { label: 'Single Chamber', value: '300 s/chamber, including manual handling time ≤ 50 s, one chamber testing two 5 L manifold workpieces; equivalent to 150 s/pc' },
+                    { label: 'Note', value: 'Cycle time is configurable based on customer requirements. The above figures are for reference only.' },
+                  ],
+                },
+                {
+                  label: 'Testing Parameters:',
+                  children: [
+                    { label: 'Nitrogen Pressure', value: '0-1.0 MPa, with adjustable pressure within this range' },
+                    { label: 'Helium Pressure', value: '0-1.0 MPa, with adjustable pressure within this range' },
+                  ],
+                },
+                { label: 'Leak Detector Start Testing Pressure (Inside the Vacuum Chamber)', value: '≤ 30 Pa' },
+                { label: 'Workpiece Evacuation Pressure', value: '≤ 2000 Pa (pressure is adjustable upwards)' },
+                { label: 'Helium Recovery Rate', value: '98%' },
+              ],
+              principleImage: {
+                src: sfz344PrincipleImage,
+                alt: 'Vacuum chamber helium leak detection and recovery principle diagram',
+              },
+              workingPrinciple: [
+                {
+                  title: 'Nitrogen Gross Leak Pressure-Hold Detection',
+                  paragraphs: [
+                    'Place the workpiece into the vacuum chamber and complete the manual connection. Press the start button once, and the chamber door will close automatically. Valve V3 opens while all other valves remain closed. The vacuum chamber is pre-evacuated, and V1 opens to fill the workpiece with high-pressure nitrogen to the set pressure. The workpiece then enters a pressure-holding stage for several seconds.',
+                    'If no gross leak is present, the pressure remains stable, and the system continues to the next testing stage.',
+                    'If the pressure cannot be maintained within the preset time, the system determines that a gross leak exists in the workpiece and automatically triggers an audible and visual alarm. The system must then be stopped, the reset button pressed, and the workpiece removed after opening the chamber door.',
+                  ],
+                },
+                {
+                  title: 'Helium Micro Leak Detection',
+                  paragraphs: [
+                    'If no gross leak is detected, the system automatically opens V4 to evacuate the workpiece. At this stage, both the vacuum chamber and the workpiece are evacuated simultaneously.',
+                    'When the chamber pressure reaches 30 Pa and the workpiece pressure reaches 2000 Pa, the helium leak detector starts automatically to measure and record the helium background level inside the chamber.',
+                    'The measured leak rate during testing will be compensated by subtracting this background value, ensuring that the displayed value represents the actual leak rate of the workpiece.',
+                    'After the background measurement is completed, V4 closes and V5 opens to charge the workpiece with low-pressure helium for micro leak testing.',
+                    'The system automatically determines whether the workpiece passes the test and provides corresponding prompts or audible and visual alarms.',
+                  ],
+                },
+                {
+                  title: 'Helium Recovery',
+                  paragraphs: [
+                    'After completion of the micro leak test, the system automatically enters the helium recovery process.',
+                    'Once recovery is completed, the system closes V1, V3, V4, and V5, and pauses the leak detector. Valves V6 and V7 then open to vent both the vacuum chamber and the workpiece. The workpiece can subsequently be removed, completing the test cycle.',
+                  ],
+                },
+              ],
+              workflow: {
+                main: [
+                  'Manually place the liquid cooling manifold on the tray, then manually connect the manifold and fixture piping',
+                  'Manually push the fixture plate into the chamber, then press the start button',
+                  'Automatically evacuate the vacuum chamber while filling high-pressure gas into the manifold workpiece to perform gross leak detection',
+                ],
+                grossLeakDecision: 'Gross leak check passed?',
+                grossLeakNg: [
+                  'Alarm; automatically vent the manifold workpiece, fill the chamber and open the chamber door',
+                  'Remove leaking workpiece',
+                ],
+                grossLeakOk: [
+                  'After nitrogen discharge, pre-evacuate the manifold workpiece to the set value',
+                  'When the chamber reaches the set vacuum level, the leak detection valve opens; helium is filled into the manifold workpiece for micro leak detection',
+                ],
+                heliumLeakDecision: 'Micro leak check passed?',
+                heliumLeakNg: [
+                  'Alarm; automatically recover helium, fill the chamber and open the chamber door',
+                  'Remove leaking workpiece',
+                ],
+                heliumLeakOk: [
+                  'Automatically recover helium, fill the chamber and open the chamber door',
+                  'Manually remove qualified workpiece',
+                ],
+                legend: 'Qualified: Pass, NG: Failure',
+              },
+              workflowDiagram: {
+                src: sfz344ManifoldWorkflowDiagram,
+                alt: 'Mermaid workflow diagram for SFZ-344 liquid cooling manifold vacuum chamber helium leak detection',
               },
               optionalConfigurations: [
                 { label: 'Helium Leak Detector', value: 'Wayeal / Inficon / Leybold' },

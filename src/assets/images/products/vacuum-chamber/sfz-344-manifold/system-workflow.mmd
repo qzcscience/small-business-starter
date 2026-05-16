@@ -1,0 +1,34 @@
+%%{init: {"theme": "base", "htmlLabels": true, "fontFamily": "Arial, sans-serif", "themeVariables": {"background": "transparent", "primaryColor": "#eff6ff", "primaryBorderColor": "#1b3a6b", "primaryTextColor": "#0f172a", "lineColor": "#64748b", "fontFamily": "Arial, sans-serif"}, "flowchart": {"useMaxWidth": false, "wrappingWidth": 280, "nodeSpacing": 70, "rankSpacing": 90, "curve": "basis"}}}%%
+flowchart TD
+    A["Manually place the liquid cooling manifold on the tray,<br/>then manually connect the manifold and fixture piping"] --> B["Manually push the fixture plate into the chamber,<br/>then press the start button"]
+    B --> C["The vacuum chamber door closes automatically,<br/>and the chamber sealing mechanism automatically seals<br/>the gas passage block on the fixture plate"]
+    C --> D["Automatically evacuate the vacuum chamber,<br/>while filling high-pressure gas into the manifold workpiece<br/>to perform gross leak detection"]
+
+    D --> E{"Gross leak<br/>check passed?"}
+
+    E -- "NG" --> F["Alarm; automatically vent the manifold workpiece,<br/>fill the chamber and open the chamber door"]
+    F --> G["Remove leaking workpiece"]
+
+    E -- "OK" --> H["After nitrogen discharge,<br/>pre-evacuate the manifold workpiece to the set value"]
+    H --> I["When the chamber reaches the set vacuum level,<br/>the leak detection valve opens;<br/>helium is filled into the manifold workpiece<br/>for micro leak detection"]
+
+    I --> J{"Micro leak<br/>check passed?"}
+
+    J -- "NG" --> K["Alarm; automatically recover helium,<br/>fill the chamber and open the chamber door"]
+    K --> L["Remove leaking workpiece"]
+
+    J -- "OK" --> M["Automatically recover helium,<br/>fill the chamber and open the chamber door"]
+    M --> N["Manually remove qualified workpiece"]
+
+    classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px;
+    classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px;
+    classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px;
+    classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px;
+
+    class A,B,C,D,H,I process;
+    class E,J decision;
+    class F,G,K,L ng;
+    class M,N ok;
+
+    linkStyle 4,5,9,10 stroke:#b91c1c,stroke-width:2px;
+    linkStyle 6,7,8,11,12 stroke:#15803d,stroke-width:2px;

@@ -1,0 +1,33 @@
+%%{init: {"theme": "base", "htmlLabels": true, "fontFamily": "Arial, sans-serif", "themeVariables": {"background": "transparent", "primaryColor": "#eff6ff", "primaryBorderColor": "#1b3a6b", "primaryTextColor": "#0f172a", "lineColor": "#64748b", "fontFamily": "Arial, sans-serif"}, "flowchart": {"useMaxWidth": false, "wrappingWidth": 280, "nodeSpacing": 70, "rankSpacing": 90, "curve": "basis"}}}%%
+flowchart TD
+    A["Manually carry liquid cooling bellows into the chamber,<br/>manually seal the workpiece with fixture"] --> B["Press start button;<br/>vacuum chamber door closes"]
+    B --> C["Automatically evacuate vacuum chamber,<br/>then perform workpiece gross leak pressure-hold check"]
+
+    C --> D{"Gross leak<br/>check passed?"}
+
+    D -- "NG" --> E["Alarm; automatically vent workpiece,<br/>fill chamber and open chamber door"]
+    E --> F["Remove leaking workpiece"]
+
+    D -- "OK" --> G["Pre-evacuate workpiece<br/>to the set pressure"]
+    G --> H["Chamber reaches set vacuum level;<br/>leak detection valve opens,<br/>fill helium into workpiece and<br/>perform micro leak detection"]
+
+    H --> I{"Micro leak<br/>check passed?"}
+
+    I -- "NG" --> J["Alarm; automatically recover helium,<br/>fill chamber and open door"]
+    J --> K["Remove leaking workpiece"]
+
+    I -- "OK" --> L["Automatically recover helium,<br/>fill chamber and open door"]
+    L --> M["Remove qualified workpiece"]
+
+    classDef process fill:#eff6ff,stroke:#1b3a6b,color:#0f172a,stroke-width:1px;
+    classDef decision fill:#fff7ed,stroke:#f97316,color:#0f172a,stroke-width:2px;
+    classDef ng fill:#fef2f2,stroke:#b91c1c,color:#7f1d1d,stroke-width:1px;
+    classDef ok fill:#f0fdf4,stroke:#15803d,color:#14532d,stroke-width:1px;
+
+    class A,B,C,G,H process;
+    class D,I decision;
+    class E,F,J,K ng;
+    class L,M ok;
+
+    linkStyle 3,4,8,9 stroke:#b91c1c,stroke-width:2px;
+    linkStyle 5,6,7,10,11 stroke:#15803d,stroke-width:2px;

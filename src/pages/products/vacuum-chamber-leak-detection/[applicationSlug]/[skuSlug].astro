@@ -8,6 +8,8 @@ import ProductGallery from '../../../../components/atoms/ProductGallery.astro';
 import CTA from '../../../../components/CTA.astro';
 import sfz344WorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/system-workflow-mermaid.svg?raw';
 import sfz344LiquidCoolingWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-liquid-cooling-plate/system-workflow-mermaid.svg?raw';
+import sfz344BellowsWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-bellows/system-workflow-mermaid.svg?raw';
+import sfz344ManifoldWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-manifold/system-workflow-mermaid.svg?raw';
 import sfz344RmuWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-rmu/system-workflow-mermaid.svg?raw';
 import sfz344CircuitBreakerWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-circuit-breaker/system-workflow-mermaid.svg?raw';
 import sfz344EvaporatorCondenserWorkflowDiagramSvg from '../../../../assets/images/products/vacuum-chamber/sfz-344-evaporator-condenser/system-workflow-mermaid.svg?raw';
@@ -41,6 +43,8 @@ const workflowDiagram = sourceContent?.workflowDiagram;
 const workflowDiagramMarkupBySlug: Record<string, string> = {
   'sfz-344-car-ac-condenser': sfz344WorkflowDiagramSvg,
   'sfz-344-liquid-cooling-plate': sfz344LiquidCoolingWorkflowDiagramSvg,
+  'sfz-344-bellows': sfz344BellowsWorkflowDiagramSvg,
+  'sfz-344-manifold': sfz344ManifoldWorkflowDiagramSvg,
   'SFZ-344-RMU': sfz344RmuWorkflowDiagramSvg,
   'SFZ-344-Circuit-Breaker': sfz344CircuitBreakerWorkflowDiagramSvg,
   'SFZ-344-Load-Break-Switch': sfz344CircuitBreakerWorkflowDiagramSvg,
@@ -93,6 +97,10 @@ const ctaTitle =
     ? 'Configure SFZ-344 For Your Condenser'
     : sku.slug === 'sfz-344-liquid-cooling-plate'
       ? 'Configure SFZ-344 For Your Liquid Cooling Plate'
+    : sku.slug === 'sfz-344-bellows'
+      ? 'Configure SFZ-344 For Your Liquid Cooling Bellows'
+    : sku.slug === 'sfz-344-manifold'
+      ? 'Configure SFZ-344 For Your Liquid Cooling Manifold'
     : sku.slug === 'SFZ-344-RMU'
       ? 'Configure SFZ-344 For Your RMU'
     : sku.slug === 'SFZ-344-Circuit-Breaker'
@@ -107,6 +115,10 @@ const ctaDescription =
     ? 'Send us your condenser dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : sku.slug === 'sfz-344-liquid-cooling-plate'
       ? 'Send us your liquid cooling plate dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
+    : sku.slug === 'sfz-344-bellows'
+      ? 'Send us your liquid cooling bellows dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
+    : sku.slug === 'sfz-344-manifold'
+      ? 'Send us your liquid cooling manifold dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : sku.slug === 'SFZ-344-RMU'
       ? 'Send us your RMU or GIS component dimensions, port layout, target leak rate, test pressure, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : sku.slug === 'SFZ-344-Circuit-Breaker'
