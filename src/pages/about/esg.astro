@@ -1,23 +1,47 @@
 ---
 import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
+import { brand } from '../../config/brand';
 import { getAboutSection } from '../../data/about';
 
 const section = getAboutSection('esg')!;
+const pageUrl = new URL(section.href, Astro.site ?? brand.url).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: section.title,
+  description: section.description,
+  url: pageUrl,
+  mainEntity: {
+    '@type': 'ItemList',
+    name: 'Wayeal ESG priorities for global customers',
+    itemListElement: section.blocks.map((block, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: block.title,
+      description: block.body.join(' '),
+    })),
+  },
+};
 ---
 
-<AboutDetailShell section={section}>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    {section.blocks.map((block) => (
-      <section class="border-l-2 border-primary/40 pl-5">
-        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
-          {block.title}
-        </h2>
-        <div class="mt-4 space-y-4">
-          {block.body.map((paragraph) => (
-            <p class="leading-relaxed text-text-muted">{paragraph}</p>
-          ))}
+<AboutDetailShell section={section} schema={schema}>
+  <ol class="grid grid-cols-1 gap-4 lg:grid-cols-2" role="list">
+    {section.blocks.map((block, index) => (
+      <li class="flex gap-4 rounded-lg border border-border bg-background p-5">
+        <div class="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary font-heading text-base font-bold text-primary-fg">
+          {index + 1}
         </div>
-      </section>
+        <section>
+          <h2 class="font-heading text-h3 font-semibold uppercase leading-tight text-text">
+            {block.title}
+          </h2>
+          <div class="mt-3 space-y-3">
+            {block.body.map((paragraph) => (
+              <p class="text-sm leading-relaxed text-text-muted sm:text-base">{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      </li>
     ))}
-  </div>
+  </ol>
 </AboutDetailShell>

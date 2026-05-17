@@ -13,9 +13,10 @@ import {
 
 interface Props {
   section: AboutSection;
+  schema?: Record<string, unknown>;
 }
 
-const { section } = Astro.props;
+const { section, schema } = Astro.props;
 const breadcrumbs = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: ABOUT_BASE_PATH },
@@ -26,6 +27,7 @@ const breadcrumbs = [
 <BaseLayout
   title={section.title}
   description={section.description}
+  schema={schema}
 >
   <Header slot="header" />
 

@@ -242,28 +242,53 @@ export const aboutSections: AboutSection[] = [
     slug: 'esg',
     href: createAboutHref('esg'),
     eyebrow: 'Responsibility',
-    title: 'ESG',
+    title: 'ESG Priorities for Global Customers',
     description:
-      'Review Wayeal ESG direction, including environmental responsibility, workplace practices, and responsible industrial development.',
+      'Review Wayeal ESG priorities for global customers, covering environmental compliance, product quality, responsible supply chain, customer service, privacy, and business ethics.',
     summary:
-      'Wayeal ESG content should communicate responsible manufacturing, efficient resource use, workplace care, and long-term customer value.',
-    highlights: [
-      'Responsible manufacturing and resource awareness',
-      'Workplace safety and employee development',
-      'Long-term value for customers and industrial partners',
-    ],
+      'Based on Wayeal 2025 ESG report, these seven priorities address the ESG topics international buyers commonly check before supplier approval.',
+    highlights: [],
     blocks: [
       {
-        title: 'Environmental Direction',
+        title: 'International Market Readiness',
         body: [
-          'Wayeal products can support more controlled leak testing workflows, helium reuse strategies, and quality processes that reduce waste in industrial manufacturing.',
-          'This page should later include measurable ESG data only when confirmed reporting materials are available.',
+          'Wayeal reports exports to more than 30 countries and regions, with overseas business supported by a Thailand office, an overseas marketing team, direct sales, and trading partners.',
         ],
       },
       {
-        title: 'Social and Governance Focus',
+        title: 'Environmental Compliance and Green Manufacturing',
         body: [
-          'ESG content should also cover workplace responsibility, training, ethical business conduct, and long-term collaboration with customers and partners.',
+          'ISO 14001 certification coverage reached 100% in 2025. Wayeal also reports Green Factory certification and zero environmental pollution accidents during the reporting period.',
+        ],
+      },
+      {
+        title: 'Climate and Resource Efficiency',
+        body: [
+          'The 2025 ESG report discloses Scope 1 GHG emissions of 171.99 metric tons of CO2 equivalent (tCO2e), Scope 2 GHG emissions of 3,471.52 tCO2e, and total Scope 1 and Scope 2 GHG emissions of 3,643.51 tCO2e.',
+        ],
+      },
+      {
+        title: 'Product Quality and Reliability',
+        body: [
+          'Wayeal reports a 99.9% product qualification rate, a 0% product recall rate, zero major product and service safety or quality liability incidents, and 35 monitored quality indicators with a 100% completion rate.',
+        ],
+      },
+      {
+        title: 'Responsible Supply Chain',
+        body: [
+          'Supplier access and evaluation include technical capability, quality systems, delivery capability, cost control, labor and human rights, health and safety, environmental and climate protection, material compliance, conflict minerals, and business ethics.',
+        ],
+      },
+      {
+        title: 'Customer Service and Privacy Protection',
+        body: [
+          'Wayeal reports 98% average customer revisit satisfaction in 2025, a complaint-response workflow, defined service response targets, and no customer privacy leakage incidents during the reporting period.',
+        ],
+      },
+      {
+        title: 'Governance, Compliance and Business Ethics',
+        body: [
+          'Anti-corruption and compliance training coverage reached 100% in 2025. Wayeal also reports anti-bribery controls, whistleblower protection, internal control reviews, and transparent information disclosure practices.',
         ],
       },
     ],
