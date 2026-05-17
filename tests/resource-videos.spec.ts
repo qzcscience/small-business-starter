@@ -5,14 +5,24 @@ test.describe('Resource videos', () => {
     await page.goto('/resources/videos');
 
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Videos');
-    await expect(page.locator('iframe[src*="youtube-nocookie.com/embed/"]')).toHaveCount(2);
+    await expect(page.locator('iframe[src*="youtube-nocookie.com/embed/"]')).toHaveCount(3);
     await expect(page.locator('iframe[src*="dZR7PMBhHFc"]')).toHaveCount(1);
+    await expect(page.locator('iframe[src*="KhgjPk0dUFU"]')).toHaveCount(1);
     await expect(page.locator('iframe[src*="snoiqqyFoIQ"]')).toHaveCount(1);
     await expect(page.locator('iframe[src*="playlists"]')).toHaveCount(0);
     await expect(page.locator('iframe[src*="@oliverqi1987"]')).toHaveCount(0);
 
+    await expect(page.getByText('Helium Spray Method Video')).toBeVisible();
     await expect(page.getByText('Wayeal Company and SFJ-231 Product Video')).toBeVisible();
     await expect(page.getByText('Vacuum Chamber Helium Leak Detection System Video')).toBeVisible();
+
+    const heliumSprayVideo = page
+      .locator('article')
+      .filter({ hasText: 'Helium Spray Method Video' });
+    await expect(heliumSprayVideo.getByRole('link', { name: 'Helium Spray Method' })).toHaveAttribute(
+      'href',
+      '/resources/glossary/helium-spray-method',
+    );
 
     const companyVideo = page
       .locator('article')

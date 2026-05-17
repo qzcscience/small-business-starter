@@ -14,6 +14,7 @@ export interface SiteVideo {
   description: string;
   embedUrl: string;
   watchUrl: string;
+  aspectRatio?: 'video' | 'short';
   relatedLinks: VideoRelatedLink[];
 }
 
@@ -21,6 +22,7 @@ interface VideoDraft {
   videoId: string;
   title: string;
   description: string;
+  aspectRatio?: 'video' | 'short';
   relatedLinks: VideoRelatedLink[];
 }
 
@@ -74,6 +76,7 @@ function addVideo(
     videoSrc: string;
     title: string;
     description: string;
+    aspectRatio?: 'video' | 'short';
     relatedLink: VideoRelatedLink;
   },
 ) {
@@ -87,6 +90,7 @@ function addVideo(
       videoId,
       title: source.title,
       description: source.description,
+      aspectRatio: source.aspectRatio,
       relatedLinks: [source.relatedLink],
     });
     return;
@@ -153,6 +157,15 @@ function sourcePathToRelatedLink(filePath: string): VideoRelatedLink {
 }
 
 function addStructuredVideos(videos: Map<string, VideoDraft>) {
+  addVideo(videos, {
+    videoSrc: 'https://youtube.com/shorts/KhgjPk0dUFU',
+    title: 'Helium Spray Method Video',
+    description:
+      'Short demonstration video for the helium spray method used to localize leaks on evacuated parts.',
+    aspectRatio: 'short',
+    relatedLink: { label: 'Helium Spray Method', href: '/resources/glossary/helium-spray-method' },
+  });
+
   addVideo(videos, {
     videoSrc: 'https://www.youtube-nocookie.com/embed/dZR7PMBhHFc?rel=0',
     title: 'Wayeal Company and SFJ-231 Product Video',
@@ -224,6 +237,7 @@ export function getSiteVideos(): SiteVideo[] {
       ...video,
       embedUrl: createEmbedUrl(video.videoId),
       watchUrl: createWatchUrl(video.videoId),
+      aspectRatio: video.aspectRatio || 'video',
       relatedLinks: video.relatedLinks.sort((a, b) => a.label.localeCompare(b.label)),
     }))
     .sort((a, b) => a.title.localeCompare(b.title));
