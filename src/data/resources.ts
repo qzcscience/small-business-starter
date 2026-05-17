@@ -1,5 +1,6 @@
 import { siteVideos, type SiteVideo } from './videos';
 import heliumSprayMethodImage from '../assets/images/resources/helium-spray-method-image2-4k.png?url';
+import heliumSnifferProbeMethodImage from '../assets/images/resources/helium-sniffer-probe-method-corrected-4k.png?url';
 
 export interface ResourceDownload {
   title: string;
@@ -276,13 +277,185 @@ export const resources: ResourceCategory[] = [
         },
       },
       {
-        label: 'Sniffer Method (吸枪法)',
-        slug: 'sniffer-method',
-        href: `${RESOURCE_BASE_PATH}/glossary/sniffer-method`,
-        description: 'A field-friendly overview of probe-based leak localization on pressurized parts.',
+        label: 'Helium Sniffer Probe Method',
+        slug: 'helium-sniffer-probe-method',
+        href: `${RESOURCE_BASE_PATH}/glossary/helium-sniffer-probe-method`,
+        description:
+          'A practical explanation of helium sniffer probe testing for locating leaks on pressurized workpieces with a helium mass spectrometer leak detector.',
+        article: {
+          heroImage: {
+            src: heliumSnifferProbeMethodImage,
+            alt: 'Helium sniffer probe method process overview and operating principle for a pressurized workpiece connected to a helium mass spectrometer leak detector',
+            caption:
+              'In the helium sniffer probe method, the workpiece is filled with helium or a helium mixture. Escaping helium is drawn into the sniffer probe and measured by the helium mass spectrometer leak detector.',
+          },
+          quickFacts: [
+            { label: 'Best fit', value: 'Pressurized workpieces that cannot be evacuated for vacuum testing' },
+            { label: 'Primary purpose', value: 'Pinpointing the physical leak location' },
+            { label: 'Tracer gas', value: 'Helium inside the workpiece, sampled from the outside' },
+            { label: 'Detector signal', value: 'Helium concentration response converted into a leak indication' },
+          ],
+          intro: [
+            'The helium sniffer probe method is a pressure-side tracer gas technique for finding where helium escapes from a part. The workpiece is pressurized with helium or a helium-containing test gas, and an operator moves the sniffer probe along welds, joints, seals, ports, and suspected leak paths. If helium exits through a defect, the probe draws that local gas sample into the helium mass spectrometer leak detector.',
+            'This method is direct and practical: it does not require a vacuum chamber, and it gives repair teams a physical location to inspect. Its measurement quality depends on probe handling, background helium control, airflow, part pressure, and the geometry of the leak path, so a disciplined scan sequence matters as much as the instrument itself.',
+          ],
+          sections: [
+            {
+              eyebrow: 'Method selection',
+              title: 'When the helium sniffer probe method is the right choice',
+              paragraphs: [
+                'Use sniffer probe testing when the product can be safely pressurized but cannot be evacuated, cannot fit into a chamber, or needs field-friendly leak localization after assembly, repair, or service. It is especially useful for weld seams, brazed joints, flange faces, threaded connections, tube joints, valve blocks, manifolds, and sealed enclosures.',
+                'The method is designed to locate a leak point. If the production requirement is a highly repeatable total leak-rate measurement, vacuum chamber testing or another integral method is usually the stronger final acceptance process. Sniffer testing remains valuable as a diagnostic and repair-confirmation method because it tells the operator where to act.',
+              ],
+              cards: [
+                {
+                  title: 'No vacuum environment required',
+                  description:
+                    'The part is tested from the outside while helium is inside the workpiece, making the method useful for pressure-rated assemblies and field checks.',
+                },
+                {
+                  title: 'Leak location instead of only pass/fail',
+                  description:
+                    'The probe can be moved around suspected points so the operator can narrow the leak to a weld, joint, seal, port, or connection.',
+                },
+                {
+                  title: 'Operator technique matters',
+                  description:
+                    'Probe distance, angle, scan speed, nozzle geometry, suction capacity, ambient helium, and ventilation all affect the displayed signal.',
+                },
+                {
+                  title: 'Good fit for repair loops',
+                  description:
+                    'After a leak is found and repaired, the same scan sequence can be repeated to confirm that the response has disappeared.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Operating principle',
+              title: 'From escaping helium to detector signal',
+              paragraphs: [
+                'The workpiece is first charged with helium or a helium mixture to the approved test pressure. Under normal conditions, helium remains inside the sealed volume and the detector display stays below the reject threshold. If a defect is open, helium escapes from the pressurized side into the surrounding air.',
+                'The sniffer probe creates a controlled sample flow at the probe tip. When the tip passes near the escaping helium plume, the sample is transported through the sniffer line to the helium mass spectrometer leak detector. The detector separates helium from the gas stream, amplifies the signal, and presents a leak-rate indication, concentration response, audio alarm, or pass/fail result.',
+              ],
+              callout: {
+                title: 'Customer takeaway',
+                text: 'A sniffer result is strongest when the probe captures the helium plume before it is diluted. Keep the scan close, slow, repeatable, and protected from unstable background helium.',
+              },
+            },
+            {
+              eyebrow: 'Workflow',
+              title: 'Typical helium sniffer probe workflow',
+              steps: [
+                {
+                  title: 'Confirm pressure capability',
+                  description:
+                    'Verify that the workpiece, seals, tooling, and safety controls can withstand the planned positive pressure before helium filling begins.',
+                },
+                {
+                  title: 'Start with a controlled gross search',
+                  description:
+                    'For initial testing, avoid immediately filling with high-concentration or high-pressure helium. A large leak can release a large amount of helium, waste gas, contaminate the area, and make small-leak inspection unstable.',
+                },
+                {
+                  title: 'Pressurize and stabilize',
+                  description:
+                    'Fill the workpiece with helium or a helium mixture, allow the system to stabilize, and confirm the ambient helium background is low enough for the required threshold.',
+                },
+                {
+                  title: 'Scan in a defined sequence',
+                  description:
+                    'Move the probe slowly around suspected leak locations. Use a consistent order, typically from lower areas to upper areas and from far positions toward near positions.',
+                },
+                {
+                  title: 'Confirm the leak location',
+                  description:
+                    'When the detector indicates helium, reduce probe speed and distance, then scan the nearby area repeatedly to locate the strongest and most repeatable response.',
+                },
+                {
+                  title: 'Recover, ventilate, repair, and retest',
+                  description:
+                    'After testing, recover helium when the process supports it or exhaust it safely outdoors. Ventilate the test area, repair the leak, and repeat the same scan route.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Sensitivity',
+              title: 'Why sniffer sensitivity depends on technique',
+              paragraphs: [
+                'Sniffer mode is useful for leak localization, but it is less accurate and less sensitive than vacuum-mode helium testing because the escaping helium is diluted by ambient air before the probe samples it. The signal is therefore influenced by both the leak itself and the way the probe is moved.',
+                'The referenced Wayeal training material lists a minimum detectable leak rate of 2.5 x 10^-9 Pa m3/s for sniffer mode and 5 x 10^-13 Pa m3/s for vacuum mode. The practical gap comes from sample dilution, background helium, airflow, probe distance, and operator-dependent scanning.',
+              ],
+              bullets: [
+                'Leak geometry: a narrow jet, porous leak, crack, or seam leak can produce a different plume shape.',
+                'Probe distance: around 1 cm from the surface is a practical starting point; too far reduces sensitivity, while too close can draw in dust or block the tip.',
+                'Probe angle: the tip should face the likely helium plume instead of sweeping past it at an inconsistent angle.',
+                'Scan speed: slower movement improves capture probability; reduce speed further when the detector begins to respond.',
+                'Nozzle shape and suction capacity: probe hardware affects how much local gas reaches the detector.',
+                'Background helium and airflow: ventilation is needed, but fans or drafts can push helium away from the probe path.',
+              ],
+            },
+            {
+              eyebrow: 'Precautions',
+              title: 'Operational precautions from field practice',
+              bullets: [
+                'Confirm that the workpiece is rated for positive pressure before the test, including weak points such as thin walls, sight windows, seals, and repaired areas.',
+                'Use a lower-risk initial fill strategy for unknown parts. After large leaks are repaired, increase helium concentration or pressure as needed to inspect smaller leaks.',
+                'Keep the probe approximately 1 cm from the surface during normal scanning, then reduce distance and speed around a suspected point to confirm the exact location.',
+                'If the detector shows a leak, do not assume the defect is exactly under the probe tip. Search around the response zone because helium can drift before being sampled.',
+                'Inspect in a controlled order, such as bottom to top and far to near, so residual helium from one area does not confuse the next location.',
+                'Keep the test area well ventilated and prevent helium contamination from accumulating around the workpiece, probe, or detector inlet.',
+                'After inspection, recover helium where available or exhaust the workpiece gas safely outdoors according to the site procedure.',
+                'Check or replace probe filters when dust, oil mist, or surface contamination may be drawn into the sniffer tip.',
+                'Use a calibrated sniffer leak standard or known reference leak to verify that the detector and probe respond before production or shift testing.',
+                'Repeat the scan after repair because a large leak can mask smaller leaks nearby.',
+              ],
+            },
+            {
+              eyebrow: 'Applications',
+              title: 'Where customers use this method',
+              cards: [
+                {
+                  title: 'HVAC and refrigeration',
+                  description:
+                    'Condensers, evaporators, compressors, refrigerant lines, valves, brazed joints, and service repair points.',
+                },
+                {
+                  title: 'Automotive and EV thermal systems',
+                  description:
+                    'Cooling plates, manifolds, battery trays, heat exchangers, welded housings, and pressure-side fluid circuits.',
+                },
+                {
+                  title: 'Electric power equipment',
+                  description:
+                    'Gas-insulated tanks, switchgear components, welded enclosures, sealed poles, fittings, and connection interfaces.',
+                },
+                {
+                  title: 'Maintenance and troubleshooting',
+                  description:
+                    'Field inspections, rebuild stations, repaired seams, final assembly joints, and fixture or adapter checks.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Wayeal support',
+              title: 'How Wayeal helps turn sniffer testing into a stable process',
+              paragraphs: [
+                'A reliable sniffer process is built from more than the detector. Wayeal can help define the helium concentration, fill pressure, probe type, scan route, reject threshold, calibration routine, ventilation approach, and operator training plan around the actual workpiece.',
+                'For a new application, the useful starting information is the part material, internal volume, maximum allowable pressure, expected leak locations, target leak rate, available helium handling method, cycle time, and whether the process will be manual, semi-automatic, or robot-assisted.',
+              ],
+            },
+          ],
+          cta: {
+            title: 'Need to locate leaks on a pressurized part?',
+            description:
+              'Share your workpiece drawings, pressure limit, target leak rate, suspected leak locations, and current test process. Wayeal can help choose between sniffer probe testing, helium spray testing, vacuum chamber testing, and integrated production leak detection.',
+            label: 'Discuss Your Application',
+            href: '/contact',
+          },
+        },
       },
       {
-        label: 'Vacuum Method (真空法)',
+        label: 'Vacuum Method',
         slug: 'vacuum-method',
         href: `${RESOURCE_BASE_PATH}/glossary/vacuum-method`,
         description: 'Key concepts behind testing parts in vacuum chambers or vacuum-connected fixtures.',
