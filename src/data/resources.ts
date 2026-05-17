@@ -91,7 +91,79 @@ export const resources: ResourceCategory[] = [
         label: 'Leak Rate Units',
         slug: 'leak-rate-units',
         href: `${RESOURCE_BASE_PATH}/glossary/leak-rate-units`,
-        description: 'Understand atm cc/s, mbar l/s, Pa m3/s, and how leak rate units are compared.',
+        description:
+          'A short guide to leak rate meaning, common units, quick conversions, and common specification traps.',
+        article: {
+          quickFacts: [
+            { label: 'Simple meaning', value: 'Gas flow through a leak under a pressure difference' },
+            { label: 'Core formula', value: 'Leak rate = pressure change x volume / time' },
+            { label: 'Main units', value: 'Pa·m³/s, mbar·L/s, atm·cc/s, sccm' },
+            { label: 'Reading the number', value: 'A smaller leak rate means a tighter part' },
+          ],
+          intro: [
+            'Leak rate tells how much gas passes through a leak in a set time. Because gas is compressible, useful leak-rate units combine pressure, volume, and time.',
+            'For helium leak testing, Pa·m³/s and mbar·L/s are common in vacuum work. atm·cc/s and sccm are common in U.S. leak-test specifications and flow-style discussions.',
+          ],
+          sections: [
+            {
+              eyebrow: 'Definition',
+              title: 'What leak rate means',
+              paragraphs: [
+                'Leak rate = pressure change x volume / time. If a sealed 1 m³ evacuated vessel rises by 1 Pa in 1 second, the leak rate is 1 Pa·m³/s.',
+                'The same idea in mbar·L/s: if a 1 L vessel changes by 1 mbar in 1 second, the leak rate is 1 mbar·L/s.',
+              ],
+              callout: {
+                title: 'Customer takeaway',
+                text: 'Always compare leak rates with the gas, pressure difference, and temperature in mind. The same physical leak can read differently under different test conditions.',
+              },
+            },
+            {
+              eyebrow: 'Unit names',
+              title: 'Common units',
+              cards: [
+                {
+                  title: 'Pa·m³/s',
+                  description:
+                    'SI-style leak-rate unit. Common in vacuum and helium leak detection specifications.',
+                },
+                {
+                  title: 'mbar·L/s',
+                  description:
+                    'Very common helium leak testing unit. 1 Pa·m³/s = 10 mbar·L/s.',
+                },
+                {
+                  title: 'atm·cc/s',
+                  description:
+                    'Atmosphere cubic centimeters per second. It is close to mbar·L/s, but not exactly the same.',
+                },
+                {
+                  title: 'sccm',
+                  description:
+                    'Standard cubic centimeters per minute. 1 atm·cc/s = 60 sccm.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Quick reference',
+              title: 'Useful conversions and common mistakes',
+              bullets: [
+                '1 Pa·m³/s = 10 mbar·L/s = about 9.87 atm·cc/s = about 592 sccm.',
+                '1 mbar·L/s = about 0.987 atm·cc/s = about 59.2 sccm.',
+                '1 atm·cc/s = 1.013 mbar·L/s = 0.101 Pa·m³/s = 60 sccm.',
+                '1 Torr·L/s = 1.333 mbar·L/s.',
+                'ppm is concentration, not leak rate. It is useful for sniffer or accumulation tests, but it depends on sampling flow, volume, and timing.',
+                'g/a (g/year) and %/year are application units. They must be tied to the product gas, internal volume, pressure, and acceptance rule.',
+              ],
+            },
+          ],
+          cta: {
+            title: 'Need to convert a leak rate?',
+            description:
+              'Use the Wayeal converter for quick comparisons between Pa·m³/s, mbar·L/s, atm·cc/s, Torr·L/s, and sccm.',
+            label: 'Open Unit Converter',
+            href: '/resources/useful-tools/leak-rate-unit-converter',
+          },
+        },
       },
       {
         label: 'Helium Spray Method',
@@ -383,7 +455,7 @@ export const resources: ResourceCategory[] = [
               title: 'Why sniffer sensitivity depends on technique',
               paragraphs: [
                 'Sniffer mode is useful for leak localization, but it is less accurate and less sensitive than vacuum-mode helium testing because the escaping helium is diluted by ambient air before the probe samples it. The signal is therefore influenced by both the leak itself and the way the probe is moved.',
-                'The referenced Wayeal training material lists a minimum detectable leak rate of 2.5 x 10^-9 Pa m3/s for sniffer mode and 5 x 10^-13 Pa m3/s for vacuum mode. The practical gap comes from sample dilution, background helium, airflow, probe distance, and operator-dependent scanning.',
+                'The referenced Wayeal training material lists a minimum detectable leak rate of 2.5 × 10^-9 Pa·m³/s for sniffer mode and 5 × 10^-13 Pa·m³/s for vacuum mode. The practical gap comes from sample dilution, background helium, airflow, probe distance, and operator-dependent scanning.',
               ],
               bullets: [
                 'Leak geometry: a narrow jet, porous leak, crack, or seam leak can produce a different plume shape.',

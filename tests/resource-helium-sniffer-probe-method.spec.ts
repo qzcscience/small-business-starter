@@ -21,7 +21,7 @@ test.describe('Helium Sniffer Probe Method resource', () => {
     await expect(diagram).toBeVisible();
     await expect(diagram).toHaveAttribute('src', /helium-sniffer-probe-method-corrected-4k/);
 
-    await expect(page.getByText('2.5 x 10^-9 Pa m3/s')).toBeVisible();
+    await expect(page.getByText('2.5 × 10^-9 Pa·m³/s')).toBeVisible();
     await expect(page.getByText('around 1 cm from the surface')).toBeVisible();
     await expect(page.getByText('recover helium where available')).toBeVisible();
     await expect(page.getByText('Need to locate leaks on a pressurized part?')).toBeVisible();
