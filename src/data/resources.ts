@@ -1,6 +1,7 @@
 import { siteVideos, type SiteVideo } from './videos';
 import heliumSprayMethodImage from '../assets/images/resources/helium-spray-method-image2-4k.png?url';
 import heliumSnifferProbeMethodImage from '../assets/images/resources/helium-sniffer-probe-method-corrected-4k.png?url';
+import vacuumChamberHeliumLeakDetectionMethodImage from '../assets/images/resources/vacuum-chamber-helium-leak-detection-method-v2-suction-flow-enhanced-4k.png?url';
 
 export interface ResourceDownload {
   title: string;
@@ -527,10 +528,162 @@ export const resources: ResourceCategory[] = [
         },
       },
       {
-        label: 'Vacuum Method',
-        slug: 'vacuum-method',
-        href: `${RESOURCE_BASE_PATH}/glossary/vacuum-method`,
-        description: 'Key concepts behind testing parts in vacuum chambers or vacuum-connected fixtures.',
+        label: 'Vacuum Chamber Helium Leak Detection Method',
+        slug: 'vacuum-chamber-helium-leak-detection-method',
+        href: `${RESOURCE_BASE_PATH}/glossary/vacuum-chamber-helium-leak-detection-method`,
+        description:
+          'How vacuum chamber helium leak detection tests sealed workpieces by evacuating the chamber, filling the part with helium, and measuring leaked helium with a mass spectrometer leak detector.',
+        article: {
+          heroImage: {
+            src: vacuumChamberHeliumLeakDetectionMethodImage,
+            alt: 'Vacuum chamber helium leak detection method workflow showing chamber evacuation, workpiece evacuation, helium filling, V2 sampling, and helium leak detector judgement',
+            caption:
+              'In the vacuum chamber helium leak detection method, the chamber is evacuated around the workpiece, the workpiece is filled with helium, and any leaked helium is pulled through the V2 sampling line to the helium leak detector for PASS or FAIL judgement.',
+          },
+          quickFacts: [
+            { label: 'Best fit', value: 'Sealed workpieces that can be connected to vacuum and helium lines' },
+            { label: 'Primary purpose', value: 'High-sensitivity integral leak testing in a vacuum chamber' },
+            { label: 'Tracer gas path', value: 'Helium escapes from the workpiece into the evacuated chamber' },
+            { label: 'Result logic', value: 'Detector signal within limit = PASS; above limit = FAIL' },
+          ],
+          intro: [
+            'The vacuum chamber helium leak detection method is an integral test for sealed parts that need a sensitive, repeatable pass/fail result. The workpiece is loaded into a vacuum chamber and connected to external gas and vacuum lines. By creating vacuum around the part and then filling the part with helium, the system gives any real leak path a clear pressure-driven direction into the chamber.',
+            'For production customers, the method is useful when the question is not only where a leak might be, but whether the complete workpiece meets the required leak-rate limit. It is commonly used with automated chambers, fixtures, valves, vacuum pumps, helium supply lines, and a helium mass spectrometer leak detector as one controlled process.',
+          ],
+          sections: [
+            {
+              eyebrow: 'Operating principle',
+              title: 'How the vacuum chamber method works',
+              paragraphs: [
+                'The workpiece is loaded into the vacuum chamber and connected to the external gas and vacuum lines. The chamber is first evacuated by the chamber vacuum pump through V3, creating a low-pressure environment around the workpiece.',
+                'Next, the workpiece is evacuated through V4 by the workpiece vacuum pump. After evacuation, helium is charged into the workpiece through V5 from the helium cylinder. The workpiece is then filled with helium under test pressure.',
+                'If the workpiece has a leak, helium escapes from the leak point into the vacuum chamber. The leaked helium inside the chamber is drawn toward the V2 sampling line and flows through V2 to the helium leak detector.',
+                'The helium leak detector measures the helium signal and determines the test result. If the detected leak rate is within the acceptable limit, the result is PASS. If the helium signal exceeds the limit, the system triggers an alarm and the result is FAIL.',
+              ],
+              callout: {
+                title: 'Customer takeaway',
+                text: 'The method turns a complete sealed workpiece into a controlled measurement: helium is inside the part, vacuum is outside the part, and the detector measures the total helium escaping into the chamber.',
+              },
+            },
+            {
+              eyebrow: 'Workflow',
+              title: 'Typical vacuum chamber helium leak test sequence',
+              steps: [
+                {
+                  title: 'Load and connect the workpiece',
+                  description:
+                    'Place the workpiece in the chamber, seal the chamber door, and connect the part to the required vacuum, helium filling, and exhaust or recovery lines.',
+                },
+                {
+                  title: 'Evacuate the chamber through V3',
+                  description:
+                    'Use the chamber vacuum pump to remove air from the chamber and create a low-pressure environment around the outside of the workpiece.',
+                },
+                {
+                  title: 'Evacuate the workpiece through V4',
+                  description:
+                    'Use the workpiece vacuum pump to remove air from the internal volume so the helium filling step is stable and repeatable.',
+                },
+                {
+                  title: 'Fill the workpiece with helium through V5',
+                  description:
+                    'Charge helium from the helium cylinder into the workpiece until the defined test pressure or process condition is reached.',
+                },
+                {
+                  title: 'Sample leaked helium through V2',
+                  description:
+                    'If helium escapes into the vacuum chamber, the sampling path draws it through the V2 sampling line to the helium mass spectrometer leak detector.',
+                },
+                {
+                  title: 'Judge PASS or FAIL',
+                  description:
+                    'Compare the measured helium leak rate with the acceptance limit. A stable signal within the limit is PASS; a signal above the limit triggers an alarm and is FAIL.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Method selection',
+              title: 'Why use vacuum chamber helium leak detection',
+              cards: [
+                {
+                  title: 'High sensitivity',
+                  description:
+                    'The chamber vacuum reduces background gas and helps small amounts of leaked helium reach the detector with less dilution than open-air sampling.',
+                },
+                {
+                  title: 'Integral judgement',
+                  description:
+                    'The test evaluates the complete sealed workpiece instead of only one weld, seam, tube joint, or suspected point at a time.',
+                },
+                {
+                  title: 'Good production fit',
+                  description:
+                    'The sequence can be automated with chamber doors, tooling, valves, vacuum pumps, helium filling, detector measurement, alarms, and data logging.',
+                },
+                {
+                  title: 'Repeatable acceptance',
+                  description:
+                    'Controlled pressure, chamber volume, evacuation level, stabilization time, and calibrated detector response make the pass/fail decision easier to standardize.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Process design',
+              title: 'Important engineering considerations',
+              bullets: [
+                'The workpiece must tolerate the selected helium test pressure and connection method.',
+                'The chamber must be sized for the part, fixture, sealing clearance, loading method, and target cycle time.',
+                'Fixture seals and adapters must be separated from true workpiece leaks during commissioning and troubleshooting.',
+                'Vacuum pump capacity, chamber volume, evacuation target, and stabilization time strongly affect cycle time.',
+                'The leak detector range, calibration routine, reject threshold, and alarm logic should match the customer specification.',
+                'Helium consumption and recovery strategy should be evaluated when production volume or part volume is high.',
+                'A gross leak pre-check can protect the process from helium waste, long pump-down times, and unstable background signals.',
+                'The test sequence should define what happens after FAIL, including retest, repair, helium exhaust, and operator guidance.',
+              ],
+            },
+            {
+              eyebrow: 'Applications',
+              title: 'Where customers use this method',
+              cards: [
+                {
+                  title: 'EV batteries and thermal systems',
+                  description:
+                    'Battery trays, cooling plates, manifolds, heat exchangers, welded housings, and sealed coolant circuits.',
+                },
+                {
+                  title: 'HVAC and refrigeration',
+                  description:
+                    'Condensers, evaporators, compressors, valves, brazed assemblies, refrigerant circuits, and pressure vessels.',
+                },
+                {
+                  title: 'Electric power equipment',
+                  description:
+                    'Gas-insulated tanks, switchgear components, sealed pole parts, welded enclosures, and pressure-retaining assemblies.',
+                },
+                {
+                  title: 'Vacuum and semiconductor equipment',
+                  description:
+                    'Vacuum modules, welded chambers, gas panels, sealed packages, process assemblies, and high-integrity components.',
+                },
+              ],
+            },
+            {
+              eyebrow: 'Wayeal support',
+              title: 'How Wayeal helps turn the method into a stable station',
+              paragraphs: [
+                'A reliable vacuum chamber helium leak detection station is more than a chamber and a detector. Wayeal can help define the chamber size, fixture concept, valve sequence, vacuum pump selection, helium filling strategy, detector configuration, calibration plan, reject limit, data output, and operator workflow.',
+                'For a new application, the useful starting information is the workpiece drawing, material, internal volume, allowable pressure, target leak rate, expected production takt time, automation level, helium recovery requirement, and whether the station needs manual loading, semi-automatic handling, or full line integration.',
+              ],
+            },
+          ],
+          cta: {
+            title: 'Need a vacuum chamber helium leak test process?',
+            description:
+              'Share your workpiece drawings, target leak rate, test pressure, cycle time, and automation requirements. Wayeal can help configure the chamber, tooling, valves, pumps, leak detector, and helium handling around your production process.',
+            label: 'Discuss Your Application',
+            href: '/contact',
+          },
+        },
       },
     ],
   },
