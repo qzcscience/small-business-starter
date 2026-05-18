@@ -1,23 +1,176 @@
 ---
+import type { ImageMetadata } from 'astro';
 import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
 import { getAboutSection } from '../../data/about';
 
+type AwardImageModule = {
+  default: ImageMetadata;
+};
+
+interface AwardItem {
+  fileName: string;
+  alt: string;
+  title: string;
+  issuer: string;
+}
+
 const section = getAboutSection('academic-research-collaboration')!;
+const awardImageModules = import.meta.glob<AwardImageModule>(
+  '../../assets/images/about/awards/*.webp',
+  { eager: true },
+);
+
+const getAwardImage = (fileName: string) =>
+  awardImageModules[`../../assets/images/about/awards/${fileName}`]?.default;
+
+const awards: AwardItem[] = [
+  {
+    fileName: '01-national-enterprise-technology-center.webp',
+    alt: 'National Enterprise Technology Center honor certificate',
+    title: 'National Enterprise Technology Center',
+    issuer: 'Department of Innovation and High-Tech Development, NDRC',
+  },
+  {
+    fileName: '02-national-specialized-sophisticated-little-giant.webp',
+    alt: 'National Specialized and Sophisticated Little Giant honor certificate',
+    title: 'National Specialized and Sophisticated Little Giant Enterprise',
+    issuer: 'Ministry of Industry and Information Technology',
+  },
+  {
+    fileName: '03-national-ip-demonstration-enterprise.webp',
+    alt: 'National Intellectual Property Demonstration Enterprise honor certificate',
+    title: 'National Intellectual Property Demonstration Enterprise',
+    issuer: 'China National Intellectual Property Administration',
+  },
+  {
+    fileName: '04-national-ip-advantage-enterprise.webp',
+    alt: 'National Intellectual Property Advantage Enterprise honor certificate',
+    title: 'National Intellectual Property Advantage Enterprise',
+    issuer: 'China National Intellectual Property Administration',
+  },
+  {
+    fileName: '05-national-postdoctoral-workstation.webp',
+    alt: 'National Postdoctoral Research Workstation honor certificate',
+    title: 'National Postdoctoral Research Workstation',
+    issuer: 'Ministry of Human Resources and Social Security, etc.',
+  },
+  {
+    fileName: '06-national-high-tech-enterprise.webp',
+    alt: 'National High-tech Enterprise honor certificate',
+    title: 'National High-Tech Enterprise',
+    issuer: 'Ministry of Science and Technology',
+  },
+  {
+    fileName: '07-national-fire-plan-high-tech-enterprise.webp',
+    alt: 'National Torch Program Key High-tech Enterprise honor certificate',
+    title: 'Key High-Tech Enterprise under the National Torch Program',
+    issuer: 'Torch High Technology Industry Development Center, Ministry of Science and Technology',
+  },
+  {
+    fileName: '08-anhui-private-enterprise.webp',
+    alt: 'Anhui Province Excellent Private Enterprise honor certificate',
+    title: 'Anhui Excellent Private Enterprise',
+    issuer: 'Office of the Leading Group for Private Economy Development of Anhui Province',
+  },
+  {
+    fileName: '09-anhui-science-and-technology-leading-enterprise.webp',
+    alt: 'Anhui Science and Technology Leading Enterprise honor certificate',
+    title: 'Anhui Science and Technology Leading Enterprise',
+    issuer: 'Anhui Provincial Department of Science and Technology',
+  },
+  {
+    fileName: '10-anhui-provincial-industrial-innovation-research-institute.webp',
+    alt: 'Anhui Provincial Industrial Innovation Research Institute honor certificate',
+    title: 'Anhui Industrial Innovation Research Institute',
+    issuer: 'Anhui Provincial Department of Science and Technology',
+  },
+  {
+    fileName: '11-anhui-provincial-postdoctoral-workstation.webp',
+    alt: 'Anhui Provincial Postdoctoral Workstation honor certificate',
+    title: 'Anhui Academician Workstation',
+    issuer: 'Anhui Provincial Department of Science and Technology',
+  },
+  {
+    fileName: '12-anhui-engineering-research-center.webp',
+    alt: 'Anhui Engineering Research Center honor certificate',
+    title: 'Anhui Engineering Research Center',
+    issuer: 'Anhui Provincial Development and Reform Commission',
+  },
+  {
+    fileName: '13-anhui-green-factory.webp',
+    alt: 'Anhui Green Factory honor certificate',
+    title: 'Anhui Green Factory',
+    issuer: 'Anhui Provincial Department of Economy and Information Technology',
+  },
+  {
+    fileName: '14-anhui-patent-award.webp',
+    alt: 'Anhui Patent Award honor certificate',
+    title: 'Anhui Patent Award, Excellence Award',
+    issuer: 'Anhui Administration for Market Regulation',
+  },
+  {
+    fileName: '15-anhui-harmonious-labor-enterprise.webp',
+    alt: 'Anhui Harmonious Labor Relations Demonstration Enterprise honor certificate',
+    title: 'Anhui Harmonious Labor Relations Demonstration Enterprise',
+    issuer: 'Anhui Provincial Department of Human Resources and Social Security',
+  },
+  {
+    fileName: '16-anhui-environmental-protection-industry-excellent-enterprise.webp',
+    alt: 'Anhui Environmental Protection Industry Excellent Enterprise honor certificate',
+    title: 'Anhui Environmental Protection Industry Excellent Enterprise',
+    issuer: 'Anhui Environmental Protection Industry Development Promotion Association',
+  },
+  {
+    fileName: '17-anhui-brand-demonstration-enterprise.webp',
+    alt: 'Anhui Brand Demonstration Enterprise honor certificate',
+    title: 'Anhui Trademark Brand Demonstration Enterprise',
+    issuer: 'Anhui Trademark Brand Demonstration Enterprise Recommendation Committee',
+  },
+  {
+    fileName: '18-2019-world-manufacturing-convention-innovation-product-gold-award.webp',
+    alt: '2019 World Manufacturing Convention Innovation Product Gold Award certificate',
+    title: '2019 World Manufacturing Convention Innovation Product Gold Award',
+    issuer: 'Organizing Committee of the 2019 World Manufacturing Convention',
+  },
+];
 ---
 
-<AboutDetailShell section={section}>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    {section.blocks.map((block) => (
-      <section>
-        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
-          {block.title}
-        </h2>
-        <div class="mt-4 space-y-4">
-          {block.body.map((paragraph) => (
-            <p class="leading-relaxed text-text-muted">{paragraph}</p>
-          ))}
-        </div>
-      </section>
-    ))}
-  </div>
+<AboutDetailShell
+  section={section}
+  showSummary={false}
+  showHighlights={false}
+  showBackLink={false}
+  showCta={false}
+>
+  <section aria-labelledby="awards-gallery-heading">
+    <h2 id="awards-gallery-heading" class="sr-only">Awards and honors gallery</h2>
+    <div class="grid grid-cols-2 items-start gap-2.5 sm:gap-3 md:grid-cols-3 xl:grid-cols-6">
+      {awards.map((award) => {
+        const image = getAwardImage(award.fileName);
+        if (!image) return null;
+
+        return (
+          <figure class="overflow-hidden rounded-md border border-border/80 bg-background shadow-sm">
+            <img
+              src={image.src}
+              width={image.width}
+              height={image.height}
+              alt={award.alt}
+              loading="lazy"
+              decoding="async"
+              class="block h-auto w-full"
+            />
+            <figcaption class="border-t border-border/70 bg-surface/50 px-3 py-3 text-center">
+              <p class="text-[0.72rem] font-semibold uppercase leading-snug text-primary">
+                {award.title}
+              </p>
+              <p class="mt-1 text-[0.68rem] leading-snug text-text-muted">
+                {award.issuer}
+              </p>
+            </figcaption>
+          </figure>
+        );
+      })}
+    </div>
+  </section>
 </AboutDetailShell>

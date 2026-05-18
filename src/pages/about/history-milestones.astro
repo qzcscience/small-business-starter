@@ -3,21 +3,505 @@ import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
 import { getAboutSection } from '../../data/about';
 
 const section = getAboutSection('history-milestones')!;
+
+const stages = [
+  {
+    label: 'Emerging Foundation',
+    years: '2003-2009',
+    description: 'Company establishment, core leak detection products, and early product-platform formation.',
+  },
+  {
+    label: 'Rapid Development',
+    years: '2010-2019',
+    description: 'Corporate upgrade, national qualifications, market expansion, and analytical instrument breakthroughs.',
+  },
+  {
+    label: 'Future-Oriented Growth',
+    years: '2020-Future',
+    description: 'STAR Market listing, solution-service transformation, internationalization, digitalization, and life science growth.',
+  },
+];
+
+const milestones = [
+  {
+    year: '2003',
+    stage: 'Emerging Foundation',
+    title: 'Company Established',
+    body: 'Hefei Wanyi Science and Technology Co., Ltd. was founded.',
+  },
+  {
+    year: '2005',
+    stage: 'Emerging Foundation',
+    title: 'Helium Leak Detector Launched',
+    body: 'The helium mass spectrometer leak detector was launched and recognized as a National Key New Product.',
+  },
+  {
+    year: '2006',
+    stage: 'Emerging Foundation',
+    title: 'National Torch Program Project',
+    body: 'Wayeal undertook a National Torch Program project.',
+  },
+  {
+    year: '2007',
+    stage: 'Emerging Foundation',
+    title: 'Vacuum Chamber Recovery System',
+    body: 'The vacuum chamber leak detection and recovery system was launched and recognized as a National Key New Product.',
+  },
+  {
+    year: '2008',
+    stage: 'Emerging Foundation',
+    title: 'National High-Tech Enterprise',
+    body: 'Wayeal was recognized as a National High-Tech Enterprise.',
+  },
+  {
+    year: '2009',
+    stage: 'Emerging Foundation',
+    title: 'New Product Platforms',
+    body: 'Analytical instrument and environmental monitoring product lines were introduced.',
+  },
+  {
+    year: '2010',
+    stage: 'Rapid Development',
+    title: 'Corporate Name Upgrade',
+    body: 'The company was officially renamed Anhui Wanyi Science and Technology Co., Ltd.',
+  },
+  {
+    year: '2011',
+    stage: 'Rapid Development',
+    title: 'Torch Program Recognition',
+    body: 'Wayeal was recognized under the National Torch Program Key High-Tech Enterprise plan.',
+  },
+  {
+    year: '2013',
+    stage: 'Rapid Development',
+    title: 'CEMS1000 Recognized',
+    body: 'The CEMS1000 flue gas continuous emission monitoring system was recognized as a National Key New Product.',
+  },
+  {
+    year: '2014',
+    stage: 'Rapid Development',
+    title: 'Revenue Breakthrough',
+    body: 'Company revenue exceeded RMB 100 million.',
+  },
+  {
+    year: '2016',
+    stage: 'Rapid Development',
+    title: 'New Energy Expansion',
+    body: 'Leak detection products expanded rapidly in the new energy market.',
+  },
+  {
+    year: '2017',
+    stage: 'Rapid Development',
+    title: 'Environmental Equipment Selection',
+    body: 'CEMS1200, CEMS1600, VM1700, and LG1100 were included in the 2017 environmental protection equipment selection by the China Association of Environmental Protection Industry.',
+  },
+  {
+    year: '2018',
+    stage: 'Rapid Development',
+    title: 'Full Fixed-Source Coverage',
+    body: 'Wayeal achieved full coverage of fixed-source pollution product lines and expanded into environmental monitoring and industrial online analysis markets.',
+  },
+  {
+    year: '2019',
+    stage: 'Rapid Development',
+    title: 'LC3600 Gold Award',
+    body: 'The LC3600 ultra-high performance liquid chromatograph won the Innovation Product Gold Award at the 2019 World Manufacturing Convention.',
+  },
+  {
+    year: '2020',
+    stage: 'Future-Oriented Growth',
+    title: 'STAR Market Listing',
+    body: 'Wayeal listed on the Shanghai Stock Exchange STAR Market, shifted from equipment manufacturing to integrated solution services, and introduced internationalization and Digital Wayeal strategies.',
+  },
+  {
+    year: '2021',
+    stage: 'Future-Oriented Growth',
+    title: 'Medical and Life Science Layout',
+    body: 'Wayeal began laying out medical and life science instruments.',
+  },
+  {
+    year: '2022',
+    stage: 'Future-Oriented Growth',
+    title: 'IP Demonstration Enterprise',
+    body: 'Wayeal was recognized as a National Intellectual Property Demonstration Enterprise.',
+  },
+  {
+    year: '2023',
+    stage: 'Future-Oriented Growth',
+    title: 'Life Science Instruments',
+    body: 'Life science instrument products were introduced.',
+  },
+  {
+    year: '2024',
+    stage: 'Future-Oriented Growth',
+    title: 'Medical Instruments',
+    body: 'Medical instrument products were introduced.',
+  },
+];
+
+const events2025 = [
+  'Approved for the Yangtze River Delta Wireless Minimally Invasive Surgery System Innovation Consortium in June 2025.',
+  'Jointly established a laboratory for key vacuum measurement equipment in nuclear fusion applications with the Hefei Comprehensive National Science Center Energy Research Institute in June 2025.',
+  'The liquid chromatography triple quadrupole mass spectrometer was selected for the Ministry of Industry and Information Technology first major technical equipment insurance compensation catalog in November 2025.',
+  'Helium mass spectrometer leak detectors received national-level Manufacturing Single Champion recognition in 2025.',
+];
 ---
 
-<AboutDetailShell section={section}>
-  <div class="space-y-6">
-    {section.blocks.map((block) => (
-      <section class="border-l-2 border-primary/40 pl-5">
-        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
-          {block.title}
-        </h2>
-        <div class="mt-4 space-y-4">
-          {block.body.map((paragraph) => (
-            <p class="leading-relaxed text-text-muted">{paragraph}</p>
-          ))}
-        </div>
-      </section>
-    ))}
+<AboutDetailShell section={section} showSummary={false} showHighlights={false}>
+  <div class="history-board">
+    <div class="history-board__wave" aria-hidden="true"></div>
+
+    <section class="stage-grid" aria-label="Development stages">
+      {stages.map((stage) => (
+        <article>
+          <span>{stage.years}</span>
+          <h3>{stage.label}</h3>
+          <p>{stage.description}</p>
+        </article>
+      ))}
+    </section>
+
+    <ol class="timeline" aria-label="Wayeal company development milestones">
+      {milestones.map((milestone) => (
+        <li class="timeline__item">
+          <article class="timeline__card">
+            <p class="timeline__stage">{milestone.stage}</p>
+            <h3>
+              <span>{milestone.year}</span>
+              {milestone.title}
+            </h3>
+            <p>{milestone.body}</p>
+          </article>
+        </li>
+      ))}
+    </ol>
+
+    <section class="events-panel" aria-labelledby="events-heading">
+      <div class="events-panel__bar">
+        <span>2025</span>
+        <h2 id="events-heading">Company Development Major Events</h2>
+      </div>
+      <ul>
+        {events2025.map((event) => (
+          <li>{event}</li>
+        ))}
+      </ul>
+    </section>
   </div>
 </AboutDetailShell>
+
+<style>
+  .history-board {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(30, 90, 150, 0.14);
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 36%),
+      linear-gradient(135deg, #f7fafc 0%, #eef5f9 48%, #f9fbfc 100%);
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+  }
+
+  .history-board::before,
+  .history-board::after {
+    position: absolute;
+    inset: -18% -8% auto;
+    z-index: -2;
+    height: 62%;
+    content: "";
+    border-radius: 50%;
+    border: 1px solid rgba(27, 96, 152, 0.08);
+    transform: rotate(-8deg);
+  }
+
+  .history-board::after {
+    inset: 18% -16% auto;
+    height: 72%;
+    border-color: rgba(27, 96, 152, 0.06);
+    transform: rotate(9deg);
+  }
+
+  .history-board__wave {
+    position: absolute;
+    left: -12%;
+    right: -12%;
+    top: 30%;
+    z-index: -1;
+    height: 28rem;
+    opacity: 0.42;
+    background:
+      radial-gradient(ellipse at 42% 48%, rgba(35, 109, 164, 0.28) 0 18%, rgba(105, 176, 214, 0.18) 19% 34%, rgba(255, 255, 255, 0) 62%),
+      repeating-radial-gradient(ellipse at 52% 52%, rgba(35, 109, 164, 0.14) 0 1px, rgba(255, 255, 255, 0) 1px 7px);
+    border-radius: 48% 52% 46% 54%;
+    filter: blur(0.25px);
+    transform: rotate(-8deg);
+  }
+
+  .history-board__wave::before,
+  .history-board__wave::after {
+    position: absolute;
+    inset: 14% -2%;
+    content: "";
+    border: 1px solid rgba(27, 96, 152, 0.18);
+    border-color: rgba(27, 96, 152, 0.18) transparent transparent rgba(27, 96, 152, 0.1);
+    border-radius: 50%;
+    transform: rotate(9deg);
+  }
+
+  .history-board__wave::after {
+    inset: 24% 5% 18%;
+    border-color: transparent rgba(27, 96, 152, 0.13) rgba(27, 96, 152, 0.16) transparent;
+    transform: rotate(-6deg);
+  }
+
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 0;
+  }
+
+  .stage-grid article {
+    border-left: 3px solid #0c78bd;
+    background: rgba(255, 255, 255, 0.72);
+    padding: 1rem;
+  }
+
+  .stage-grid span {
+    color: #0070b8;
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+
+  .stage-grid h3 {
+    margin: 0.35rem 0 0;
+    color: #0f2f57;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .stage-grid p {
+    margin: 0.45rem 0 0;
+    color: #536475;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: 1.35rem;
+    margin: 2.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timeline::before {
+    position: absolute;
+    top: 0.6rem;
+    bottom: 0.6rem;
+    left: 50%;
+    width: 2px;
+    content: "";
+    background: linear-gradient(180deg, rgba(0, 112, 184, 0), #0070b8 8%, #0070b8 92%, rgba(0, 112, 184, 0));
+    transform: translateX(-50%);
+  }
+
+  .timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .timeline__item::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 0.78rem;
+    height: 0.78rem;
+    content: "";
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #0070b8;
+    box-shadow: 0 0 0 5px rgba(0, 112, 184, 0.13);
+    transform: translate(-50%, -50%);
+  }
+
+  .timeline__item::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    width: 1.5rem;
+    height: 1px;
+    content: "";
+    background: rgba(0, 112, 184, 0.5);
+    transform: translateY(-50%);
+  }
+
+  .timeline__item:nth-child(odd)::after {
+    margin-left: -1.5rem;
+  }
+
+  .timeline__item:nth-child(even)::after {
+    margin-left: 0;
+  }
+
+  .timeline__item:nth-child(even) .timeline__card {
+    grid-column: 2;
+  }
+
+  .timeline__card {
+    position: relative;
+    border: 1px solid rgba(0, 112, 184, 0.14);
+    background: rgba(255, 255, 255, 0.84);
+    padding: 1rem 1.1rem;
+    box-shadow: 0 16px 35px rgba(15, 47, 87, 0.08);
+  }
+
+  .timeline__stage {
+    margin: 0;
+    color: #0070b8;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .timeline__card h3 {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: baseline;
+    margin: 0.4rem 0 0;
+    color: #17375e;
+    font-size: 1.02rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .timeline__card h3 span {
+    color: #c8952e;
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .timeline__card p:last-child {
+    margin: 0.55rem 0 0;
+    color: #4f5f6f;
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .events-panel {
+    display: grid;
+    grid-template-columns: minmax(9rem, 11rem) minmax(0, 1fr);
+    margin-top: 2.75rem;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 18px 42px rgba(15, 47, 87, 0.1);
+  }
+
+  .events-panel__bar {
+    display: flex;
+    min-height: 16rem;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(180deg, #0c4f93 0%, #55b5e5 100%);
+    padding: 1.2rem;
+    color: #ffffff;
+  }
+
+  .events-panel__bar span {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .events-panel__bar h2 {
+    margin: 0.55rem 0 0;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .events-panel ul {
+    display: grid;
+    gap: 0.75rem;
+    align-content: center;
+    margin: 0;
+    padding: 1.5rem 1.6rem;
+    list-style: none;
+  }
+
+  .events-panel li {
+    position: relative;
+    padding-left: 1rem;
+    color: #27384a;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .events-panel li::before {
+    position: absolute;
+    top: 0.68em;
+    left: 0;
+    width: 0.38rem;
+    height: 0.38rem;
+    content: "";
+    border-radius: 999px;
+    background: #0070b8;
+  }
+
+  @media (max-width: 760px) {
+    .history-board {
+      padding: 1rem;
+    }
+
+    .stage-grid,
+    .events-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline {
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-left: 1.2rem;
+    }
+
+    .timeline::before {
+      left: 0.15rem;
+      transform: none;
+    }
+
+    .timeline__item {
+      display: block;
+    }
+
+    .timeline__item::before {
+      left: -1.05rem;
+      transform: translateY(-50%);
+    }
+
+    .timeline__item::after {
+      left: -0.45rem;
+      width: 0.7rem;
+      margin-left: 0 !important;
+    }
+
+    .timeline__card h3 {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .events-panel__bar {
+      min-height: auto;
+    }
+  }
+</style>

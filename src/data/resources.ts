@@ -2,6 +2,7 @@ import { siteVideos, type SiteVideo } from './videos';
 import heliumSprayMethodImage from '../assets/images/resources/helium-spray-method-image2-4k.png?url';
 import heliumSnifferProbeMethodImage from '../assets/images/resources/helium-sniffer-probe-method-corrected-4k.png?url';
 import vacuumChamberHeliumLeakDetectionMethodImage from '../assets/images/resources/vacuum-chamber-helium-leak-detection-method-v2-suction-flow-enhanced-4k.png?url';
+import methodComparisonImage from '../assets/images/resources/helium-pressure-decay-bubble-test-comparison.svg?url';
 
 export interface ResourceDownload {
   title: string;
@@ -721,6 +722,87 @@ export const resources: ResourceCategory[] = [
             href: `${RESOURCE_BASE_PATH}/technical-guides/method-comparison/helium-vs-pressure-decay-vs-bubble-test`,
             description:
               'A practical comparison of sensitivity, speed, automation fit, and inspection confidence.',
+            article: {
+              heroImage: {
+                src: methodComparisonImage,
+                alt: 'Comparison schematic for helium leak testing, pressure decay testing, and bubble testing',
+                caption:
+                  'Helium leak testing, pressure decay testing, and bubble testing each solve a different production leak testing problem.',
+              },
+              quickFacts: [
+                { label: 'Highest sensitivity', value: 'Helium leak testing with tracer gas and a leak detector' },
+                { label: 'Best low-cost screen', value: 'Pressure decay for gross to medium leaks on stable parts' },
+                { label: 'Best visual location', value: 'Bubble testing with water immersion or soap solution' },
+                { label: 'Production rule', value: 'Screen large leaks first, then use helium for final validation' },
+              ],
+              intro: [
+                'Choosing between helium leak testing vs pressure decay vs bubble test methods depends on the required leak rate, part volume, test pressure, cycle time, and whether the line needs a quantitative result or a visible leak location.',
+                'For industrial leak test method selection, the safest approach is to match the test method to the failure risk. Bubble testing is simple and visual, pressure decay is practical for many production leak testing stations, and helium tracer gas testing is used when small leaks, repeatability, or automated final inspection matter most.',
+              ],
+              sections: [
+                {
+                  eyebrow: 'Method overview',
+                  title: 'Quick comparison',
+                  cards: [
+                    {
+                      title: 'Helium leak testing',
+                      description:
+                        'Measures escaping helium tracer gas with a leak detector. It is the best fit for high-sensitivity final inspection, vacuum chamber systems, sniffer leak location, and parts where pressure decay may miss small or distributed leaks.',
+                    },
+                    {
+                      title: 'Pressure decay testing',
+                      description:
+                        'Pressurizes the part, isolates it, and measures pressure loss over a fixed time. It is useful for gross to medium leak screening when the part volume is stable, the test pressure is defined, and the acceptance limit does not require ultra-low leak rates.',
+                    },
+                    {
+                      title: 'Bubble testing',
+                      description:
+                        'Uses water immersion or soap solution so escaping gas forms visible bubbles. It is simple and low cost, but it is usually manual, less repeatable, and better for leak location or repair checks than automated quantitative production control.',
+                    },
+                  ],
+                },
+                {
+                  eyebrow: 'Selection guide',
+                  title: 'When each method fits',
+                  bullets: [
+                    'Choose helium leak testing when the target leak rate is small, the part is high value, the leak path may be very fine, or the production line needs repeatable quantitative inspection.',
+                    'Choose helium vacuum chamber or accumulation testing when the whole part must be checked instead of only a few visible joints.',
+                    'Choose helium sniffer testing when operators or robots need to locate a leak after a failed integral test.',
+                    'Choose pressure decay when the part has a known internal volume, stable temperature behavior, and a gross or medium leak limit that can be detected through pressure loss.',
+                    'Use pressure decay as a pre-screen before helium testing when a large leak could waste helium, slow the cycle, or contaminate the test area.',
+                    'Choose bubble testing when the priority is visible leak location, quick troubleshooting, operator training, or confirming a repair at a simple workstation.',
+                  ],
+                },
+                {
+                  eyebrow: 'Line design',
+                  title: 'A practical production workflow',
+                  paragraphs: [
+                    'Many production lines do not rely on one method alone. A gross leak or proof test can remove open defects before sensitive tracer gas testing. This protects helium consumption, keeps the test area cleaner, and reduces false confidence from parts that cannot hold pressure or tracer gas.',
+                    'After the gross screen, helium leak testing can serve as the final inspection method for parts that need tighter limits, documented leak-rate values, or stable automation. Bubble testing can remain useful downstream for repair benches because it shows operators where the escaping gas is visible.',
+                  ],
+                },
+                {
+                  eyebrow: 'Decision rule',
+                  title: 'Do not choose by equipment cost alone',
+                  callout: {
+                    title: 'Customer takeaway',
+                    text: 'Select the method by the required leak rate, internal volume, material stiffness, temperature stability, test pressure, cycle time, automation level, and whether the process needs leak location or only pass/fail inspection.',
+                    bullets: [
+                      'For critical sealing, refrigerant circuits, battery components, power equipment, or vacuum assemblies, helium testing usually provides the strongest inspection confidence.',
+                      'For stable parts with larger allowable leaks, pressure decay can be a cost-effective production screen.',
+                      'For simple visible leak finding, bubble testing is useful, but it should not be treated as a high-sensitivity quantitative method.',
+                    ],
+                  },
+                },
+              ],
+              cta: {
+                title: 'Need help selecting a leak test method?',
+                description:
+                  'Share your part volume, test pressure, target leak rate, cycle time, and automation requirements. Wayeal can help compare helium leak testing, pressure decay, and visual leak location workflows for your application.',
+                label: 'Discuss Your Application',
+                href: '/contact',
+              },
+            },
           },
         ],
       },
@@ -847,19 +929,13 @@ export const resources: ResourceCategory[] = [
     slug: 'useful-tools',
     href: `${RESOURCE_BASE_PATH}/useful-tools`,
     description:
-      'Calculators and converters for leak rate units, industrial standards, and application planning.',
+      'Calculators and converters for leak rate units and application planning.',
     children: [
       {
         label: 'Leak Rate Unit Converter',
         slug: 'leak-rate-unit-converter',
         href: `${RESOURCE_BASE_PATH}/useful-tools/leak-rate-unit-converter`,
         description: 'Convert common leak rate units used in helium, pressure decay, and vacuum testing.',
-      },
-      {
-        label: 'Industry Leak Standard Calculator',
-        slug: 'industry-leak-standard-calculator',
-        href: `${RESOURCE_BASE_PATH}/useful-tools/industry-leak-standard-calculator`,
-        description: 'Estimate practical leak thresholds for industrial parts and quality specifications.',
       },
     ],
   },

@@ -3,21 +3,145 @@ import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
 import { getAboutSection } from '../../data/about';
 
 const section = getAboutSection('corporate-culture')!;
+
+const cultureStatements = [
+  {
+    label: 'Mission',
+    title: 'Solve Real Problems',
+    body: 'We listen first, then turn customer needs into practical solutions and dependable service.',
+  },
+  {
+    label: 'Vision',
+    title: 'Earn Lasting Trust',
+    body: 'We want to be a respected precision instrument company customers choose again.',
+  },
+  {
+    label: 'Spirit',
+    title: 'Quality and Service Together',
+    body: 'Reliable products and helpful support belong in the same experience.',
+  },
+];
+
+const values = [
+  {
+    title: 'Customer First',
+    body: 'Start with the real application and make decisions that help the customer.',
+  },
+  {
+    title: 'Respect Every Striver',
+    body: 'Support the people who keep projects moving and ideas improving.',
+  },
+  {
+    title: 'Be Honest',
+    body: 'Say what is true, keep commitments, and build trust over time.',
+  },
+  {
+    title: 'Keep Improving',
+    body: 'Stay open, learn quickly, and make the next version better.',
+  },
+];
+
+const practiceAreas = [
+  'Reliable products, not slogans.',
+  'Clear support before and after delivery.',
+  'Simple, practical solutions for real production needs.',
+];
 ---
 
 <AboutDetailShell section={section}>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    {section.blocks.map((block) => (
-      <section>
-        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
-          {block.title}
+  <div class="space-y-8">
+    <section class="overflow-hidden rounded-lg border border-border bg-surface/50">
+      <div class="border-b border-border bg-background px-5 py-5 sm:px-6">
+        <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+          Brand Philosophy
+        </p>
+        <h2 class="mt-3 font-heading text-h2 font-semibold uppercase leading-tight text-text">
+          More Trustable, With Forever
         </h2>
-        <div class="mt-4 space-y-4">
-          {block.body.map((paragraph) => (
-            <p class="leading-relaxed text-text-muted">{paragraph}</p>
-          ))}
+        <p class="mt-4 max-w-4xl text-base leading-relaxed text-text-muted">
+          Our promise is simple: be reliable today, stay useful tomorrow, and
+          grow with the customers who trust us.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 divide-y divide-border md:grid-cols-3 md:divide-x md:divide-y-0">
+        {cultureStatements.map((statement) => (
+          <article class="p-5 sm:p-6">
+            <p class="text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-primary">
+              {statement.label}
+            </p>
+            <h3 class="mt-3 font-heading text-h3 font-semibold uppercase leading-tight text-text">
+              {statement.title}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+              {statement.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="values-heading">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+            Core Values
+          </p>
+          <h2 id="values-heading" class="mt-3 font-heading text-h2 font-semibold uppercase leading-tight text-text">
+            How Wayeal Works
+          </h2>
         </div>
-      </section>
-    ))}
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+        {values.map((value, index) => (
+          <article class="rounded-lg border border-border bg-background p-5">
+            <div class="flex items-start gap-4">
+              <span class="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary font-heading text-sm font-bold text-primary-fg">
+                {index + 1}
+              </span>
+              <div>
+                <h3 class="font-heading text-h3 font-semibold uppercase leading-tight text-text">
+                  {value.title}
+                </h3>
+                <p class="mt-3 text-sm leading-relaxed text-text-muted sm:text-base">
+                  {value.body}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 gap-6 lg:grid-cols-2" aria-label="Culture in practice">
+      {section.blocks.map((block) => (
+        <article class="rounded-lg border border-border bg-background p-5">
+          <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
+            {block.title}
+          </h2>
+          <div class="mt-4 space-y-4">
+            {block.body.map((paragraph) => (
+              <p class="leading-relaxed text-text-muted">{paragraph}</p>
+            ))}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="rounded-lg border border-border bg-surface/60 p-5 sm:p-6" aria-labelledby="practice-heading">
+      <p class="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-accent">
+        Culture in Action
+      </p>
+      <h2 id="practice-heading" class="mt-3 font-heading text-h2 font-semibold uppercase leading-tight text-text">
+        From Values to Delivery
+      </h2>
+      <ul class="mt-5 grid grid-cols-1 gap-3" role="list">
+        {practiceAreas.map((area) => (
+          <li class="border-l-2 border-primary/40 bg-background px-4 py-3 text-sm leading-relaxed text-text-muted sm:text-base">
+            {area}
+          </li>
+        ))}
+      </ul>
+    </section>
   </div>
 </AboutDetailShell>

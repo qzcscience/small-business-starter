@@ -27,26 +27,20 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Company Profile',
     title: 'Company Overview',
     description:
-      'Learn about Wayeal as an industrial instrumentation manufacturer focused on helium leak detection and production-line testing solutions.',
+      'Learn about Wayeal as a listed precision scientific instrument supplier serving industrial testing, online monitoring, laboratory analysis, and medical instrumentation markets.',
     summary:
-      'Wayeal develops and supplies helium leak detection instruments, vacuum chamber systems, helium recovery systems, and related testing solutions for industrial quality control.',
+      'Founded in 2003 and listed on the Shanghai Stock Exchange STAR Market in 2020 under stock code 688600, Wayeal is a global professional supplier of precision scientific instruments.',
     highlights: [
-      'Industrial instrumentation manufacturer based in Hefei, China',
-      'Focused on helium mass spectrometry leak detection and automated testing systems',
-      'Serving applications in automotive, HVAC, energy, electronics, and sealed components',
+      'Founded in 2003; listed on the STAR Market in 2020',
+      'Serving four major fields of precision scientific instruments',
+      'About 1,100 employees; business coverage in more than 30 countries',
     ],
     blocks: [
       {
-        title: 'Industrial Focus',
+        title: 'Company Profile',
         body: [
-          'Wayeal supports manufacturers that need reliable leak testing for sealed products, pressure-bearing components, and production-line quality control.',
-          'The company combines instrument development, system integration, application engineering, and after-sales support to help customers select practical testing workflows.',
-        ],
-      },
-      {
-        title: 'Application Coverage',
-        body: [
-          'Typical application areas include automotive parts, lithium-ion batteries, HVAC and refrigeration, server liquid cooling, electric power equipment, and other precision sealed assemblies.',
+          'Anhui Wanyi Science and Technology Co., Ltd. (Wayeal) was founded in 2003 and listed on the Shanghai Stock Exchange STAR Market in 2020 as the first STAR Market listed company in Anhui Province (stock code: 688600). As a global professional supplier of precision scientific instruments, Wayeal serves four major fields: industrial testing instruments, online monitoring instruments, laboratory analytical instruments, and medical instruments. The company has about 1,100 employees, with business coverage in more than 30 countries.',
+          'Wayeal continues to follow a strategy of R&D innovation and product leadership. The company has established scientific research platforms including a postdoctoral research workstation, an academician workstation, and a National Enterprise Technology Center, and has been recognized as a National Specialized and Sophisticated Little Giant Enterprise and a National Intellectual Property Demonstration Enterprise. Guided by the brand philosophy "More Trustable, With Forever", Wayeal integrates advanced manufacturing resources worldwide, globalizes component procurement, standardizes production and manufacturing, and provides customers with high-quality products and services.',
         ],
       },
     ],
@@ -58,26 +52,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Company Development',
     title: 'History & Milestones',
     description:
-      'Review Wayeal development milestones in industrial instruments, leak detection products, and application expansion.',
+      'Review Wayeal development milestones from its 2003 founding through product innovation, STAR Market listing, life science expansion, and 2025 ESG report achievements.',
     summary:
-      'Wayeal has grown through continuous product development, application experience, and expansion into industrial leak testing markets.',
+      'Wayeal has developed from a Hefei-based technology company into a listed precision scientific instrument supplier, advancing through foundation, rapid development, and future-oriented growth stages.',
     highlights: [
-      'Continuous investment in precision instrument capability',
-      'Expansion from product development to system-level industrial solutions',
-      'Ongoing application work for export and domestic manufacturing customers',
+      'Foundation stage from 2003 to 2009 established helium leak detection and environmental monitoring products',
+      'Rapid development from 2010 to 2019 expanded qualifications, revenue, new energy applications, and analytical instruments',
+      'Future-oriented stage from 2020 onward includes STAR Market listing, life science and medical instruments, and 2025 national recognition',
     ],
     blocks: [
       {
-        title: 'Development Path',
+        title: 'Foundation and Product Expansion',
         body: [
-          'This section presents the major stages of Wayeal development, from technical foundation and product development to wider industrial application.',
-          'Milestones should be updated with confirmed dates, product releases, certifications, and important market achievements as source material becomes available.',
+          'Wayeal was founded in 2003. Its first helium mass spectrometer leak detector was launched in 2005, followed by a vacuum chamber leak detection and recovery system in 2007 and analytical instrument and environmental monitoring products in 2009.',
+          'The company entered a faster growth stage after its formal renaming as Anhui Wanyi Science and Technology Co., Ltd. in 2010, with CEMS1000 recognized as a national key new product in 2013 and revenue exceeding RMB 100 million in 2014.',
         ],
       },
       {
-        title: 'Milestone Content',
+        title: 'Strategic Development',
         body: [
-          'The page is structured for a timeline layout, making it easy to add founding events, production expansions, R&D achievements, product launches, and international market updates.',
+          'In 2016, Wayeal leak detection products expanded rapidly in the new energy market. In 2020, the company listed on the Shanghai Stock Exchange STAR Market, shifted from equipment manufacturing toward integrated solution services, and introduced internationalization and Digital Wayeal strategies.',
+          'Recent milestones include life science instruments in 2023, medical instruments in 2024, approval for a Yangtze River Delta wireless minimally invasive surgery system innovation consortium in 2025, and a 2025 national-level Manufacturing Single Champion recognition for helium mass spectrometer leak detectors.',
         ],
       },
     ],
@@ -89,26 +84,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Factory View',
     title: 'Virtual Factory Tour',
     description:
-      'Explore Wayeal manufacturing, assembly, testing, and application support capabilities through a virtual factory tour.',
+      'Explore Wayeal manufacturing, precision machining, quality control, digital manufacturing, and supply chain capabilities for instrument and system delivery.',
     summary:
-      'The virtual factory tour is designed to show how Wayeal organizes production, quality control, testing, and customer application support.',
+      'Wayeal combines precision machining, standardized assembly, digital manufacturing systems, quality control, and integrated supply chain management to support reliable delivery of instruments and customized testing systems.',
     highlights: [
-      'Manufacturing and assembly environment',
-      'Product testing and quality control areas',
-      'Application engineering and customer demonstration scenarios',
+      '18,000 m2 workshop area with precision machining and clean electronics areas',
+      '20+ CNC machines and machining accuracy up to 0.005 mm',
+      'MES, AGV, EHR, ITR, PLM, QMS, and other digital systems supporting operations',
     ],
     blocks: [
       {
-        title: 'Tour Experience',
+        title: 'Manufacturing Capability',
         body: [
-          'This page should introduce factory areas that matter to buyers and engineers, including instrument assembly, vacuum system integration, testing stations, and application demonstration spaces.',
-          'When video or photo assets are available, they can be placed into the page without changing the route structure.',
+          'Wayeal uses precision machining to support self-made key components for high-end instruments. The ESG report describes a precision machining team of more than 30 employees, more than 90% of whom have over 10 years of experience.',
+          'The manufacturing environment includes precision machining, five-axis machining centers, universal turning centers, clean electronics areas, standardized assembly, production testing, and quality control workflows for instrument and system delivery.',
         ],
       },
       {
-        title: 'What Buyers Can Evaluate',
+        title: 'Digital Delivery System',
         body: [
-          'The tour should help visitors understand production capability, test workflow, equipment scale, and the engineering process behind customized leak detection systems.',
+          'Wayeal has introduced MES for production visibility, AGV for automated material delivery, PLM for R&D lifecycle management, QMS for quality data, and ITR for after-sales service closure.',
+          'Integrated supply chain improvements cover planning, purchasing, production, warehousing, logistics, and quality, helping improve delivery reliability, supply flexibility, inventory turnover, and process traceability.',
         ],
       },
     ],
@@ -120,26 +116,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Culture',
     title: 'Corporate Culture',
     description:
-      'Understand the values, engineering mindset, and service principles behind Wayeal industrial testing solutions.',
+      'A quick look at the ideas behind Wayeal culture.',
     summary:
-      'Wayeal culture emphasizes technical reliability, practical engineering, customer responsibility, and continuous improvement.',
+      'Wayeal keeps things simple: listen closely, build reliable products, support customers well, and keep improving together.',
     highlights: [
-      'Engineering-driven product development',
-      'Customer-oriented application support',
-      'Long-term commitment to quality and improvement',
+      'Customer needs come first',
+      'Quality and service go together',
+      'Brand philosophy: More Trustable, With Forever',
     ],
     blocks: [
       {
-        title: 'Engineering Values',
+        title: 'What We Aim For',
         body: [
-          'Wayeal approaches leak detection as an engineering problem that requires stable instruments, practical fixtures, reliable methods, and clear communication with customers.',
-          'The company culture supports careful technical review, hands-on testing, and iterative improvement from real production feedback.',
+          'We listen closely to customers, solve real problems, and help every project create more value.',
+          'Our goal is to become a trusted precision instrument company that people respect over the long term.',
         ],
       },
       {
-        title: 'Customer Commitment',
+        title: 'How We Work',
         body: [
-          'For industrial buyers, culture is reflected in response speed, honest method selection, commissioning support, and the ability to work through application details after delivery.',
+          'We stay customer-focused, value the people who make things happen, act honestly, and keep improving.',
+          'Quality and service are part of one promise, from design and delivery to long-term support.',
         ],
       },
     ],
@@ -151,26 +148,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'People & Structure',
     title: 'Organization & Team',
     description:
-      'See how Wayeal organizes R&D, manufacturing, application engineering, sales, and service teams around industrial customer needs.',
+      'See how Wayeal organizes business divisions, R&D platforms, manufacturing, quality, supply chain, sales, service, and functional teams around customer and product needs.',
     summary:
-      'Wayeal is organized around the full customer workflow, from technical consultation and product configuration to manufacturing, commissioning, and support.',
+      'Wayeal has 1,085 employees, including 313 R&D personnel, and organizes its business through specialized divisions, research platforms, manufacturing, quality, strategy, digital process, finance, talent, legal, and securities functions.',
     highlights: [
-      'R&D and product engineering',
-      'Manufacturing, assembly, and quality control',
-      'Application engineering, sales, and after-sales support',
+      '1,085 employees and 100% labor contract signing rate reported in 2025',
+      '313 R&D personnel, representing 28.85% of employees',
+      'Business divisions covering industrial testing, environmental and semiconductor, analytical instruments, and medical instruments',
     ],
     blocks: [
       {
-        title: 'Team Structure',
+        title: 'Operating Structure',
         body: [
-          'This page introduces the departments and technical teams that support Wayeal products and systems, with an emphasis on roles that affect customer project success.',
-          'The content can later include leadership profiles, department photos, engineering team introductions, and service network details.',
+          'The ESG report lists Wayeal operating units including the Industrial Environment and Semiconductor Division, Industrial Intelligent Testing Division, Analytical Instrument Division, Minimally Invasive and Dialysis Division, Advanced Technology Research Institute, R&D platform, procurement center, manufacturing center, and quality management center.',
+          'Supporting functions include strategy and marketing, process and digitalization, finance, organizational talent development, public relations and legal affairs, audit, and securities, forming a structure that connects governance, product development, production, delivery, and compliance.',
         ],
       },
       {
-        title: 'Project Support',
+        title: 'People and Capability',
         body: [
-          'Industrial leak detection projects often require cross-functional work across product engineering, fixture design, process review, manufacturing, and on-site service.',
+          'Wayeal reports 635 employees with bachelor degree or above, 302 technical personnel, 204 production personnel, 182 sales personnel, and 313 R&D personnel in 2025.',
+          'The company uses performance management, training, equity incentives, social insurance coverage, and employee development programs to support technical capability, project execution, and long-term organizational stability.',
         ],
       },
     ],
@@ -182,26 +180,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Compliance & IP',
     title: 'Certifications & Patents',
     description:
-      'Browse Wayeal certifications, intellectual property, and qualification materials for industrial procurement review.',
+      'Review Wayeal qualifications, honors, quality management systems, intellectual property, and innovation credentials for supplier and procurement evaluation.',
     summary:
-      'This section is prepared for certificates, patents, compliance materials, and qualification references used in supplier evaluation.',
+      'Wayeal has built national-level innovation platforms and quality systems, with honors including National Enterprise Technology Center, National Specialized and Sophisticated Little Giant Enterprise, National Intellectual Property Demonstration Enterprise, and National High-tech Enterprise.',
     highlights: [
-      'Certification and compliance document area',
-      'Patent and intellectual property references',
-      'Procurement-friendly qualification presentation',
+      'National Enterprise Technology Center and National Postdoctoral Research Workstation',
+      'ISO 9001, ISO 10012, and ISO 13485 management system certifications reported',
+      '837 cumulative IP applications and 375 cumulative granted items reported in 2025',
     ],
     blocks: [
       {
-        title: 'Certification Materials',
+        title: 'Qualification and Honors',
         body: [
-          'The page should present confirmed certifications and qualification documents in a clear structure for international buyers, distributors, and procurement teams.',
-          'Document cards can be added for certificates such as CE, ISO, product compliance files, or customer-requested qualification materials when verified source files are available.',
+          'Wayeal is recognized as a National Specialized and Sophisticated Little Giant Enterprise, National Intellectual Property Demonstration Enterprise, National Intellectual Property Advantage Enterprise, National High-tech Enterprise, and National Torch Program Key High-tech Enterprise.',
+          'The company has established innovation platforms including a National Enterprise Technology Center, National Postdoctoral Research Workstation, Academician Workstation, and provincial engineering and innovation platforms.',
         ],
       },
       {
-        title: 'Patent Portfolio',
+        title: 'Quality Systems and IP',
         body: [
-          'Patent content should be listed with confirmed titles, numbers, and filing details to avoid unsupported claims while still showing Wayeal technical development capability.',
+          'Wayeal reports ISO 9001 quality management, ISO 10012 measurement management, and ISO 13485 medical device quality management certifications, with quality management covering R&D quality, supplier quality, manufacturing quality, and customer quality.',
+          'In 2025, Wayeal reported 103 new IP applications and 38 newly granted items, with cumulative totals of 837 applications and 375 granted items across invention patents, utility models, design patents, and software copyrights.',
         ],
       },
     ],
@@ -213,26 +212,27 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Research Collaboration',
     title: 'Academic & Research Collaboration',
     description:
-      'Learn about Wayeal collaboration with academic, research, and technical institutions for precision instruments and testing applications.',
+      'Learn about Wayeal collaboration with research institutes, universities, hospitals, industry associations, and technical communities for precision instrument innovation and application validation.',
     summary:
-      'Wayeal supports collaboration with academic and research partners where technical development, application testing, and instrument innovation overlap.',
+      'Wayeal supports industry-academia-research collaboration, technical exchange, joint laboratories, professional training, and industry forums to advance precision instruments, vacuum measurement, analytical testing, and intelligent scientific instruments.',
     highlights: [
-      'Research-oriented technical cooperation',
-      'Application testing and method validation',
-      'Links between instrument development and industrial needs',
+      'Joint laboratory for key vacuum measurement equipment in nuclear fusion applications',
+      'Participation in ACCSI 2025, BCEIA, ARAB LAB LIVE 2025, analytica Vietnam 2025, and other industry events',
+      'Technical training and exchange programs for chromatography, food testing, and scientific instrument applications',
     ],
     blocks: [
       {
-        title: 'Collaboration Direction',
+        title: 'Joint Research Platforms',
         body: [
-          'This page focuses on cooperation with universities, laboratories, research institutes, and technical organizations connected to precision instruments and industrial testing.',
-          'The wording should stay evidence-based and can be expanded with named partners, project summaries, or laboratory photos when approved materials are available.',
+          'In 2025, Wayeal and the Hefei Comprehensive National Science Center Energy Research Institute jointly established a laboratory for key vacuum measurement equipment used in nuclear fusion applications.',
+          'The cooperation focuses on tritium-compatible leak detector technology, vacuum leak detection in deuterium-rich environments, and vacuum measurement equipment resistant to neutron irradiation and electromagnetic interference.',
         ],
       },
       {
-        title: 'Research Value',
+        title: 'Industry Exchange',
         body: [
-          'Academic and research collaboration can support measurement methods, instrument performance, application validation, and talent development for advanced manufacturing.',
+          'Wayeal participated in professional exhibitions and forums across environmental protection, semiconductor, new energy, automotive, electric power, home appliances, medical instruments, and laboratory analysis, including ACCSI 2025, BCEIA, ARAB LAB LIVE 2025, analytica Vietnam 2025, Analitica Latin America, CIBF 2025, AMTS 2025, and IC China 2025.',
+          'The company also organized and supported technical exchange programs such as ion chromatography training, liquid chromatography practical training, scientific instrument ecosystem activities, and academic meetings that connect product development with real application needs.',
         ],
       },
     ],
@@ -246,7 +246,7 @@ export const aboutSections: AboutSection[] = [
     description:
       'Review Wayeal ESG priorities for global customers, covering environmental compliance, product quality, responsible supply chain, customer service, privacy, and business ethics.',
     summary:
-      'Based on Wayeal 2025 ESG report, these seven priorities address the ESG topics international buyers commonly check before supplier approval.',
+      'Based on Wayeal 2025 ESG report, these seven priorities summarize the responsibility topics international buyers commonly review during supplier evaluation.',
     highlights: [],
     blocks: [
       {

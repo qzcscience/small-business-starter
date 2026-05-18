@@ -1,0 +1,301 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1782 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Helium vs Pressure Decay vs Bubble Test</title>
+  <desc id="desc">Three-panel leak testing comparison showing helium leak testing, pressure decay testing, and bubble testing with test flows, equipment, leak points, magnified views, and legends.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#0f63bd"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#168038"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#6a45a0"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" fill="#e11d21"/>
+    </marker>
+    <style>
+      .font { font-family: Inter, Arial, sans-serif; letter-spacing: 0; }
+      .title { font-size: 58px; font-weight: 900; fill: #050505; }
+      .panel-title { font-size: 40px; font-weight: 900; fill: #fff; }
+      .flow-title { font-size: 18px; font-weight: 900; }
+      .flow-text { font-size: 16px; fill: #111; }
+      .label { font-size: 20px; font-weight: 800; fill: #111; }
+      .small { font-size: 16px; fill: #111; }
+      .caption { font-size: 18px; fill: #111; }
+      .legend { font-size: 18px; fill: #111; }
+      .thin { stroke: #111; stroke-width: 2; fill: none; }
+      .pipe { stroke: #111; stroke-width: 6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .hatch { stroke: #111; stroke-width: 2; opacity: .7; }
+    </style>
+  </defs>
+
+  <rect width="1782" height="1000" fill="#fff"/>
+  <text x="891" y="56" text-anchor="middle" class="font title">Helium vs Pressure Decay vs Bubble Test</text>
+
+  <g id="helium-panel" transform="translate(10 72)">
+    <rect x="0" y="0" width="584" height="910" rx="12" fill="#fff" stroke="#0f63bd" stroke-width="3"/>
+    <path d="M12 0 H572 Q584 0 584 12 V56 H0 V12 Q0 0 12 0 Z" fill="#0759ad"/>
+    <text x="292" y="40" text-anchor="middle" class="font panel-title">Helium Leak Test</text>
+
+    <rect x="11" y="68" width="130" height="374" rx="7" fill="#f8fbff" stroke="#0f63bd" stroke-width="2"/>
+    <text x="76" y="94" text-anchor="middle" fill="#0f63bd" class="font flow-title">TEST FLOW</text>
+    <line x1="23" y1="106" x2="130" y2="106" stroke="#0f63bd" stroke-width="2"/>
+    <text x="24" y="136" fill="#0f63bd" class="font label">1</text>
+    <text x="52" y="135" class="font flow-text">Evacuate</text>
+    <text x="52" y="157" class="font flow-text">Workpiece</text>
+    <path d="M75 172 V192" stroke="#0f63bd" stroke-width="4" marker-end="url(#arrow-blue)"/>
+    <text x="24" y="222" fill="#0f63bd" class="font label">2</text>
+    <text x="52" y="219" class="font flow-text">Helium Spray</text>
+    <text x="52" y="241" class="font flow-text">Outside</text>
+    <path d="M75 256 V276" stroke="#0f63bd" stroke-width="4" marker-end="url(#arrow-blue)"/>
+    <text x="24" y="306" fill="#0f63bd" class="font label">3</text>
+    <text x="52" y="303" class="font flow-text">Helium Enters</text>
+    <text x="52" y="325" class="font flow-text">Through Leak</text>
+    <path d="M75 340 V360" stroke="#0f63bd" stroke-width="4" marker-end="url(#arrow-blue)"/>
+    <text x="24" y="390" fill="#0f63bd" class="font label">4</text>
+    <text x="52" y="387" class="font flow-text">Helium Detected</text>
+    <text x="52" y="409" class="font flow-text">by Mass</text>
+    <text x="52" y="431" class="font flow-text">Spectrometer</text>
+
+    <text x="296" y="114" text-anchor="middle" class="font label">Evacuated</text>
+    <text x="296" y="139" text-anchor="middle" class="font label">Workpiece</text>
+    <path d="M298 145 V201" stroke="#111" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+    <ellipse cx="205" cy="262" rx="34" ry="66" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <ellipse cx="405" cy="262" rx="34" ry="66" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <rect x="205" y="196" width="200" height="132" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <path d="M210 210 H400 M210 318 H400" class="hatch"/>
+    <circle cx="190" cy="262" r="22" fill="#fff" stroke="#111" stroke-width="3"/>
+    <rect x="153" y="244" width="38" height="36" fill="#fff" stroke="#111" stroke-width="3"/>
+    <path d="M205 236 C250 218 330 218 405 236" stroke="#111" stroke-width="2" fill="none"/>
+    <path d="M205 288 C250 306 330 306 405 288" stroke="#111" stroke-width="2" fill="none"/>
+    <g fill="#0f63bd">
+      <circle cx="246" cy="244" r="4"/><circle cx="270" cy="285" r="4"/><circle cx="298" cy="258" r="4"/><circle cx="330" cy="300" r="4"/>
+      <circle cx="359" cy="236" r="4"/><circle cx="378" cy="276" r="4"/><circle cx="229" cy="300" r="4"/><circle cx="344" cy="267" r="4"/>
+    </g>
+    <path d="M286 268 H348" stroke="#0f63bd" stroke-width="7" marker-end="url(#arrow-blue)"/>
+    <path d="M290 292 H350" stroke="#0f63bd" stroke-width="5" marker-end="url(#arrow-blue)"/>
+    <circle cx="386" cy="276" r="16" fill="none" stroke="#e11d21" stroke-width="4"/>
+    <path d="M386 276 C410 362 414 474 401 612" stroke="#e11d21" stroke-width="3" fill="none" marker-end="url(#arrow-red)"/>
+    <text x="418" y="410" class="font label">Leak Point</text>
+
+    <text x="502" y="122" text-anchor="middle" class="font label">Helium</text>
+    <text x="502" y="146" text-anchor="middle" class="font label">Spray Gun</text>
+    <rect x="478" y="174" width="62" height="34" rx="7" fill="#fff" stroke="#111" stroke-width="3" transform="rotate(-15 509 191)"/>
+    <path d="M458 194 L480 188" stroke="#111" stroke-width="4"/>
+    <path d="M441 203 L459 197 M441 216 L461 207 M441 229 L461 218" stroke="#0f63bd" stroke-width="3" stroke-dasharray="2 7"/>
+    <path d="M540 206 C570 224 574 274 548 315" stroke="#111" stroke-width="3" fill="none"/>
+    <text x="516" y="276" text-anchor="middle" fill="#0f63bd" class="font" font-size="34" font-weight="900">He</text>
+
+    <path d="M392 328 C400 410 360 480 302 536" stroke="#111" stroke-width="5" fill="none"/>
+    <path d="M305 536 H231 C208 536 194 548 188 570" class="pipe"/>
+    <text x="96" y="485" text-anchor="middle" class="font label">Helium Mass</text>
+    <text x="96" y="510" text-anchor="middle" class="font label">Spectrometer</text>
+    <text x="96" y="535" text-anchor="middle" class="font label">Leak Detector</text>
+    <rect x="28" y="550" width="235" height="220" rx="14" fill="#dfe6ee" stroke="#111" stroke-width="3"/>
+    <rect x="70" y="586" width="148" height="84" rx="4" fill="#f8fbff" stroke="#111" stroke-width="4"/>
+    <text x="144" y="614" text-anchor="middle" class="font small">LEAK DETECTED</text>
+    <text x="144" y="650" text-anchor="middle" class="font" font-size="30" font-weight="900">1.2 x 10<tspan baseline-shift="super" font-size="18">-6</tspan></text>
+    <text x="144" y="674" text-anchor="middle" class="font small">mbar L/s</text>
+    <rect x="76" y="690" width="88" height="34" rx="6" fill="#2ca84a" stroke="#111" stroke-width="2"/>
+    <rect x="172" y="690" width="64" height="34" rx="6" fill="#ef2b2d" stroke="#111" stroke-width="2"/>
+    <text x="120" y="714" text-anchor="middle" fill="#fff" class="font small" font-weight="900">PASS</text>
+    <text x="204" y="714" text-anchor="middle" fill="#fff" class="font small" font-weight="900">FAIL</text>
+    <text x="126" y="748" text-anchor="middle" fill="#fff" class="font small" font-weight="900">ULTRA-TEK 1000</text>
+    <circle cx="232" cy="604" r="6" fill="#fff" stroke="#111" stroke-width="2"/>
+    <circle cx="232" cy="626" r="6" fill="#fff" stroke="#111" stroke-width="2"/>
+    <circle cx="232" cy="648" r="6" fill="#fff" stroke="#111" stroke-width="2"/>
+
+    <rect x="332" y="530" width="92" height="78" rx="8" fill="#f5f5f5" stroke="#111" stroke-width="3"/>
+    <circle cx="360" cy="612" r="18" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <rect x="448" y="526" width="84" height="66" rx="6" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <path d="M424 570 H448" class="pipe"/>
+    <text x="491" y="500" text-anchor="middle" class="font label">Vacuum</text>
+    <text x="491" y="525" text-anchor="middle" class="font label">Pump</text>
+    <path d="M482 524 V548" stroke="#111" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+    <circle cx="414" cy="690" r="78" fill="#fff" stroke="#e11d21" stroke-width="4"/>
+    <rect x="386" y="617" width="30" height="146" fill="#e5e7eb" stroke="#111" stroke-width="3"/>
+    <path d="M387 635 L416 620 M387 658 L416 643 M387 681 L416 666 M387 704 L416 689 M387 727 L416 712" class="hatch"/>
+    <path d="M372 692 H407" stroke="#0f63bd" stroke-width="5" marker-end="url(#arrow-blue)"/>
+    <path d="M422 675 C448 650 472 650 493 640" stroke="#0f63bd" stroke-width="4" stroke-dasharray="6 7" marker-end="url(#arrow-blue)"/>
+    <path d="M422 708 C452 735 477 730 504 750" stroke="#0f63bd" stroke-width="4" stroke-dasharray="6 7" marker-end="url(#arrow-blue)"/>
+    <text x="422" y="800" text-anchor="middle" class="font label">Magnified View</text>
+    <text x="422" y="824" text-anchor="middle" class="font label">of Leak (Pinhole)</text>
+
+    <rect x="16" y="842" width="552" height="50" rx="7" fill="#fff" stroke="#0f63bd" stroke-width="2"/>
+    <circle cx="62" cy="867" r="7" fill="#0f63bd"/>
+    <text x="86" y="873" class="font legend">= Helium Molecules</text>
+    <path d="M260 867 H318" stroke="#0f63bd" stroke-width="7" marker-end="url(#arrow-blue)"/>
+    <text x="340" y="873" class="font legend">= Helium Flow Path</text>
+  </g>
+
+  <g id="pressure-decay-panel" transform="translate(608 72)">
+    <rect x="0" y="0" width="570" height="910" rx="12" fill="#fff" stroke="#168038" stroke-width="3"/>
+    <path d="M12 0 H558 Q570 0 570 12 V56 H0 V12 Q0 0 12 0 Z" fill="#168038"/>
+    <text x="285" y="40" text-anchor="middle" class="font panel-title">Pressure Decay Test</text>
+
+    <rect x="12" y="68" width="126" height="348" rx="7" fill="#fbfffb" stroke="#168038" stroke-width="2"/>
+    <text x="75" y="94" text-anchor="middle" fill="#168038" class="font flow-title">TEST FLOW</text>
+    <line x1="24" y1="106" x2="126" y2="106" stroke="#168038" stroke-width="2"/>
+    <text x="24" y="137" fill="#168038" class="font label">1</text>
+    <text x="52" y="134" class="font flow-text">Pressurize</text>
+    <text x="52" y="156" class="font flow-text">Workpiece</text>
+    <path d="M75 172 V192" stroke="#168038" stroke-width="4" marker-end="url(#arrow-green)"/>
+    <text x="24" y="222" fill="#168038" class="font label">2</text>
+    <text x="52" y="219" class="font flow-text">Isolate</text>
+    <text x="52" y="241" class="font flow-text">from Source</text>
+    <path d="M75 256 V276" stroke="#168038" stroke-width="4" marker-end="url(#arrow-green)"/>
+    <text x="24" y="306" fill="#168038" class="font label">3</text>
+    <text x="52" y="303" class="font flow-text">Monitor</text>
+    <text x="52" y="325" class="font flow-text">Pressure Drop</text>
+    <path d="M75 340 V360" stroke="#168038" stroke-width="4" marker-end="url(#arrow-green)"/>
+    <text x="24" y="390" fill="#168038" class="font label">4</text>
+    <text x="52" y="387" class="font flow-text">Pressure Drop</text>
+    <text x="52" y="409" class="font flow-text">Indicates Leak</text>
+
+    <text x="236" y="100" text-anchor="middle" class="font label">Pressure Source</text>
+    <text x="236" y="124" text-anchor="middle" class="font label">(Air/N₂)</text>
+    <path d="M226 128 L203 180" stroke="#111" stroke-width="3" marker-end="url(#arrow-red)"/>
+    <rect x="162" y="170" width="58" height="74" rx="10" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <path d="M170 184 H212 M170 198 H212 M170 212 H212" stroke="#111" stroke-width="2"/>
+    <circle cx="216" cy="250" r="30" fill="#fff" stroke="#111" stroke-width="3"/>
+    <path d="M216 250 L236 236" stroke="#111" stroke-width="3"/>
+    <path d="M158 246 H186 M246 246 H306" class="pipe"/>
+    <path d="M306 246 C370 246 380 295 380 338" class="pipe"/>
+
+    <text x="436" y="100" text-anchor="middle" class="font label">Pressure Sensor</text>
+    <rect x="405" y="130" width="92" height="82" rx="6" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <rect x="415" y="144" width="72" height="52" rx="4" fill="#fff" stroke="#111" stroke-width="2"/>
+    <text x="451" y="176" text-anchor="middle" class="font" font-size="24">50.00</text>
+    <text x="451" y="199" text-anchor="middle" class="font small">kPa</text>
+    <path d="M451 212 V330" class="pipe"/>
+
+    <ellipse cx="236" cy="358" rx="34" ry="79" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <ellipse cx="480" cy="358" rx="34" ry="79" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <rect x="236" y="279" width="244" height="158" fill="#fbfffb" stroke="#111" stroke-width="3"/>
+    <text x="358" y="335" text-anchor="middle" fill="#168038" class="font label">Pressurized Air</text>
+    <text x="358" y="362" text-anchor="middle" fill="#168038" class="font label">or Nitrogen</text>
+    <g fill="#fff" stroke="#168038" stroke-width="2">
+      <circle cx="282" cy="350" r="4"/><circle cx="310" cy="395" r="4"/><circle cx="342" cy="324" r="4"/><circle cx="380" cy="390" r="4"/>
+      <circle cx="425" cy="340" r="4"/><circle cx="455" cy="402" r="4"/><circle cx="292" cy="418" r="4"/><circle cx="410" cy="300" r="4"/>
+    </g>
+    <circle cx="452" cy="386" r="17" fill="none" stroke="#e11d21" stroke-width="4"/>
+    <path d="M452 386 C478 475 480 575 456 610" stroke="#e11d21" stroke-width="3" fill="none" marker-end="url(#arrow-red)"/>
+    <text x="470" y="512" class="font label">Leak Point</text>
+
+    <path d="M330 437 V488 H120" class="pipe"/>
+    <path d="M478 437 V496 H378" class="pipe"/>
+    <rect x="28" y="550" width="360" height="230" rx="22" fill="#f7f7f7" stroke="#111" stroke-width="3"/>
+    <rect x="48" y="574" width="320" height="160" rx="4" fill="#fff" stroke="#111" stroke-width="3"/>
+    <text x="208" y="596" text-anchor="middle" class="font small" font-weight="900">DIGITAL PRESSURE DECAY TESTER</text>
+    <text x="68" y="634" class="font small">Start:</text><text x="130" y="634" class="font small">500.0 kPa</text>
+    <text x="68" y="664" class="font small">End:</text><text x="130" y="664" class="font small">496.0 kPa</text>
+    <text x="68" y="694" class="font small">ΔP:</text><text x="130" y="694" class="font small">4.0 kPa</text>
+    <text x="68" y="724" class="font small">Time:</text><text x="130" y="724" class="font small">10:00 min</text>
+    <rect x="214" y="612" width="128" height="94" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+    <text x="278" y="632" text-anchor="middle" class="font" font-size="13" font-weight="900">PRESSURE vs TIME</text>
+    <polyline points="230,650 250,660 270,669 290,679 310,688 332,697" fill="none" stroke="#ef2b2d" stroke-width="4"/>
+    <g fill="#ef2b2d"><circle cx="230" cy="650" r="3"/><circle cx="250" cy="660" r="3"/><circle cx="270" cy="669" r="3"/><circle cx="290" cy="679" r="3"/><circle cx="310" cy="688" r="3"/><circle cx="332" cy="697" r="3"/></g>
+    <rect x="48" y="744" width="48" height="30" rx="6" fill="#2ca84a"/><rect x="104" y="744" width="48" height="30" rx="6" fill="#ef2b2d"/>
+    <rect x="160" y="744" width="48" height="30" rx="6" fill="#777"/><rect x="216" y="744" width="48" height="30" rx="6" fill="#777"/>
+    <text x="72" y="765" text-anchor="middle" fill="#fff" class="font" font-size="13" font-weight="900">START</text>
+    <text x="128" y="765" text-anchor="middle" fill="#fff" class="font" font-size="13" font-weight="900">STOP</text>
+    <text x="184" y="765" text-anchor="middle" fill="#fff" class="font" font-size="13" font-weight="900">MENU</text>
+    <text x="240" y="765" text-anchor="middle" fill="#fff" class="font" font-size="13" font-weight="900">ZERO</text>
+
+    <circle cx="446" cy="692" r="72" fill="#fff" stroke="#e11d21" stroke-width="4"/>
+    <rect x="420" y="626" width="28" height="132" fill="#e5e7eb" stroke="#111" stroke-width="3"/>
+    <path d="M422 640 L448 628 M422 663 L448 651 M422 686 L448 674 M422 709 L448 697 M422 732 L448 720" class="hatch"/>
+    <path d="M448 681 C480 663 496 654 520 650" stroke="#168038" stroke-width="4" stroke-dasharray="7 8" marker-end="url(#arrow-green)"/>
+    <path d="M448 705 C484 714 496 720 524 740" stroke="#168038" stroke-width="4" stroke-dasharray="7 8" marker-end="url(#arrow-green)"/>
+    <text x="446" y="800" text-anchor="middle" class="font label">Magnified View</text>
+    <text x="446" y="824" text-anchor="middle" class="font label">of Leak (Pinhole)</text>
+
+    <rect x="12" y="842" width="546" height="50" rx="7" fill="#fff" stroke="#168038" stroke-width="2"/>
+    <circle cx="60" cy="867" r="7" fill="#fff" stroke="#168038" stroke-width="3"/>
+    <text x="86" y="873" class="font legend">= Air/N₂ Molecules</text>
+    <path d="M286 867 H344" stroke="#168038" stroke-width="4" stroke-dasharray="7 7" marker-end="url(#arrow-green)"/>
+    <text x="366" y="873" class="font legend">= Escaping Gas</text>
+  </g>
+
+  <g id="bubble-panel" transform="translate(1192 72)">
+    <rect x="0" y="0" width="580" height="910" rx="12" fill="#fff" stroke="#6a45a0" stroke-width="3"/>
+    <path d="M12 0 H568 Q580 0 580 12 V56 H0 V12 Q0 0 12 0 Z" fill="#5b3b92"/>
+    <text x="290" y="40" text-anchor="middle" class="font panel-title">Bubble Test</text>
+
+    <rect x="12" y="70" width="126" height="364" rx="7" fill="#fff" stroke="#6a45a0" stroke-width="2"/>
+    <text x="75" y="96" text-anchor="middle" fill="#6a45a0" class="font flow-title">TEST FLOW</text>
+    <line x1="24" y1="108" x2="126" y2="108" stroke="#6a45a0" stroke-width="2"/>
+    <text x="24" y="140" fill="#6a45a0" class="font label">1</text>
+    <text x="52" y="137" class="font flow-text">Pressurize</text>
+    <text x="52" y="159" class="font flow-text">Workpiece</text>
+    <text x="52" y="181" class="font flow-text">with Air</text>
+    <path d="M75 198 V222" stroke="#6a45a0" stroke-width="4" marker-end="url(#arrow-purple)"/>
+    <text x="24" y="252" fill="#6a45a0" class="font label">2</text>
+    <text x="52" y="249" class="font flow-text">Submerge in</text>
+    <text x="52" y="271" class="font flow-text">Water Tank</text>
+    <path d="M75 288 V312" stroke="#6a45a0" stroke-width="4" marker-end="url(#arrow-purple)"/>
+    <text x="24" y="342" fill="#6a45a0" class="font label">3</text>
+    <text x="52" y="339" class="font flow-text">Bubbles Form</text>
+    <text x="52" y="361" class="font flow-text">at Leak</text>
+    <path d="M75 378 V402" stroke="#6a45a0" stroke-width="4" marker-end="url(#arrow-purple)"/>
+    <text x="24" y="428" fill="#6a45a0" class="font label">4</text>
+    <text x="52" y="425" class="font flow-text">Bubbles Indicate</text>
+    <text x="52" y="447" class="font flow-text">Leak Location</text>
+
+    <rect x="158" y="160" width="376" height="294" fill="#eaf7ff" stroke="#111" stroke-width="3"/>
+    <path d="M158 210 C205 226 240 198 288 211 C330 222 360 197 404 211 C452 226 490 198 534 210" fill="none" stroke="#0f63bd" stroke-width="4"/>
+    <rect x="178" y="178" width="336" height="254" fill="none" stroke="#7dd3fc" stroke-width="3"/>
+    <text x="474" y="112" class="font label">Water Tank</text>
+    <path d="M502 118 L480 190" stroke="#111" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+    <path d="M154 512 C188 486 168 420 224 386" class="pipe"/>
+    <path d="M238 180 C248 82 392 82 405 180" stroke="#111" stroke-width="7" fill="none"/>
+    <path d="M405 180 C416 214 407 245 391 277" class="pipe"/>
+    <ellipse cx="248" cy="326" rx="34" ry="79" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <ellipse cx="466" cy="326" rx="34" ry="79" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <rect x="248" y="247" width="218" height="158" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <circle cx="236" cy="326" r="22" fill="#fff" stroke="#111" stroke-width="3"/>
+    <rect x="198" y="308" width="38" height="36" fill="#fff" stroke="#111" stroke-width="3"/>
+    <circle cx="408" cy="384" r="17" fill="none" stroke="#e11d21" stroke-width="4"/>
+    <path d="M408 384 C430 474 444 575 436 612" stroke="#e11d21" stroke-width="3" fill="none" marker-end="url(#arrow-red)"/>
+    <text x="438" y="526" class="font label">Leak Point</text>
+    <g fill="none" stroke="#0f63bd" stroke-width="2">
+      <circle cx="410" cy="345" r="6"/><circle cx="420" cy="320" r="7"/><circle cx="400" cy="296" r="5"/><circle cx="438" cy="286" r="7"/>
+      <circle cx="430" cy="258" r="5"/><circle cx="450" cy="240" r="6"/><circle cx="390" cy="225" r="5"/><circle cx="418" cy="206" r="5"/>
+    </g>
+    <text x="312" y="284" class="font label">Bubbles</text>
+    <path d="M390 292 L432 314" stroke="#111" stroke-width="3" marker-end="url(#arrow-red)"/>
+
+    <rect x="68" y="548" width="72" height="74" rx="10" fill="#f8fafc" stroke="#111" stroke-width="3"/>
+    <circle cx="154" cy="592" r="36" fill="#fff" stroke="#111" stroke-width="3"/>
+    <path d="M154 592 L176 574" stroke="#111" stroke-width="3"/>
+    <path d="M28 586 H68 M140 586 H192" class="pipe"/>
+    <text x="116" y="652" text-anchor="middle" class="font label">Air Pressure</text>
+    <text x="116" y="677" text-anchor="middle" class="font label">Source</text>
+
+    <rect x="236" y="620" width="148" height="96" rx="7" fill="#fff" stroke="#6a45a0" stroke-width="2"/>
+    <text x="254" y="654" class="font small">Air pressure forces</text>
+    <text x="254" y="678" class="font small">air through the leak.</text>
+    <text x="254" y="702" class="font small">Bubbles make the</text>
+    <text x="254" y="726" class="font small">leak easy to see.</text>
+
+    <circle cx="448" cy="694" r="72" fill="#fff" stroke="#e11d21" stroke-width="4"/>
+    <rect x="420" y="628" width="28" height="132" fill="#e5e7eb" stroke="#111" stroke-width="3"/>
+    <path d="M422 642 L448 630 M422 665 L448 653 M422 688 L448 676 M422 711 L448 699 M422 734 L448 722" class="hatch"/>
+    <g fill="none" stroke="#0f63bd" stroke-width="2">
+      <circle cx="462" cy="672" r="6"/><circle cx="480" cy="655" r="5"/><circle cx="486" cy="684" r="7"/><circle cx="502" cy="704" r="5"/>
+      <circle cx="466" cy="720" r="5"/><circle cx="496" cy="735" r="6"/>
+    </g>
+    <text x="448" y="800" text-anchor="middle" class="font label">Magnified View</text>
+    <text x="448" y="824" text-anchor="middle" class="font label">of Leak (Pinhole)</text>
+
+    <rect x="14" y="842" width="552" height="50" rx="7" fill="#fff" stroke="#6a45a0" stroke-width="2"/>
+    <circle cx="62" cy="867" r="7" fill="#fff" stroke="#6a45a0" stroke-width="3"/>
+    <text x="86" y="873" class="font legend">= Air Bubbles</text>
+    <path d="M260 867 H318" stroke="#6a45a0" stroke-width="4" stroke-dasharray="7 7" marker-end="url(#arrow-purple)"/>
+    <text x="340" y="873" class="font legend">= Bubble Flow</text>
+  </g>
+</svg>

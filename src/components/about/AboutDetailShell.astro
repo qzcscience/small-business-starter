@@ -14,9 +14,20 @@ import {
 interface Props {
   section: AboutSection;
   schema?: Record<string, unknown>;
+  showSummary?: boolean;
+  showHighlights?: boolean;
+  showBackLink?: boolean;
+  showCta?: boolean;
 }
 
-const { section, schema } = Astro.props;
+const {
+  section,
+  schema,
+  showSummary = true,
+  showHighlights = true,
+  showBackLink = true,
+  showCta = true,
+} = Astro.props;
 const breadcrumbs = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: ABOUT_BASE_PATH },
@@ -52,13 +63,15 @@ const breadcrumbs = [
               <h1 class="mt-3 font-heading text-h1 font-bold uppercase leading-tight text-text">
                 {section.title}
               </h1>
-              <p class="mt-3 max-w-3xl text-base leading-relaxed text-text-muted sm:text-lg">
-                {section.summary}
-              </p>
+              {showSummary && (
+                <p class="mt-3 max-w-3xl text-base leading-relaxed text-text-muted sm:text-lg">
+                  {section.summary}
+                </p>
+              )}
             </div>
 
             <div class="space-y-8 p-5 sm:p-6 lg:p-8">
-              {section.highlights.length > 0 && (
+              {showHighlights && section.highlights.length > 0 && (
                 <section class="rounded-lg border border-border bg-background p-5">
                   <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
                     Key Highlights
@@ -75,17 +88,19 @@ const breadcrumbs = [
 
               <slot />
 
-              <div class="border-t border-border pt-6">
-                <a
-                  href={ABOUT_BASE_PATH}
-                  class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-light"
-                >
-                  <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-                  </svg>
-                  Back to About Us
-                </a>
-              </div>
+              {showBackLink && (
+                <div class="border-t border-border pt-6">
+                  <a
+                    href={ABOUT_BASE_PATH}
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-light"
+                  >
+                    <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg>
+                    Back to About Us
+                  </a>
+                </div>
+              )}
             </div>
           </article>
         </div>
@@ -93,7 +108,7 @@ const breadcrumbs = [
     </div>
   </section>
 
-  <CTA />
+  {showCta && <CTA />}
 
   <Footer slot="footer" />
 </BaseLayout>
