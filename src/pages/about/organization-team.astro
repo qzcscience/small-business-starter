@@ -1,11 +1,14 @@
 ---
 import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
+import OrgChart from '../../components/about/OrgChart.astro';
 import { getAboutSection } from '../../data/about';
 
 const section = getAboutSection('organization-team')!;
 ---
 
 <AboutDetailShell section={section}>
+  <OrgChart />
+
   <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
     {section.blocks.map((block) => (
       <section class="rounded-lg border border-border p-5">

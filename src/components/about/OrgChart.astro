@@ -1,0 +1,79 @@
+---
+interface OrgGroup {
+  groupLabel: string;
+  nodes: string[];
+}
+
+const topLabel = 'Board / Senior Management';
+
+const groups: OrgGroup[] = [
+  {
+    groupLabel: 'Business Divisions',
+    nodes: [
+      'Industrial Environment and Semiconductor Division',
+      'Industrial Intelligent Testing Division',
+      'Analytical Instrument Division',
+      'Minimally Invasive and Dialysis Division',
+    ],
+  },
+  {
+    groupLabel: 'Core Functions',
+    nodes: [
+      'Advanced Technology Research Institute',
+      'R&D Platform',
+      'Procurement Center',
+      'Manufacturing Center',
+      'Quality Management Center',
+    ],
+  },
+  {
+    groupLabel: 'Supporting Functions',
+    nodes: [
+      'Strategy and Marketing',
+      'Process and Digitalization',
+      'Finance',
+      'Organizational Talent Development',
+      'Public Relations and Legal Affairs',
+      'Audit',
+      'Securities',
+    ],
+  },
+];
+---
+
+<section aria-label="Company Structure">
+  <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
+    Company Structure
+  </h2>
+
+  <div class="mt-6 space-y-6">
+    <!-- Top Node -->
+    <div class="flex justify-center">
+      <div class="rounded-lg border-2 border-primary bg-primary/10 px-6 py-4 text-center">
+        <span class="font-heading text-lg font-semibold uppercase text-primary">
+          {topLabel}
+        </span>
+      </div>
+    </div>
+
+    <!-- Group Columns -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {groups.map((group) => (
+        <div class="flex flex-col gap-3">
+          <div class="rounded-lg border border-border bg-primary/5 px-4 py-3 text-center">
+            <h3 class="font-heading text-sm font-semibold uppercase leading-snug text-primary">
+              {group.groupLabel}
+            </h3>
+          </div>
+          <ul class="flex flex-col gap-2" role="list">
+            {group.nodes.map((node) => (
+              <li class="rounded-lg border border-border bg-surface px-4 py-3">
+                <span class="text-sm leading-relaxed text-text-muted">{node}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
