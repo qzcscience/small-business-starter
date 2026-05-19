@@ -3,10 +3,6 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { aboutImage as localAboutImage } from '../config/images';
 
-// Fallback Unsplash URL used until a local image is added to
-// src/assets/images/about/ and registered in src/config/images.ts
-const PLACEHOLDER = 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=900&q=80';
-
 interface Props {
   topper?: string;
   heading?: string;
@@ -33,7 +29,7 @@ const {
   ],
   ctaLabel = 'Learn More About Wayeal',
   ctaHref = '/about',
-  imageSrc = localAboutImage ?? PLACEHOLDER,
+  imageSrc = localAboutImage,
   imageAlt = 'Wayeal engineers commissioning industrial helium leak detection equipment',
 } = Astro.props;
 ---
@@ -48,6 +44,7 @@ const {
         alt={imageAlt}
         width={700}
         height={525}
+        quality={60}
         loading="lazy"
         decoding="async"
         class="size-full object-cover"

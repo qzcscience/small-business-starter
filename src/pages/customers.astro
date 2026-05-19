@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro';
 import Breadcrumb from '../components/atoms/Breadcrumb.astro';
 import ClientCard from '../components/ClientCard.astro';
 import customerWorkpieceEntries from '../data/customerWorkpieces.json';
+import { createBreadcrumbSchema } from '../utils/seo';
 
 type ImageAsset = {
   src: string;
@@ -150,7 +151,7 @@ const schema = {
 <BaseLayout
   title="Customers by Industry"
   description="Explore Wayeal customers by industry, including HVAC, refrigeration, and electric power applications for helium leak detection solutions."
-  schema={schema}
+  schema={[schema, createBreadcrumbSchema(breadcrumbs)]}
 >
   <Header slot="header" />
   <Breadcrumb items={breadcrumbs} />

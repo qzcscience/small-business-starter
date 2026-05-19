@@ -12,6 +12,7 @@ import {
   resources,
   type ResourceRoute,
 } from '../../data/resources';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../utils/seo';
 
 export function getStaticPaths() {
   return resourceRoutes.map((route) => ({
@@ -35,6 +36,25 @@ const nestedCount = children.reduce((count, child) => count + (child.children?.l
 const isLeakRateUnitConverter = route.slug.join('/') === 'useful-tools/leak-rate-unit-converter';
 const pageTitle = article ? node.label : `${node.label} Resources`;
 const pageImage = article?.heroImage?.src;
+const collectionItems = !article
+  ? [
+      ...children.map((child) => ({
+        name: child.label,
+        url: child.href,
+        description: child.description,
+      })),
+      ...downloads.map((download) => ({
+        name: download.title,
+        url: download.href,
+        description: `${download.standard} ${download.extension} download`,
+      })),
+      ...videos.map((video) => ({
+        name: video.title,
+        url: video.watchUrl,
+        description: video.description,
+      })),
+    ]
+  : [];
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -50,6 +70,17 @@ const breadcrumbs = [
   title={pageTitle}
   description={node.description}
   image={pageImage}
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    collectionItems.length > 0
+      ? createCollectionPageSchema({
+          name: pageTitle,
+          description: node.description,
+          url: node.href,
+          items: collectionItems,
+        })
+      : undefined,
+  ]}
 >
   <Header slot="header" />
 

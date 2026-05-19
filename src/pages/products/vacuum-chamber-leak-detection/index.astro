@@ -10,6 +10,7 @@ import {
   VACUUM_CHAMBER_BASE_PATH,
   vacuumChamberApplications,
 } from '../../../data/vacuumChamber';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../../utils/seo';
 
 const productLinks =
   navItems
@@ -31,11 +32,26 @@ const skuCount = vacuumChamberApplications.reduce(
     count + application.groups.reduce((groupCount, group) => groupCount + group.skus.length, 0),
   0,
 );
+const applicationCollectionItems = vacuumChamberApplications.map((application) => ({
+  name: application.label,
+  url: `${VACUUM_CHAMBER_BASE_PATH}/${application.slug}`,
+  description: application.description,
+}));
 ---
 
 <BaseLayout
   title="Vacuum Chamber Leak Detection System"
   description="Browse vacuum chamber leak detection applications and matched SKU cards for automotive, HVAC, liquid cooling, power, battery, and custom components."
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    createCollectionPageSchema({
+      name: 'Vacuum Chamber Leak Detection System Applications',
+      description:
+        'Browse vacuum chamber leak detection applications and matched SKU cards for automotive, HVAC, liquid cooling, power, battery, and custom components.',
+      url: VACUUM_CHAMBER_BASE_PATH,
+      items: applicationCollectionItems,
+    }),
+  ]}
 >
   <Header slot="header" />
 

@@ -21,7 +21,7 @@ test.describe('Homepage', () => {
   test('loads the company video only after clicking play', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { level: 2, name: 'About Wayeal' })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 2, name: 'See Wayeal in Action' })).toBeVisible();
     await expect(page.locator('iframe[src*="youtube-nocookie.com"]')).toHaveCount(0);
 
     await page.getByRole('button', { name: 'Play About Wayeal video' }).click();
@@ -45,15 +45,15 @@ test.describe('Homepage', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { level: 2, name: 'Frequently Asked Questions' })).toBeVisible();
-    await expect(page.getByText('What is the typical lead time?')).toBeVisible();
-    await expect(page.getByText('What warranty coverage do you provide?')).toBeVisible();
-    await expect(page.getByText('Which payment methods do you accept?')).toBeVisible();
+    await expect(page.getByText('What information should I provide for a recommendation?')).toBeVisible();
+    await expect(page.getByText('Can Wayeal support customized fixtures or chamber systems?')).toBeVisible();
+    await expect(page.getByText('Do you support commissioning and operator training?')).toBeVisible();
 
-    const leadTimeAnswer = page.getByText('Standard lead times depend on product configuration');
-    await expect(leadTimeAnswer).toBeHidden();
+    const recommendationAnswer = page.getByText('Share your part size, material, sealing structure');
+    await expect(recommendationAnswer).toBeHidden();
 
-    await page.getByText('What is the typical lead time?').click();
-    await expect(leadTimeAnswer).toBeVisible();
+    await page.getByText('What information should I provide for a recommendation?').click();
+    await expect(recommendationAnswer).toBeVisible();
 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
     await expect(overflow).toBe(false);

@@ -275,7 +275,7 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
         summary: 'Chamber systems for evaporators, condensers, and coils.',
         skus: [
           {
-            slug: 'SFZ-344-Evaporator-Condenser',
+            slug: 'sfz-344-evaporator-condenser',
             sku: 'SFZ-344 Evaporator & Condenser',
             name: 'SFZ-344 Evaporator & Condenser Helium Leak Detection System',
             image: sfz344FrontLeftImage,
@@ -915,7 +915,7 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
         summary: 'Leak testing systems for sealed electrical power equipment.',
         skus: [
           {
-            slug: 'SFZ-344-RMU',
+            slug: 'sfz-344-rmu',
             sku: 'SFZ-344-RMU',
             name: 'SFZ-344 RMU Helium Leak Detection System',
             image: sfz344FrontLeftImage,
@@ -1064,7 +1064,7 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
             },
           },
           {
-            slug: 'SFZ-344-Circuit-Breaker',
+            slug: 'sfz-344-circuit-breaker',
             sku: 'SFZ-344-Circuit-Breaker',
             name: 'SFZ-344 Circuit Breaker Helium Leak Detection System',
             image: sfz344FrontLeftImage,
@@ -1224,7 +1224,7 @@ export const vacuumChamberApplications: VacuumChamberApplication[] = [
             },
           },
           {
-            slug: 'SFZ-344-Load-Break-Switch',
+            slug: 'sfz-344-load-break-switch',
             sku: 'SFZ-344-Load-Break-Switch',
             name: 'SFZ-344 Load Break Switch Helium Leak Detection System',
             image: sfz344FrontLeftImage,

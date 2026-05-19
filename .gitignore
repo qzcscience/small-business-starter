@@ -30,6 +30,9 @@ pnpm-debug.log*
 # ── Netlify CLI cache ─────────────────────────────────────────────────────────
 .netlify/
 
+# ── Cloudflare Wrangler local state ───────────────────────────────────────────
+.wrangler/
+
 # ── macOS ─────────────────────────────────────────────────────────────────────
 .DS_Store
 .AppleDouble

@@ -9,6 +9,8 @@ import ProductInfo from '../../components/molecules/ProductInfo.astro';
 import ProductTabs from '../../components/molecules/ProductTabs.astro';
 import { products } from '../../data/products';
 import { navItems } from '../../config/nav';
+import { brand } from '../../config/brand';
+import { createBreadcrumbSchema, getAbsoluteUrl, getCanonicalUrl } from '../../utils/seo';
 
 const product = products['helium-leak-detector'];
 const productOverview = product.overview || product.description;
@@ -31,9 +33,30 @@ const breadcrumbs = [
   { label: 'Products', href: '/products' },
   { label: product.title },
 ];
+
+const primaryImage = product.images[0]?.src || '/og-image.png';
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.title,
+  sku: product.name,
+  brand: {
+    '@type': 'Brand',
+    name: brand.name,
+  },
+  category: 'Helium leak detector',
+  description: product.description,
+  image: getAbsoluteUrl(primaryImage),
+  url: getCanonicalUrl(product.pageHref),
+};
 ---
 
-<BaseLayout title={product.title} description={product.description}>
+<BaseLayout
+  title={product.title}
+  description={product.description}
+  image={primaryImage}
+  schema={[productSchema, createBreadcrumbSchema(breadcrumbs)]}
+>
   <Header slot="header" />
 
   <Breadcrumb items={breadcrumbs} />

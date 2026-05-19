@@ -9,28 +9,39 @@ import About from '../components/About.astro';
 import Gallery from '../components/Gallery.astro';
 import FAQ from '../components/FAQ.astro';
 import CTA from '../components/CTA.astro';
-import { client } from '../data/client';
+import {
+  createFAQPageSchema,
+  createOrganizationSchema,
+  createWebSiteSchema,
+} from '../utils/seo';
+
+const homepageFaqItems = [
+  {
+    question: 'What information should I provide for a recommendation?',
+    answer:
+      'Share your part size, material, sealing structure, target leak rate, cycle time, production volume, automation requirements, and preferred helium handling method. These details help Wayeal recommend the right helium leak testing system for your workflow.',
+  },
+  {
+    question: 'Can Wayeal support customized fixtures or chamber systems?',
+    answer:
+      'Yes. Wayeal supports customized fixtures, vacuum chamber leak detection systems, helium recovery configurations, and production-line integration for parts that require repeatable industrial leak testing.',
+  },
+  {
+    question: 'Do you support commissioning and operator training?',
+    answer:
+      'Yes. Wayeal can support equipment commissioning, method setup, operator training, spare parts, and long-term technical support so the helium leak detection process runs reliably in production.',
+  },
+];
 ---
 
 <BaseLayout
-  title="Wayeal | Helium Leak Detection Systems Manufacturer"
-  description="Wayeal manufactures helium mass spectrometer leak detectors, vacuum chamber helium leak detection systems, helium recovery systems, and production-line leak testing solutions with ISO 9001, ISO 14001, ISO 45001, ISO 50001, CE and UL certifications."
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: client.name,
-    telephone: client.phoneForTel,
-    email: client.email,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: client.address.lineOne,
-      addressLocality: client.address.city,
-      addressRegion: client.address.state,
-      postalCode: client.address.zip,
-      addressCountry: client.address.country,
-    },
-    url: client.domain,
-  }}
+  title="Helium Leak Detection Systems Manufacturer"
+  description="Wayeal manufactures helium leak detectors, vacuum chamber systems, helium recovery systems, and production-line leak testing solutions."
+  schema={[
+    createOrganizationSchema(),
+    createWebSiteSchema(),
+    createFAQPageSchema(homepageFaqItems),
+  ]}
 >
   <Header slot="header" />
 
@@ -39,7 +50,7 @@ import { client } from '../data/client';
   <CompanyVideo />
   <About />
   <Gallery />
-  <FAQ />
+  <FAQ items={homepageFaqItems} />
   <CTA />
 
   <Footer slot="footer" />

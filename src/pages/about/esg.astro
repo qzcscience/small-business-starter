@@ -1,10 +1,10 @@
 ---
 import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
-import { brand } from '../../config/brand';
 import { getAboutSection } from '../../data/about';
+import { getAbsoluteUrl } from '../../utils/seo';
 
 const section = getAboutSection('esg')!;
-const pageUrl = new URL(section.href, Astro.site ?? brand.url).toString();
+const pageUrl = getAbsoluteUrl(section.href);
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',

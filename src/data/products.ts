@@ -115,10 +115,7 @@ function getProductDownloads(name: string): ProductDownload[] {
 }
 
 const sfj231Images = getProductImages('SFJ-231', [
-  { src: 'https://picsum.photos/600/450?random=11', alt: 'SFJ-231 mobile helium leak detector front view' },
-  { src: 'https://picsum.photos/600/450?random=12', alt: 'SFJ-231 touch screen control panel' },
-  { src: 'https://picsum.photos/600/450?random=13', alt: 'SFJ-231 helium leak detector side view' },
-  { src: 'https://picsum.photos/600/450?random=14', alt: 'SFJ-231 leak testing workflow' },
+  { src: '/og-image.png', alt: 'SFJ-231 mobile helium leak detector front view' },
 ]);
 
 export const products: Record<string, Product> = {

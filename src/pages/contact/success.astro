@@ -2,10 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { brand } from '../../config/brand';
 ---
 
-<BaseLayout title="Message Sent" description="Your message has been received.">
+<BaseLayout
+  title="Message Sent"
+  description="Confirmation page for successful Wayeal contact form submissions."
+  noindex
+>
   <Header slot="header" />
 
   <section class="flex min-h-[60vh] items-center justify-center px-4">

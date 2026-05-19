@@ -18,7 +18,7 @@ export const brand = {
   tagline: 'Helium Leak Detection Solutions',
   description:
     'Precision instruments for Automotive, HVAC, Server liquid cooling, Electric power, Lithium-ion batteries, and beyond',
-  url: 'https://example.com',
+  url: 'https://www.wayealleaktest.com',
   locale: 'en_US',
 
   // ── Fonts ──────────────────────────────────────────────────────────────────

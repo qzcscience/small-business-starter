@@ -101,7 +101,7 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Culture',
     title: 'Corporate Culture',
     description:
-      'A quick look at the ideas behind Wayeal culture.',
+      'Explore Wayeal corporate culture, customer-first values, quality focus, and practical service principles for precision leak testing projects.',
     summary:
       'Wayeal keeps things simple: listen closely, build reliable products, support customers well, and keep improving together.',
     highlights: [

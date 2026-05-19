@@ -12,6 +12,7 @@ import {
   getPublishedNews,
   slugifyNewsTag,
 } from '../../../data/news';
+import { createBreadcrumbSchema, getAbsoluteUrl, getCanonicalUrl } from '../../../utils/seo';
 
 export async function getStaticPaths() {
   const entries = await getPublishedNews();
@@ -38,12 +39,34 @@ const breadcrumbs = [
   ...(category ? [{ label: category.label, href: category.href }] : []),
   { label: entry.data.title },
 ];
+
+const articleUrl = getCanonicalUrl(Astro.url.pathname);
+const articleImage = entry.data.image ? getAbsoluteUrl(entry.data.image) : undefined;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: entry.data.date.toISOString(),
+  dateModified: entry.data.date.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: entry.data.author,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Wayeal',
+  },
+  mainEntityOfPage: articleUrl,
+  ...(articleImage ? { image: articleImage } : {}),
+};
 ---
 
 <BaseLayout
   title={entry.data.title}
   description={entry.data.description}
   image={entry.data.image}
+  schema={[articleSchema, createBreadcrumbSchema(breadcrumbs)]}
 >
   <Header slot="header" />
 

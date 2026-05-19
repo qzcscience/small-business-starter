@@ -7,6 +7,7 @@ import CategorySidebar from '../../../components/atoms/CategorySidebar.astro';
 import CTA from '../../../components/CTA.astro';
 import { navItems } from '../../../config/nav';
 import { accessories, accessoryGroups } from '../../../data/accessories';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../../utils/seo';
 
 const productLinks =
   navItems
@@ -22,11 +23,27 @@ const breadcrumbs = [
   { label: 'Products', href: '/products' },
   { label: 'Accessories' },
 ];
+const accessoryCollectionItems = accessories.map((accessory) => ({
+  name: accessory.name,
+  url: `/products/accessories#${accessory.slug}`,
+  description: accessory.description,
+  image: accessory.images[0]?.src,
+}));
 ---
 
 <BaseLayout
   title="Accessories"
-  description="Browse accessories and consumables for helium leak detection systems."
+  description="Browse Wayeal helium leak detection accessories, probes, calibration parts, chambers, filters, gauges, tooling, and replacement components."
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    createCollectionPageSchema({
+      name: 'Wayeal Helium Leak Detection Accessories',
+      description:
+        'Browse Wayeal helium leak detection accessories, probes, calibration parts, chambers, filters, gauges, tooling, and replacement components.',
+      url: '/products/accessories',
+      items: accessoryCollectionItems,
+    }),
+  ]}
 >
   <Header slot="header" />
 

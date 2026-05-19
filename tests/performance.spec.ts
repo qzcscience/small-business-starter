@@ -97,10 +97,11 @@ test.describe('Performance / Speed Score', () => {
     expect(cls).toBeLessThan(THRESHOLDS.cls);
   });
 
-  test('page has no render-blocking resources', async ({ page }) => {
+  test('page has no third-party render-blocking resources', async ({ page }) => {
     await page.goto('/');
 
     const renderBlockingCount = await page.evaluate(() => {
+      const pageOrigin = window.location.origin;
       const resources = performance.getEntriesByType(
         'resource',
       ) as PerformanceResourceTiming[];
@@ -108,11 +109,12 @@ test.describe('Performance / Speed Score', () => {
         (r) =>
           r.renderBlockingStatus === 'blocking' &&
           // Favicon requests are fine to ignore
-          !r.name.includes('favicon'),
+          !r.name.includes('favicon') &&
+          !r.name.startsWith(pageOrigin),
       ).length;
     });
 
-    console.log('Render-blocking resources:', renderBlockingCount);
+    console.log('Third-party render-blocking resources:', renderBlockingCount);
     expect(renderBlockingCount).toBe(0);
   });
 

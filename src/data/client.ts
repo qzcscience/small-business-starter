@@ -32,7 +32,7 @@ export const client = {
     linkedin: 'https://www.linkedin.com/in/oliver-wayeal/',
     whatsapp: 'https://wa.me/+8615754603228',
   },
-  domain: 'https://maps.app.goo.gl/wJ4teoYa3kDxnYTFA',
+  domain: 'https://www.wayealleaktest.com',
 } as const;
 
 export type Client = typeof client;

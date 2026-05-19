@@ -8,25 +8,29 @@ export const newsCategories = [
     label: 'Company',
     slug: 'company',
     href: `${NEWS_BASE_PATH}/company`,
-    description: 'Corporate updates, milestones, and Wayeal announcements.',
+    description:
+      'Corporate updates, manufacturing milestones, certification news, and Wayeal announcements for customers following our helium leak testing business.',
   },
   {
     label: 'Customer Success',
     slug: 'customer-success',
     href: `${NEWS_BASE_PATH}/customer-success`,
-    description: 'Customer stories, implementation notes, and application wins.',
+    description:
+      'Customer stories, implementation notes, and application wins showing how Wayeal leak testing systems support real production lines.',
   },
   {
     label: 'Trade Shows',
     slug: 'trade-shows',
     href: `${NEWS_BASE_PATH}/trade-shows`,
-    description: 'Exhibition previews, event recaps, and booth information.',
+    description:
+      'Exhibition previews, event recaps, and booth information for Wayeal helium leak detectors, vacuum chamber systems, and related instruments.',
   },
   {
     label: 'Industry',
     slug: 'industry',
     href: `${NEWS_BASE_PATH}/industry`,
-    description: 'Market notes and leak testing trends from relevant industries.',
+    description:
+      'Industry notes on leak testing trends in batteries, liquid cooling, HVAC, electric power, automotive parts, and precision manufacturing.',
   },
 ] as const;
 

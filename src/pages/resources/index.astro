@@ -6,6 +6,7 @@ import Breadcrumb from '../../components/atoms/Breadcrumb.astro';
 import CategorySidebar from '../../components/atoms/CategorySidebar.astro';
 import CTA from '../../components/CTA.astro';
 import { RESOURCE_BASE_PATH, resources } from '../../data/resources';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../utils/seo';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -17,11 +18,26 @@ const itemCount = resources.reduce((count, category) => {
   const nested = children.reduce((childCount, child) => childCount + (child.children?.length || 0), 0);
   return count + children.length + nested;
 }, 0);
+const resourceCollectionItems = resources.map((resource) => ({
+  name: resource.label,
+  url: resource.href,
+  description: resource.description,
+}));
 ---
 
 <BaseLayout
   title="Resources"
   description="Browse Wayeal leak testing glossary entries, technical guides, case studies, downloads, videos, and useful tools."
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    createCollectionPageSchema({
+      name: 'Wayeal Leak Testing Resources',
+      description:
+        'Browse Wayeal leak testing glossary entries, technical guides, case studies, downloads, videos, and useful tools.',
+      url: RESOURCE_BASE_PATH,
+      items: resourceCollectionItems,
+    }),
+  ]}
 >
   <Header slot="header" />
 

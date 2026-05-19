@@ -12,6 +12,7 @@ import {
   getPublishedNews,
   newsCategories,
 } from '../../../data/news';
+import { createBreadcrumbSchema } from '../../../utils/seo';
 
 export async function getStaticPaths() {
   return newsCategories.map((category) => ({
@@ -34,6 +35,7 @@ const breadcrumbs = [
 <BaseLayout
   title={`${category.label} News`}
   description={category.description}
+  schema={createBreadcrumbSchema(breadcrumbs)}
 >
   <Header slot="header" />
 

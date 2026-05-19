@@ -5,6 +5,7 @@ import Footer from '../Footer.astro';
 import Breadcrumb from '../atoms/Breadcrumb.astro';
 import CategorySidebar from '../atoms/CategorySidebar.astro';
 import CTA from '../CTA.astro';
+import { createBreadcrumbSchema } from '../../utils/seo';
 import {
   ABOUT_BASE_PATH,
   aboutNavItems,
@@ -38,7 +39,7 @@ const breadcrumbs = [
 <BaseLayout
   title={section.title}
   description={section.description}
-  schema={schema}
+  schema={[schema, createBreadcrumbSchema(breadcrumbs)]}
 >
   <Header slot="header" />
 

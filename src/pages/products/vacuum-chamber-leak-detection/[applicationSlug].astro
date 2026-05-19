@@ -11,6 +11,7 @@ import {
   vacuumChamberApplications,
   type VacuumChamberApplication,
 } from '../../../data/vacuumChamber';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../../utils/seo';
 
 export function getStaticPaths() {
   return vacuumChamberApplications.map((application) => ({
@@ -43,9 +44,29 @@ const breadcrumbs = [
 ];
 
 const skuCount = application.groups.reduce((count, group) => count + group.skus.length, 0);
+const skuCollectionItems = application.groups.flatMap((group) =>
+  group.skus.map((sku) => ({
+    name: sku.name,
+    url: `${applicationHref}/${sku.slug}`,
+    description: sku.shortDescription,
+    image: sku.image,
+  })),
+);
 ---
 
-<BaseLayout title={application.title} description={application.description}>
+<BaseLayout
+  title={application.title}
+  description={application.description}
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    createCollectionPageSchema({
+      name: application.title,
+      description: application.description,
+      url: applicationHref,
+      items: skuCollectionItems,
+    }),
+  ]}
+>
   <Header slot="header" />
 
   <Breadcrumb items={breadcrumbs} />

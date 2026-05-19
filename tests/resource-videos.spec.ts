@@ -5,10 +5,13 @@ test.describe('Resource videos', () => {
     await page.goto('/resources/videos');
 
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Videos');
-    await expect(page.locator('iframe[src*="youtube-nocookie.com/embed/"]')).toHaveCount(3);
+    await expect(page.locator('iframe[src*="youtube-nocookie.com/embed/"]')).toHaveCount(6);
     await expect(page.locator('iframe[src*="dZR7PMBhHFc"]')).toHaveCount(1);
     await expect(page.locator('iframe[src*="KhgjPk0dUFU"]')).toHaveCount(1);
     await expect(page.locator('iframe[src*="snoiqqyFoIQ"]')).toHaveCount(1);
+    await expect(page.locator('iframe[src*="45pS1uk1KH0"]')).toHaveCount(1);
+    await expect(page.locator('iframe[src*="7TLbRxMMy6c"]')).toHaveCount(1);
+    await expect(page.locator('iframe[src*="u_ytBQSHCeE"]')).toHaveCount(1);
     await expect(page.locator('iframe[src*="playlists"]')).toHaveCount(0);
     await expect(page.locator('iframe[src*="@oliverqi1987"]')).toHaveCount(0);
 
@@ -44,6 +47,12 @@ test.describe('Resource videos', () => {
     ).toHaveAttribute(
       'href',
       '/products/vacuum-chamber-leak-detection/automotive/sfz-344-car-ac-condenser',
+    );
+    await expect(
+      chamberVideo.getByRole('link', { name: 'SFZ-344 RMU Helium Leak Detection System' }),
+    ).toHaveAttribute(
+      'href',
+      '/products/vacuum-chamber-leak-detection/electric-power/sfz-344-rmu',
     );
   });
 

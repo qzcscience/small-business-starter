@@ -8,6 +8,7 @@ import { brand } from '../../config/brand';
 import { navItems } from '../../config/nav';
 import heliumRecoveryImage from '../../assets/images/products/helium-recovery/wayeal-helium-recovery-system.png';
 import workingPrincipleImage from '../../assets/images/products/helium-recovery/helium-recovery-working-principle.png';
+import { createBreadcrumbSchema, getAbsoluteUrl, getCanonicalUrl } from '../../utils/seo';
 
 const pageHref = '/products/helium-recovery';
 const productName = 'Wayeal Helium Recovery System';
@@ -98,17 +99,21 @@ const efficiencyFactors = [
   title={pageTitle}
   description={pageDescription}
   image={heliumRecoveryImage.src}
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: productName,
-    brand: {
-      '@type': 'Brand',
-      name: brand.name,
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: productName,
+      brand: {
+        '@type': 'Brand',
+        name: brand.name,
+      },
+      description: pageDescription,
+      image: getAbsoluteUrl(heliumRecoveryImage.src),
+      url: getCanonicalUrl(pageHref),
     },
-    description: pageDescription,
-    image: heliumRecoveryImage.src,
-  }}
+    createBreadcrumbSchema(breadcrumbs),
+  ]}
 >
   <Header slot="header" />
 

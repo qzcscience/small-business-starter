@@ -20,6 +20,7 @@ import {
   vacuumChamberSkus,
   type VacuumChamberSkuWithContext,
 } from '../../../../data/vacuumChamber';
+import { createBreadcrumbSchema, getAbsoluteUrl, getCanonicalUrl } from '../../../../utils/seo';
 
 export function getStaticPaths() {
   return vacuumChamberSkus.map((sku) => ({
@@ -36,8 +37,8 @@ const { sku } = Astro.props;
 const applicationHref = `${VACUUM_CHAMBER_BASE_PATH}/${sku.applicationSlug}`;
 const skuImages = sku.images?.length ? sku.images : [{ src: sku.image, alt: sku.name }];
 const primaryImage = skuImages[0]?.src || sku.image;
-const pageUrl = new URL(Astro.url.pathname, Astro.site ?? brand.url).toString();
-const imageUrl = new URL(primaryImage, Astro.site ?? brand.url).toString();
+const pageUrl = getCanonicalUrl(Astro.url.pathname);
+const imageUrl = getAbsoluteUrl(primaryImage);
 const sourceContent = sku.sourceContent;
 const workflowDiagram = sourceContent?.workflowDiagram;
 const workflowDiagramMarkupBySlug: Record<string, string> = {
@@ -45,10 +46,10 @@ const workflowDiagramMarkupBySlug: Record<string, string> = {
   'sfz-344-liquid-cooling-plate': sfz344LiquidCoolingWorkflowDiagramSvg,
   'sfz-344-bellows': sfz344BellowsWorkflowDiagramSvg,
   'sfz-344-manifold': sfz344ManifoldWorkflowDiagramSvg,
-  'SFZ-344-RMU': sfz344RmuWorkflowDiagramSvg,
-  'SFZ-344-Circuit-Breaker': sfz344CircuitBreakerWorkflowDiagramSvg,
-  'SFZ-344-Load-Break-Switch': sfz344CircuitBreakerWorkflowDiagramSvg,
-  'SFZ-344-Evaporator-Condenser': sfz344EvaporatorCondenserWorkflowDiagramSvg,
+  'sfz-344-rmu': sfz344RmuWorkflowDiagramSvg,
+  'sfz-344-circuit-breaker': sfz344CircuitBreakerWorkflowDiagramSvg,
+  'sfz-344-load-break-switch': sfz344CircuitBreakerWorkflowDiagramSvg,
+  'sfz-344-evaporator-condenser': sfz344EvaporatorCondenserWorkflowDiagramSvg,
 };
 const workflowDiagramMarkup = workflowDiagramMarkupBySlug[sku.slug];
 const specSections = sku.specSections?.length
@@ -101,13 +102,13 @@ const ctaTitle =
       ? 'Configure SFZ-344 For Your Liquid Cooling Bellows'
     : sku.slug === 'sfz-344-manifold'
       ? 'Configure SFZ-344 For Your Liquid Cooling Manifold'
-    : sku.slug === 'SFZ-344-RMU'
+    : sku.slug === 'sfz-344-rmu'
       ? 'Configure SFZ-344 For Your RMU'
-    : sku.slug === 'SFZ-344-Circuit-Breaker'
+    : sku.slug === 'sfz-344-circuit-breaker'
       ? 'Configure SFZ-344 For Your Circuit Breaker'
-    : sku.slug === 'SFZ-344-Load-Break-Switch'
+    : sku.slug === 'sfz-344-load-break-switch'
       ? 'Configure SFZ-344 For Your Load Break Switch'
-    : sku.slug === 'SFZ-344-Evaporator-Condenser'
+    : sku.slug === 'sfz-344-evaporator-condenser'
       ? 'Configure SFZ-344 For Your Evaporator or Condenser'
     : 'Confirm This SKU For Your Part';
 const ctaDescription =
@@ -119,18 +120,23 @@ const ctaDescription =
       ? 'Send us your liquid cooling bellows dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : sku.slug === 'sfz-344-manifold'
       ? 'Send us your liquid cooling manifold dimensions, port layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
-    : sku.slug === 'SFZ-344-RMU'
+    : sku.slug === 'sfz-344-rmu'
       ? 'Send us your RMU or GIS component dimensions, port layout, target leak rate, test pressure, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
-    : sku.slug === 'SFZ-344-Circuit-Breaker'
+    : sku.slug === 'sfz-344-circuit-breaker'
       ? 'Send us your circuit breaker dimensions, connector layout, target leak rate, helium pressure, SF6 or SF6-free gas filling pressure, cycle time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
-    : sku.slug === 'SFZ-344-Load-Break-Switch'
+    : sku.slug === 'sfz-344-load-break-switch'
       ? 'Send us your load break switch dimensions, connector layout, target leak rate, helium pressure, SF6 or SF6-free gas filling pressure, cycle time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
-    : sku.slug === 'SFZ-344-Evaporator-Condenser'
+    : sku.slug === 'sfz-344-evaporator-condenser'
       ? 'Send us your evaporator or condenser dimensions, connector layout, target leak rate, takt time, and automation needs. We will match the chamber, pump set, fixture, and helium recovery design to your process.'
     : 'Send us your part dimensions, target leak rate, fixture needs, and expected throughput. We will recommend the best chamber configuration.';
 ---
 
-<BaseLayout title={sku.name} description={sku.description} image={primaryImage} schema={schema}>
+<BaseLayout
+  title={sku.name}
+  description={sku.description}
+  image={primaryImage}
+  schema={[schema, createBreadcrumbSchema(breadcrumbs)]}
+>
   <Header slot="header" />
 
   <Breadcrumb items={breadcrumbs} />

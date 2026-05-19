@@ -10,6 +10,7 @@ import {
   aboutNavItems,
   aboutSections,
 } from '../data/about';
+import { createBreadcrumbSchema } from '../utils/seo';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -20,6 +21,7 @@ const breadcrumbs = [
 <BaseLayout
   title="About Us"
   description="Explore Wayeal company profile, factory capability, culture, team, certifications, research collaboration, and ESG information."
+  schema={createBreadcrumbSchema(breadcrumbs)}
 >
   <Header slot="header" />
 

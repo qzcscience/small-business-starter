@@ -699,7 +699,8 @@ export const resources: ResourceCategory[] = [
         label: 'Buying Guides',
         slug: 'buying-guides',
         href: `${RESOURCE_BASE_PATH}/technical-guides/buying-guides`,
-        description: 'Selection notes for matching test configuration to part geometry and production flow.',
+        description:
+          'Selection notes for matching leak test configuration to part geometry, target leak rate, automation level, helium handling, and production flow.',
         children: [
           {
             label: 'Inside vs Outside Box Testing',
@@ -714,7 +715,8 @@ export const resources: ResourceCategory[] = [
         label: 'Method Comparison',
         slug: 'method-comparison',
         href: `${RESOURCE_BASE_PATH}/technical-guides/method-comparison`,
-        description: 'Compare leak testing methods before selecting equipment for production.',
+        description:
+          'Compare helium leak testing, pressure decay, bubble testing, and other inspection methods before selecting equipment for production.',
         children: [
           {
             label: 'Helium vs Pressure Decay vs Bubble Test',
@@ -831,7 +833,8 @@ export const resources: ResourceCategory[] = [
         label: 'Power · HV Switchgear',
         slug: 'power-hv-switchgear',
         href: `${RESOURCE_BASE_PATH}/case-studies/power-hv-switchgear`,
-        description: 'Leak testing approach for high-voltage switchgear and gas-insulated equipment.',
+        description:
+          'Leak testing approach for high-voltage switchgear, RMU, GIS, circuit breaker, and other gas-insulated power equipment.',
       },
     ],
   },
@@ -846,7 +849,8 @@ export const resources: ResourceCategory[] = [
         label: 'Product Catalogs',
         slug: 'product-catalogs',
         href: `${RESOURCE_BASE_PATH}/downloads/product-catalogs`,
-        description: 'Browse product overview materials for helium leak detectors and related systems.',
+        description:
+          'Browse product overview materials for Wayeal helium leak detectors, vacuum chamber systems, helium recovery, and related leak testing solutions.',
         downloads: [
           {
             title: 'Wayeal One-stop Leak Detection Solutions',
@@ -861,7 +865,8 @@ export const resources: ResourceCategory[] = [
         label: 'Certifications (CE / UL / ISO)',
         slug: 'certifications-ce-ul-iso',
         href: `${RESOURCE_BASE_PATH}/downloads/certifications-ce-ul-iso`,
-        description: 'Certification references for compliance review and procurement documentation.',
+        description:
+          'Review Wayeal ISO, CE, UL, NRTL, and quality certification documents for compliance checks, supplier qualification, and procurement records.',
         downloads: [
           {
             title: 'Wayeal ISO 9001 Quality Management System Certificate',
@@ -929,7 +934,7 @@ export const resources: ResourceCategory[] = [
     slug: 'useful-tools',
     href: `${RESOURCE_BASE_PATH}/useful-tools`,
     description:
-      'Calculators and converters for leak rate units and application planning.',
+      'Calculators and converters for leak rate units, helium leak testing specifications, pressure decay references, and application planning.',
     children: [
       {
         label: 'Leak Rate Unit Converter',

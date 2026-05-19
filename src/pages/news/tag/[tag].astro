@@ -12,6 +12,7 @@ import {
   getPublishedNews,
   slugifyNewsTag,
 } from '../../../data/news';
+import { createBreadcrumbSchema } from '../../../utils/seo';
 
 export async function getStaticPaths() {
   const entries = await getPublishedNews();
@@ -36,7 +37,9 @@ const breadcrumbs = [
 
 <BaseLayout
   title={`News tagged ${tag.label}`}
-  description={`Browse Wayeal news tagged ${tag.label}.`}
+  description={`Browse Wayeal news articles and updates related to ${tag.label} across helium leak testing, production quality, and industry applications.`}
+  schema={createBreadcrumbSchema(breadcrumbs)}
+  noindex
 >
   <Header slot="header" />
 

@@ -13,6 +13,7 @@ import {
 import { accessories, accessoryGroups } from '../../data/accessories';
 import { navItems } from '../../config/nav';
 import heliumRecoveryImage from '../../assets/images/products/helium-recovery/wayeal-helium-recovery-system.png';
+import { createBreadcrumbSchema, createCollectionPageSchema } from '../../utils/seo';
 
 const heliumLeakDetector = products['helium-leak-detector'];
 const vacuumApplicationSections = vacuumChamberApplications.map((application) => ({
@@ -48,9 +49,51 @@ const breadcrumbs = [
   { label: 'Home', href: '/' },
   { label: 'Products' },
 ];
+const productCollectionItems = [
+  {
+    name: heliumLeakDetector.title,
+    url: heliumLeakDetector.pageHref,
+    description: heliumLeakDetector.description,
+    image: heliumLeakDetector.images[0]?.src,
+  },
+  ...vacuumApplicationSections.flatMap((application) =>
+    application.skus.map((sku) => ({
+      name: sku.name,
+      url: sku.href,
+      description: sku.shortDescription,
+      image: sku.image,
+    })),
+  ),
+  {
+    name: 'Wayeal Helium Recovery System',
+    url: '/products/helium-recovery',
+    description:
+      'Performs gross leak detection, helium filling, helium recovery, pressure and concentration monitoring, and automatic helium replenishment.',
+    image: heliumRecoveryImage.src,
+  },
+  {
+    name: 'Accessories',
+    url: '/products/accessories',
+    description: accessoryGroups[0]?.summary || 'Accessories and consumables for helium leak detection systems.',
+    image: accessoryPreviewImages[0]?.src,
+  },
+];
 ---
 
-<BaseLayout title="Products" description="Browse our product lineup and jump into each product detail page.">
+<BaseLayout
+  title="Products"
+  description="Browse Wayeal helium leak detectors, vacuum chamber leak detection systems, helium recovery systems, and accessories for industrial leak testing."
+  schema={[
+    createBreadcrumbSchema(breadcrumbs),
+    createCollectionPageSchema({
+      name: 'Wayeal Products',
+      description:
+        'Browse Wayeal helium leak detectors, vacuum chamber leak detection systems, helium recovery systems, and accessories for industrial leak testing.',
+      url: '/products',
+      items: productCollectionItems,
+    }),
+  ]}
+>
   <Header slot="header" />
 
   <Breadcrumb items={breadcrumbs} />

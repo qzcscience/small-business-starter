@@ -5,7 +5,9 @@ import Footer from '../../components/Footer.astro';
 import Banner from '../../components/Banner.astro';
 import { brand } from '../../config/brand';
 import { client } from '../../data/client';
+import { createOrganizationSchema, getCanonicalUrl } from '../../utils/seo';
 
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 const contactAddressLines = [
   'Street: No.8 Wenqu Road',
   'Location: Hefei, Anhui, China',
@@ -13,7 +15,26 @@ const contactAddressLines = [
 ];
 ---
 
-<BaseLayout title="Contact" description={`Get in touch with ${brand.name}. Request a free quote or ask us a question.`}>
+<BaseLayout
+  title="Contact"
+  description={`Contact ${brand.name} to discuss helium leak detectors, vacuum chamber systems, helium recovery, accessories, or custom leak testing projects.`}
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Wayeal',
+    url: getCanonicalUrl('/contact'),
+    mainEntity: createOrganizationSchema(),
+  }}
+>
+  {turnstileSiteKey && (
+    <script
+      slot="head"
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  )}
+
   <Header slot="header" />
 
   <Banner title="Contact Us" />
@@ -31,12 +52,10 @@ const contactAddressLines = [
         <form
           name="contact"
           method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          action="/contact/success"
+          action="/api/contact"
           class="flex flex-col gap-5"
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="source-page" value="/contact" />
           <p class="hidden" aria-hidden="true">
             <label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
           </p>
@@ -83,6 +102,14 @@ const contactAddressLines = [
               class="min-h-[120px] rounded-md border border-border bg-background px-4 py-2.5 text-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 resize-y"
             ></textarea>
           </label>
+
+          {turnstileSiteKey && (
+            <div
+              class="cf-turnstile"
+              data-sitekey={turnstileSiteKey}
+              data-theme="light"
+            ></div>
+          )}
 
           <button
             type="submit"

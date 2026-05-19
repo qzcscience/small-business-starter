@@ -21,13 +21,17 @@
  *     about/     ← one image used in the About section and About page
  *     gallery/   ← all project photos (drop any number of files here)
  *
- * Until you add local files the components fall back to placeholder URLs
- * served from Unsplash. Those are fine for development/demo but are NOT
- * optimized by Astro. Swap them for local files before going live.
+ * Until you add local files the components fall back to first-party Wayeal
+ * assets so production builds do not depend on third-party placeholder hosts.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
 import type { ImageMetadata } from 'astro';
+import sfj231Image from '../assets/images/products/SFJ-231/Wayeal SFJ-231.png';
+import heliumRecoveryImage from '../assets/images/products/helium-recovery/wayeal-helium-recovery-system.png';
+import condenserSystemImage from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/sfz-344-condenser-system-front-left.png';
+import condenserLayoutImage from '../assets/images/products/vacuum-chamber/sfz-344-car-ac-condenser/sfz-344-condenser-system-top-layout.png';
+import snifferProbeImage from '../assets/images/products/accessories/sniffer-probe.png';
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 // Recommended: landscape image, at least 1600 × 1200 px
@@ -59,8 +63,8 @@ export const logoImage: ImageMetadata = logoImageSrc;
 //   2. Uncomment and update the line below
 //   3. Replace the aboutImage export at the bottom of this section
 //
-// import aboutImage from '../assets/images/about/team.jpg';
-export const aboutImage: ImageMetadata | undefined = undefined;
+import aboutImageSrc from '../assets/images/company-video/poster.jpg';
+export const aboutImage: ImageMetadata = aboutImageSrc;
 
 // ── Gallery — auto-discovered ─────────────────────────────────────────────────
 // Drop any number of image files into src/assets/images/gallery/ and they will
@@ -92,15 +96,15 @@ const discovered = Object.entries(
     .replace(/\b\w/g, (c) => c.toUpperCase()), // Title Case
 }));
 
-// Unsplash placeholders used when the gallery folder is empty.
-// Replace by adding your own images — the placeholders are removed automatically.
+// First-party Wayeal fallbacks used when the gallery folder is empty.
+// Replace by adding your own images — the fallbacks are removed automatically.
 const placeholders: GalleryImage[] = [
-  { src: 'https://images.unsplash.com/photo-1772567732969-c1506edf80a0?w=600&q=80', alt: 'Vacuum chamber helium leak detection system for sealed components' },
-  { src: 'https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=600&q=80', alt: 'Helium mass spectrometer leak detector for production quality control' },
-  { src: 'https://images.unsplash.com/photo-1761166518480-49279513d65f?w=600&q=80', alt: 'Automated industrial leak testing workflow with fixtures and tooling' },
-  { src: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80', alt: 'Helium recovery solution for leak testing production lines' },
-  { src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80', alt: 'Leak testing application for batteries HVAC automotive and power equipment' },
-  { src: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80', alt: 'Wayeal industrial helium leak detection equipment and accessories' },
+  { src: condenserSystemImage, alt: 'SFZ-344 vacuum chamber helium leak detection system for sealed components' },
+  { src: sfj231Image, alt: 'SFJ-231 helium mass spectrometer leak detector for production quality control' },
+  { src: condenserLayoutImage, alt: 'Vacuum chamber leak testing workflow with chamber layout and tooling' },
+  { src: heliumRecoveryImage, alt: 'Wayeal helium recovery system for leak testing production lines' },
+  { src: heroImageSrc, alt: 'Wayeal leak testing systems for batteries HVAC automotive and power equipment' },
+  { src: snifferProbeImage, alt: 'Sniffer probe accessory for Wayeal industrial helium leak detection equipment' },
 ];
 
 export const galleryImages: GalleryImage[] = discovered.length > 0 ? discovered : placeholders;

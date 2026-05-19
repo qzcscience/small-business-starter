@@ -1,239 +1,88 @@
-# Small Business Starter
+# Wayeal Leak Test Website
 
-A fast, mobile-first website template for trade and service businesses — handymen, electricians, plumbers, landscapers, and more. Built with [Astro 6](https://astro.build) and [Tailwind CSS v4](https://tailwindcss.com). Ready to deploy on [Netlify](https://netlify.com) in minutes.
+Astro static site for Wayeal helium leak detection products, resources, news, and contact lead capture. The production deployment target is Cloudflare Pages.
 
----
+## Stack
 
-## What's included
+- Astro 6 static output
+- Tailwind CSS v4
+- Playwright smoke and regression tests
+- Cloudflare Pages static hosting
+- Cloudflare Pages Functions for `/api/contact`
+- Cloudflare Turnstile for contact form spam protection
+- Resend for email delivery
 
-- Full homepage with Hero, Trust Bar, About, Gallery, and CTA sections
-- Inner pages: About and Contact (with Netlify Forms)
-- SEO-ready: `<title>`, meta descriptions, canonical URLs, Open Graph, JSON-LD structured data, sitemap, robots.txt
-- Mobile-first responsive layout with a hamburger drawer nav and sticky desktop header
-- Astro View Transitions for smooth page navigation
-- Google Fonts (Oswald + Inter) optimized via Astro's built-in font API
-- Tailwind v4 design token system — swap the entire brand with two file edits
-
----
-
-## Quick start
+## Local Development
 
 ```bash
-# 1. Install dependencies (uses pnpm)
 pnpm install
-
-# 2. Start the dev server
 pnpm run dev
-# → http://localhost:4321
+```
 
-# 3. Build for production
+Local site: `http://localhost:4321/`
+
+Production build:
+
+```bash
 pnpm run build
-
-# 4. Preview the production build locally
 pnpm run preview
 ```
 
-> **Note:** This project uses `pnpm`. Do not use `npm install` or `yarn` — they will create a conflicting lockfile.
+Regression tests:
 
----
-
-## Customising for a client — start here
-
-All placeholder content lives in exactly **two files**. You do not need to touch any component or page files to swap out a client's information.
-
-### Step 1 — Business data: `src/data/client.ts`
-
-Open this file and replace every placeholder value with the real business information.
-
-```ts
-export const client = {
-  name: 'Your Business Name',         // Used in the header, footer, and SEO
-  email: 'hello@yourbusiness.com',
-  phoneForTel: '303-555-0100',        // Format: digits and hyphens only (used in tel: links)
-  phoneFormatted: '(303) 555-0100',   // Format: however you want it displayed
-  license: 'Lic# 123456',            // Contractor license number — leave empty '' to hide
-  address: {
-    lineOne: '123 Main Street',
-    lineTwo: 'Suite 100',             // Leave empty '' if no suite/unit
-    city: 'Denver',
-    state: 'CO',
-    zip: '80206',
-    country: 'US',
-    mapLink: 'https://maps.app.goo.gl/your-link', // Google Maps link to the business
-  },
-  socials: {
-    facebook:  'https://facebook.com/yourbusiness',   // Leave empty '' to hide the icon
-    instagram: 'https://instagram.com/yourbusiness',  // Leave empty '' to hide the icon
-    google:    'https://g.page/yourbusiness',          // Google Business Profile link
-  },
-  domain: 'https://www.yourdomain.com',
-};
+```bash
+pnpm test
 ```
 
-This data flows automatically into the header, footer, contact page, and all SEO tags. You never need to search-and-replace a phone number across multiple files.
+## Cloudflare Pages Deployment
 
----
+Use these Pages settings:
 
-### Step 2 — Visual identity: `src/config/brand.ts`
+- Framework preset: Astro
+- Build command: `pnpm run build`
+- Build output directory: `dist`
+- Node version: `22`
+- Package manager: `pnpm@10.33.0`
+- Production domain: `https://www.wayealleaktest.com`
 
-This controls the site name, tagline, colors, and fonts.
+The repo includes:
 
-```ts
-export const brand = {
-  name: 'Your Business Name',
-  tagline: 'Professional service you can trust.',
-  description: 'A short sentence used as the default SEO meta description.',
-  url: 'https://www.yourdomain.com',  // Must match client.domain
+- `wrangler.toml` with `pages_build_output_dir = "./dist"`
+- `.node-version` pinned to Node 22
+- `public/_headers` for security and asset caching headers
+- `public/_redirects` for canonical lowercase SKU URLs
+- `astro.config.mjs` with static output, sitemap, robots.txt, and production domain checks
 
-  fonts: {
-    body: 'Inter',      // Google Fonts name for body text
-    display: 'Oswald',  // Google Fonts name for headings
-  },
+## Contact Form Secrets
 
-  colors: {
-    primary:    '#1B3A6B',  // Main brand color (nav, buttons, headings)
-    primaryFg:  '#ffffff',  // Text color on top of primary backgrounds
-    accent:     '#F97316',  // CTA buttons, highlights
-    // ... see file for full list
-  },
-};
-```
+Configure these in Cloudflare Pages environment variables:
 
-> **After changing colors** you must also update the matching hex values in `src/styles/theme.css` inside the `@theme { }` block. The variable names there correspond 1-to-1 with the keys in `brand.colors`.
->
-> **After changing fonts** you must also update `astro.config.mjs` — find the `fonts:` array and change the `name` field to match your new Google Font name.
+- `PUBLIC_TURNSTILE_SITE_KEY`: public Turnstile site key used at build time
+- `TURNSTILE_SECRET_KEY`: secret key used by the Pages Function
+- `RESEND_API_KEY`: Resend API key
+- `CONTACT_TO_EMAIL`: destination inbox for website leads
+- `CONTACT_FROM_EMAIL`: verified sender address in Resend
 
----
+The contact form posts to `/api/contact`, validates the fields and Turnstile token, sends the message through Resend, and redirects to `/contact/success/`.
 
-## Project structure
+## SEO Notes
 
-```
-small-business-starter/
-├── public/                     # Static files served as-is (favicon, og-image.png)
-├── src/
-│   ├── components/             # Reusable UI sections
-│   │   ├── Header.astro        # Sticky nav with mobile hamburger drawer
-│   │   ├── Footer.astro        # Dark footer with columns and social links
-│   │   ├── Hero.astro          # Homepage hero with dual CTA
-│   │   ├── TrustBar.astro      # Trust signals strip (credentials and metrics)
-│   │   ├── About.astro         # About section with benefits list
-│   │   ├── Gallery.astro       # Project photo grid with skeleton loading
-│   │   ├── CTA.astro           # Full-bleed call-to-action section
-│   │   └── Banner.astro        # Inner-page hero with auto breadcrumbs
-│   ├── config/
-│   │   └── brand.ts            # ✏️  Visual identity (colors, fonts, tagline)
-│   ├── data/
-│   │   └── client.ts           # ✏️  Business info (phone, address, socials)
-│   ├── layouts/
-│   │   └── BaseLayout.astro    # Master HTML shell (SEO, fonts, skip link)
-│   ├── pages/
-│   │   ├── index.astro         # Homepage
-│   │   ├── about.astro
-│   │   ├── contact/
-│   │   │   ├── index.astro     # Contact form (Netlify Forms-ready)
-│   │   │   └── success.astro   # Confirmation page after form submit
-│   └── styles/
-│       ├── global.css          # Base styles, dark mode, reduced motion
-│       └── theme.css           # Tailwind v4 @theme design tokens
-├── astro.config.mjs            # Astro config (fonts, integrations, site URL)
-├── netlify.toml                # Netlify build + security headers config
-└── package.json
-```
+The site generates canonical URLs, Open Graph tags, Twitter card tags, robots.txt, sitemap XML, breadcrumbs, Organization/WebSite schema, FAQ schema, Product schema, Article schema, and CollectionPage/ItemList schema for major listing pages.
 
-Files marked ✏️ are the ones you will edit most often.
+Competitor references to keep in mind during content and SEO work:
 
----
+- `https://www.innomatec.com/`
+- `https://www.cincinnati-test.com/`
+- `https://seiler-vakuum.de/en/our-customers/`
+- `https://www.nolek.com/`
+- `https://www.inficon.com/en/products/leak-detectors/lds3000`
+- `https://vicleakdetection.com/`
+- `https://lacotech.com/laco-category/helium-leak-detectors/`
+- `https://www.telstar.com/en/`
+- `https://www.galileotp.com/`
+- `https://vac-eng.com/leak-test-system-resources/video-resources/`
+- `https://nixma.com/`
 
-## Replacing placeholder images
+## Important Workflow
 
-The theme ships with placeholder photos from Unsplash so it looks great immediately. To replace them with a client's real photos, edit **one file**: `src/config/images.ts`.
-
-### Folder structure
-
-```
-src/assets/images/
-  hero/        ← one image for the homepage Hero section
-  about/       ← one image for the About section
-  gallery/     ← all project photos (add as many as you like)
-```
-
-Images in `src/assets/` are processed by Astro at build time — they are automatically converted to modern formats (WebP/AVIF), resized, and given proper `srcset` attributes. This is significantly better than using external URLs.
-
-### Hero and About images
-
-1. Drop your image file into the matching folder (`hero/` or `about/`)
-2. Open `src/config/images.ts` and find the section for that image
-3. Uncomment the `import` line and update the filename:
-
-```ts
-// Before (placeholder is used):
-// import heroImage from '../assets/images/hero/hero.jpg';
-export const heroImage: ImageMetadata | undefined = undefined;
-
-// After (your local image is used):
-import heroImage from '../assets/images/hero/hero.jpg';
-export const heroImage = heroImage;
-```
-
-### Gallery images — drop and done
-
-The gallery uses automatic file discovery. You do not need to edit any code:
-
-1. Delete the placeholder `.gitkeep` file from `src/assets/images/gallery/`
-2. Drop your project photos into `src/assets/images/gallery/`
-3. Run `pnpm run build` — your images appear automatically
-
-**The filename becomes the caption.** Name your files descriptively:
-
-```
-kitchen-remodel.jpg       → "Kitchen Remodel"
-deck-installation.jpg     → "Deck Installation"
-bathroom-tile-work.jpg    → "Bathroom Tile Work"
-```
-
-Recommended image specs:
-
-| Section | Min size | Aspect ratio |
-|---|---|---|
-| Hero | 1600 × 1200 px | 4:3 landscape |
-| About | 900 × 700 px | 4:3 landscape |
-| Gallery | 800 × 600 px each | 4:3 landscape |
-
-Supported formats: `.jpg` `.jpeg` `.png` `.webp` `.avif`
-
----
-
-## Deploying to Netlify
-
-1. Push the project to a GitHub repository
-2. In Netlify, click **Add new site → Import an existing project** and connect the repo
-3. Netlify will auto-detect the build settings from `netlify.toml` — no manual config needed
-4. Set your live domain in two places after deploying:
-   - `src/data/client.ts` → `domain`
-   - `src/config/brand.ts` → `url`
-   - `astro.config.mjs` → `site`
-
-The `netlify.toml` file already includes security headers (`X-Frame-Options`, `X-Content-Type-Options`, etc.) and immutable caching for hashed assets.
-
----
-
-## Tech stack
-
-| Tool | Version | Purpose |
-|---|---|---|
-| [Astro](https://astro.build) | 6 | Framework & static site generator |
-| [Tailwind CSS](https://tailwindcss.com) | 4 | Utility-first styling |
-| [Netlify](https://netlify.com) | — | Hosting, forms, CDN |
-| [pnpm](https://pnpm.io) | 9+ | Package manager |
-
----
-
-## Commands reference
-
-| Command | What it does |
-|---|---|
-| `pnpm install` | Install all dependencies |
-| `pnpm run dev` | Start dev server at `localhost:4321` |
-| `pnpm run build` | Build the production site to `./dist/` |
-| `pnpm run preview` | Preview the production build locally |
-| `pnpm run astro check` | Type-check all `.astro` files |
+After code changes, stop any old process on port `4321` and restart the local server at `http://localhost:4321/`.
