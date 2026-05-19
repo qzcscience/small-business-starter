@@ -84,30 +84,15 @@ export const aboutSections: AboutSection[] = [
     eyebrow: 'Factory View',
     title: 'Virtual Factory Tour',
     description:
-      'Explore Wayeal manufacturing, precision machining, quality control, digital manufacturing, and supply chain capabilities for instrument and system delivery.',
+      'Watch the Wayeal factory tour video series covering helium leak detector production and vacuum chamber system production.',
     summary:
-      'Wayeal combines precision machining, standardized assembly, digital manufacturing systems, quality control, and integrated supply chain management to support reliable delivery of instruments and customized testing systems.',
+      'Watch a three-part Wayeal factory tour covering helium leak detector production and vacuum chamber system production.',
     highlights: [
-      '18,000 m2 workshop area with precision machining and clean electronics areas',
-      '20+ CNC machines and machining accuracy up to 0.005 mm',
-      'MES, AGV, EHR, ITR, PLM, QMS, and other digital systems supporting operations',
+      'Part 1: Helium leak detector production',
+      'Part 2: Vacuum chamber systems production',
+      'Part 3: Vacuum chamber systems production',
     ],
-    blocks: [
-      {
-        title: 'Manufacturing Capability',
-        body: [
-          'Wayeal uses precision machining to support self-made key components for high-end instruments. The ESG report describes a precision machining team of more than 30 employees, more than 90% of whom have over 10 years of experience.',
-          'The manufacturing environment includes precision machining, five-axis machining centers, universal turning centers, clean electronics areas, standardized assembly, production testing, and quality control workflows for instrument and system delivery.',
-        ],
-      },
-      {
-        title: 'Digital Delivery System',
-        body: [
-          'Wayeal has introduced MES for production visibility, AGV for automated material delivery, PLM for R&D lifecycle management, QMS for quality data, and ITR for after-sales service closure.',
-          'Integrated supply chain improvements cover planning, purchasing, production, warehousing, logistics, and quality, helping improve delivery reliability, supply flexibility, inventory turnover, and process traceability.',
-        ],
-      },
-    ],
+    blocks: [],
   },
   {
     label: 'Corporate Culture',

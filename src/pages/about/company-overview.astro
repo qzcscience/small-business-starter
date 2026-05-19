@@ -12,12 +12,12 @@ const section = getAboutSection('company-overview')!;
   showBackLink={false}
   showCta={false}
 >
-  <div class="space-y-5">
+  <div class="space-y-4">
     {section.blocks.map((block) => (
       <section aria-label={block.title}>
-        <div class="space-y-5">
+        <div class="space-y-4">
           {block.body.map((paragraph) => (
-            <p class="text-base leading-8 text-text-muted sm:text-lg sm:leading-9">{paragraph}</p>
+            <p class="text-base leading-relaxed text-text-muted">{paragraph}</p>
           ))}
         </div>
       </section>

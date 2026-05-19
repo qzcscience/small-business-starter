@@ -3,19 +3,37 @@ import AboutDetailShell from '../../components/about/AboutDetailShell.astro';
 import { getAboutSection } from '../../data/about';
 
 const section = getAboutSection('virtual-factory-tour')!;
+
+const factoryTourVideos = [
+  {
+    title: 'Wayeal Factory Tour Part 1: Helium Leak Detector Production',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/45pS1uk1KH0?rel=0',
+  },
+  {
+    title: 'Wayeal Factory Tour Part 2: Vacuum Chamber Systems Production',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/7TLbRxMMy6c?rel=0',
+  },
+  {
+    title: 'Wayeal Factory Tour Part 3: Vacuum Chamber Systems Production',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/u_ytBQSHCeE?rel=0',
+  },
+];
 ---
 
-<AboutDetailShell section={section}>
-  <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-    {section.blocks.map((block) => (
-      <section class="rounded-lg border border-border bg-surface/50 p-5">
-        <h2 class="font-heading text-h2 font-semibold uppercase leading-tight text-text">
-          {block.title}
-        </h2>
-        <div class="mt-4 space-y-4">
-          {block.body.map((paragraph) => (
-            <p class="leading-relaxed text-text-muted">{paragraph}</p>
-          ))}
+<AboutDetailShell section={section} showSummary={false} showHighlights={false}>
+  <div class="space-y-6">
+    {factoryTourVideos.map((video) => (
+      <section class="overflow-hidden rounded-lg border border-border bg-background shadow-sm">
+        <div class="relative aspect-video bg-dark">
+          <iframe
+            src={video.embedUrl}
+            title={video.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            class="absolute inset-0 size-full border-0"
+          ></iframe>
         </div>
       </section>
     ))}

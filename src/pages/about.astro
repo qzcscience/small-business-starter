@@ -89,22 +89,24 @@ const breadcrumbs = [
                     ))}
                   </ul>
 
-                  <div class="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                    {section.blocks.map((block) => (
-                      <section>
-                        <h3 class="font-heading text-h3 font-semibold uppercase leading-tight text-text">
-                          {block.title}
-                        </h3>
-                        <div class="mt-3 space-y-3">
-                          {block.body.map((paragraph) => (
-                            <p class="text-sm leading-relaxed text-text-muted sm:text-base">
-                              {paragraph}
-                            </p>
-                          ))}
-                        </div>
-                      </section>
-                    ))}
-                  </div>
+                  {section.blocks.length > 0 && (
+                    <div class="mt-7 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                      {section.blocks.map((block) => (
+                        <section>
+                          <h3 class="font-heading text-h3 font-semibold uppercase leading-tight text-text">
+                            {block.title}
+                          </h3>
+                          <div class="mt-3 space-y-3">
+                            {block.body.map((paragraph) => (
+                              <p class="text-sm leading-relaxed text-text-muted sm:text-base">
+                                {paragraph}
+                              </p>
+                            ))}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  )}
                 </section>
               ))}
             </div>
